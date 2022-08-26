@@ -3,4 +3,3 @@
 ResourceMap = {
     "tencentcloud.cvm": "c7n_tencentcloud.resources.cvm.CVM",
 }
-
