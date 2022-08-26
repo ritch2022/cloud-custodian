@@ -45,7 +45,7 @@ class Session:
                service: str,
                version: str,
                region: str) -> Client:
-        """client"""        
+        """client"""
         http_profile = HttpProfile()
         http_profile.endpoint = endpoint
 

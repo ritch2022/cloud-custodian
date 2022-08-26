@@ -14,9 +14,9 @@ class TypeMeta(type):
 
 class ResourceTypeInfo(metaclass=TypeMeta):
     # used to construct tencentcloud client
-    endpoint = None  # 
-    service = None  # 
-    version = None  # 
+    endpoint = None  #
+    service = None  #
+    version = None  #
 
     # enum_spec: ("action", "jsonpath", "extra_params")
     enum_spec = ()
