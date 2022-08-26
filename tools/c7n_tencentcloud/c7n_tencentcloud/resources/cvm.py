@@ -13,4 +13,3 @@ class CVM(QueryResourceManager):
         service = "cvm"
         version = "2017-03-12"
         enum_spec = ("DescribeInstances", "Response.InstanceSet[]", None)
-
