@@ -1,5 +1,5 @@
+# Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
-
 
 # register provider
 import c7n_tencentcloud.provider  # noqa

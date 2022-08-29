@@ -1,33 +1,21 @@
+# Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
 
-import os
-from tencentcloud.common.credential import Credential
+from tencentcloud.common import credential
 from tencentcloud.common.profile.client_profile import ClientProfile
 from tencentcloud.common.profile.http_profile import HttpProfile
 from tencentcloud.common.common_client import CommonClient
 
 
-ENV_AK = "TENCENTCLOUD_SECRET_ID"
-ENV_SK = "TENCENTCLOUD_SECRET_KEY"
-
-
-def get_aksk():
-    """
-    It returns a tuple of two strings, the first one is the AK, the second one is the SK
-    :return: A tuple of strings.
-    """
-    return (os.environ[ENV_AK], os.environ[ENV_SK])
-
-
 class Client:
     """Client"""
     def __init__(self,
-                credential: Credential,
+                cred: credential.Credential,
                 service: str,
                 version: str,
                 profile: ClientProfile,
                 region: str) -> None:
-        self._cli = CommonClient(service, version, credential, region, profile)
+        self._cli = CommonClient(service, version, cred, region, profile)
 
     def execute_query(self, action: str, params: dict) -> dict:
         """execute_query"""
@@ -37,8 +25,10 @@ class Client:
 class Session:
     """Session"""
     def __init__(self) -> None:
-        self._secret_id, self._secret_key = get_aksk()
-        self._cred = Credential(self._secret_id, self._secret_key)
+        # just using default get_credentials() method
+        # steps: Environment Variable -> profile file -> CVM role
+        # for reference: https://github.com/TencentCloud/tencentcloud-sdk-python
+        self._cred = credential.DefaultCredentialProvider().get_credentials()
 
     def client(self,
                endpoint: str,
