@@ -5,7 +5,6 @@ from copy import deepcopy
 import jmespath
 import pytest
 from c7n.query import sources
-from c7n_tencentcloud.client import Session
 from c7n_tencentcloud.query import (ResourceTypeInfo, ResourceQuery,
                                     DescribeSource, QueryResourceManager)
 
@@ -100,7 +99,7 @@ resource_query_test_cases = [
 
 
 @pytest.fixture()
-def client():
+def session():
     class Client:
         def __init__(self) -> None:
             self.test_case = None
@@ -121,7 +120,15 @@ def client():
             if self.check_params_flag and params != self.test_case[2]:
                 raise Exception("wrong params")
             return deepcopy(jmespath.search(jsonpath, self.test_case[1]))
-    return Client()
+
+    class Sesion:
+        def __init__(self) -> None:
+            self._cli = Client()
+
+        def client(self, *args, **kwargs):
+            return self._cli
+
+    return Sesion()
 
 
 @pytest.fixture(params=resource_query_test_cases)
@@ -129,24 +136,20 @@ def test_case(request):
     return request.param
 
 
-def test_resource_query_filter(client, test_case, monkeypatch):
+def test_resource_query_filter(session, test_case):
+    client = session.client()
     client.set_test_case(test_case)
 
-    def mock_client(*args, **kwargs):
-        return client
-    monkeypatch.setattr(Session, "client", mock_client)
-    resource_query = ResourceQuery(Session())
+    resource_query = ResourceQuery(session)
     res = resource_query.filter("ap-shanghai", test_case[0], {})
     assert res == test_case[3]
 
 
-def test_resource_query_paged_filter(client, test_case, monkeypatch):
+def test_resource_query_paged_filter(session, test_case):
+    client = session.client()
     client.set_test_case(test_case)
 
-    def mock_client(*args, **kwargs):
-        return client
-    monkeypatch.setattr(Session, "client", mock_client)
-    resource_query = ResourceQuery(Session())
+    resource_query = ResourceQuery(session)
     res = resource_query.paged_filter("ap-shanghai", test_case[0], {})
     assert res == test_case[3]
 
@@ -179,16 +182,12 @@ class TestQueryResourceManager:
         res = resource_manager.get_resource_query_params()
         assert res == data_test_case[1]
 
-    def test_resources(self, ctx, client, test_case, monkeypatch):
+    def test_resources(self, ctx, session, test_case, monkeypatch):
+        client = session.client()
         client.set_test_case(test_case)
         client.set_check_params_flag(False)
-
-        def mock_client(*args, **kwargs):
-            return client
-        monkeypatch.setattr(Session, "client", mock_client)
         monkeypatch.setattr(sources, "get", source_get)
         monkeypatch.setattr(QueryResourceManager, "resource_type", test_case[0])
         resource_manager = QueryResourceManager(ctx, {})
         res = resource_manager.resources()
-        print(test_case)
         assert res == test_case[4]

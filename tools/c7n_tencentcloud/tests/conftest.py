@@ -8,14 +8,14 @@ from c7n_tencentcloud.client import Session
 
 
 @pytest.fixture
-def session():
-    return Session()
-
-
-@pytest.fixture
 def mock_env_aksk(monkeypatch):
     monkeypatch.setenv("TENCENTCLOUD_SECRET_ID", "xxx")
     monkeypatch.setenv("TENCENTCLOUD_SECRET_KEY", "yyy")
+
+
+@pytest.fixture
+def session(mock_env_aksk):
+    return Session()
 
 
 @pytest.fixture
