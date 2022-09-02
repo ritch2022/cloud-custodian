@@ -52,6 +52,7 @@ class QueryMeta(type):
     def __new__(cls, name, parents, attrs):
         if 'filter_registry' not in attrs:
             attrs['filter_registry'] = FilterRegistry(f"{name.lower()}.filters")
+            
         if 'action_registry' not in attrs:
             attrs['action_registry'] = ActionRegistry(f"{name.lower()}%s.actions")
         return super(QueryMeta, cls).__new__(cls, name, parents, attrs)
