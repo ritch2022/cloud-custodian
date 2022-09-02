@@ -3,7 +3,7 @@
 
 from datetime import datetime
 import jmespath
-import numpy
+import math
 import pytest
 import socket
 from retrying import RetryError
@@ -135,10 +135,12 @@ def test_client_over_retry_times(client_once, gen_error_reponse, monkeypatch):
     monkeypatch.setattr(AbstractClient, "call_json", mock_call_json)
     with pytest.raises(RetryError):
         client_once.execute_query("test", {})
-    time_interval = list(numpy.diff(call_at))
-    expected_time_interval = [0.2, 0.4, 0.8, 1]
+    time_interval = [call_at[i + 1] - call_at[i] for i in range(len(call_at) - 1)]
+    wanted_interval = [0.2, 0.4, 0.8, 1]
+    is_close = [math.isclose(time_interval[i], wanted_interval[i], abs_tol=0.02)
+                for i in range(len(wanted_interval))]
     assert call_counter == 5
-    assert all(numpy.isclose(time_interval, expected_time_interval, atol=0.02))
+    assert all(is_close)
 
 
 @pytest.fixture
