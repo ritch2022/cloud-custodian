@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import jmespath
-from c7n.utils import local_session
+from c7n.utils import local_session, chunks
 from retrying import RetryError
 
 from .actions.tags import register_tag_actions, register_tag_filters
@@ -14,13 +14,14 @@ from c7n.filters import FilterRegistry
 from c7n.manager import ResourceManager
 from c7n.query import sources
 from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
-
+from linq import Query
 
 DESC_SOURCE_NAME = "describe-tencentcloud"
 
 
 class TypeMeta(type):
     """TypeMeta"""
+
     def __repr__(cls) -> str:
         return f"<Type info service:{cls.service} client:{cls.version}>"
 
@@ -48,6 +49,7 @@ class ResourceTypeInfo(metaclass=TypeMeta):
 
 class ResourceQuery:
     """ResourceQuery"""
+
     def __init__(self, session_factory: Session) -> None:
         self.session_factory = session_factory
 
@@ -104,14 +106,14 @@ class ResourceQuery:
         except (RetryError, TencentCloudSDKException) as err:
             raise PolicyExecutionError(err) from err
 
-    def get_resource_tags(self, region: str, resource6_name: str):
+    def get_resource_tags(self, region: str, qcs_list: []):
         """
         get_resource_tags
         """
         from c7n_tencentcloud.resources.tag import TAG
 
         tag_resource_type = TAG.resource_type
-        params = TAG.get_simple_call_params(resource6_name)
+        params = TAG.get_simple_call_params(qcs_list)
         return self.filter(region, tag_resource_type, params)
 
 
@@ -213,6 +215,7 @@ class DescribeSource:
         self.region = resource_manager.config.region
         self.query_helper = ResourceQuery(resource_manager.session_factory)
         self._session = None
+        self.tag_batch_size: int = 10
 
     def resources(self, params=None):
         """
@@ -226,12 +229,12 @@ class DescribeSource:
 
         if self.resource_manager.resource_type.paging_def:
             res = self.query_helper.paged_filter(self.resource_manager.config.region,
-                                            self.resource_manager.resource_type,
-                                            params)
+                                                 self.resource_manager.resource_type,
+                                                 params)
         else:
             res = self.query_helper.filter(self.resource_manager.config.region,
-                                       self.resource_manager.resource_type,
-                                       params)
+                                           self.resource_manager.resource_type,
+                                           params)
         self.augment(res)
         return res
 
@@ -239,37 +242,41 @@ class DescribeSource:
         return []
 
     def augment(self, resources):
-        for r in resources:
-            r["Tags"] = self.get_resource_tag(r)
-        return resources
+        return self.get_resource_tag(resources)
 
-    def get_resource_tag(self, resource):
+    def get_resource_tag(self, resources):
         """
         Get resource tag
         All resource tags need to be obtained separately
         """
-        result = []
-        resouce_id = resource[self.resource_type.id]
-        ce6 = self.get_resource_qcs(resouce_id)
-        res = self.query_helper.get_resource_tags(self.region, ce6)
-        if res:
-            # get the resource's tags
-            for tag in res[0]["Tags"]:
-                result.append({
-                    "Key": tag["TagKey"],
-                    "Value": tag["TagValue"]
-                })
-        return result
+        for batch in chunks(resources, self.tag_batch_size):
+            qcs_list = self.get_resource_qcs(batch)
+            tags = self.query_helper.get_resource_tags(self.region, qcs_list)
 
-    def get_resource_qcs(self, resource_id):
+            for res in batch:
+                tag = Query(tags).where(
+                    lambda x: x["Resource"].find(res[self.resource_type.id]) > 0).to_list()
+                if len(tag) > 0:
+                    result_tags = []
+                    for t in tag[0]["Tags"]:
+                        result_tags.append({"Key": t["TagKey"], "Value": t["TagValue"]})
+                    res["Tags"] = result_tags
+
+        return resources
+
+    def get_resource_qcs(self, resources):
         """
         get_resource_qcs
         resource description https://cloud.tencent.com/document/product/598/10606
         """
         # qcs::${ServiceType}:${Region}:${Account}:${ResourcePreifx}/${ResourceId}
         # qcs::cvm:ap-singapore::instance/ins-ibu7wp2a
-        return "qcs::{}:{}::{}/{}".format(
-            self.resource_type.service,
-            self.region,
-            self.resource_type.resource_preifx,
-            resource_id)
+        qcs_list = []
+        for r in resources:
+            qcs = "qcs::{}:{}::{}/{}".format(
+                self.resource_type.service,
+                self.region,
+                self.resource_type.resource_preifx,
+                r[self.resource_type.id])
+            qcs_list.append(qcs)
+        return qcs_list
