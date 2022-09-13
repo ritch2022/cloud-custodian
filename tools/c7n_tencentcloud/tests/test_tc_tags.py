@@ -22,7 +22,7 @@ class TestCvmTagAction(BaseTest):
         self.cvm = CVM(self.ctx, policy)
 
     @pytest.mark.vcr
-    def test_cvm_mark_op_stop(self):
+    def test_cvm_mark_op_stop(self, options):
         resources = self.cvm.resources()
         assert not resources[0]["Tags"]
 
@@ -43,9 +43,7 @@ class TestCvmTagAction(BaseTest):
                     }
                 ]
             },
-            config=Config.empty(**{
-                "region": "ap-singapore"  # just for init, ignore the value
-            })
+            config=options
         )
         resources = policy.run()
 
@@ -53,7 +51,7 @@ class TestCvmTagAction(BaseTest):
         assert resources[0]["Tags"][0]["Key"] == "maid_status"
 
     @pytest.mark.vcr
-    def test_cvm_marked_op_stop_not_filter(self):
+    def test_cvm_marked_op_stop_not_filter(self, options):
         resources = self.cvm.resources()
         assert resources[0]["InstanceState"] == "RUNNING"
 
@@ -81,9 +79,7 @@ class TestCvmTagAction(BaseTest):
                     }
                 ]
             },
-            config=Config.empty(**{
-                "region": "ap-singapore"  # just for init, ignore the value
-            })
+            config=options
         )
         policy.run()
 
@@ -91,7 +87,7 @@ class TestCvmTagAction(BaseTest):
         assert resources[0]["InstanceState"] == "RUNNING"
 
     @pytest.mark.vcr
-    def test_cvm_marked_op_stop(self):
+    def test_cvm_marked_op_stop(self, options):
         resources = self.cvm.resources()
         assert resources[0]["InstanceState"] == "RUNNING"
 
@@ -112,9 +108,7 @@ class TestCvmTagAction(BaseTest):
                     }
                 ]
             },
-            config=Config.empty(**{
-                "region": "ap-singapore"  # just for init, ignore the value
-            })
+            config=options
         )
         policy.run()
 
@@ -123,7 +117,7 @@ class TestCvmTagAction(BaseTest):
                resources[0]["InstanceState"] == "STOPPED"
 
     @pytest.mark.vcr
-    def test_cvm_mark_op_terminate_and_stop(self):
+    def test_cvm_mark_op_terminate_and_stop(self, options):
         policy = {
             "filters": [
                 {
@@ -156,9 +150,7 @@ class TestCvmTagAction(BaseTest):
                     }
                 ]
             },
-            config=Config.empty(**{
-                "region": "ap-singapore"  # just for init, ignore the value
-            })
+            config=options
         )
         resources = policy.run()
 
@@ -168,7 +160,7 @@ class TestCvmTagAction(BaseTest):
         assert resources[0]["Tags"][0]["Key"] == "maid_status"
 
     @pytest.mark.vcr
-    def test_cvm_marked_op_terminate(self):
+    def test_cvm_marked_op_terminate(self, options):
         policy = {
             "filters": [
                 {
@@ -197,16 +189,14 @@ class TestCvmTagAction(BaseTest):
                     }
                 ]
             },
-            config=Config.empty(**{
-                "region": "ap-singapore"  # just for init, ignore the value
-            })
+            config=options
         )
         policy.run()
 
         assert len(cvm.resources()) == 0
 
     @pytest.mark.vcr
-    def test_add_tag(self):
+    def test_add_tag(self, options):
         resources = self.cvm.resources()
         for tag in resources[0]["Tags"]:
             assert tag["Key"] != "tag_add_test_key_for_test"
@@ -228,9 +218,7 @@ class TestCvmTagAction(BaseTest):
                     }
                 ]
             },
-            config=Config.empty(**{
-                "region": "ap-singapore"  # just for init, ignore the value
-            })
+            config=options
         )
         policy.run()
 
@@ -244,7 +232,7 @@ class TestCvmTagAction(BaseTest):
         assert tag_add_success
 
     @pytest.mark.vcr
-    def test_modify_tag(self):
+    def test_modify_tag(self, options):
         resources = self.cvm.resources()
         tag_exist = False
         for tag in resources[0]["Tags"]:
@@ -270,9 +258,7 @@ class TestCvmTagAction(BaseTest):
                     }
                 ]
             },
-            config=Config.empty(**{
-                "region": "ap-singapore"  # just for init, ignore the value
-            })
+            config=options
         )
         policy.run()
 
@@ -288,7 +274,7 @@ class TestCvmTagAction(BaseTest):
         assert old_key_not_exist and new_key_exist
 
     @pytest.mark.vcr
-    def test_remove_tag(self):
+    def test_remove_tag(self, options):
         resources = self.cvm.resources()
         tag_exist = False
         for tag in resources[0]["Tags"]:
@@ -313,9 +299,7 @@ class TestCvmTagAction(BaseTest):
                     }
                 ]
             },
-            config=Config.empty(**{
-                "region": "ap-singapore"  # just for init, ignore the value
-            })
+            config=options
         )
         policy.run()
 

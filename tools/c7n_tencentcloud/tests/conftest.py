@@ -32,7 +32,10 @@ def client_tag(session):
 @pytest.fixture
 def options():
     return Config.empty(**{
-        "region": "ap-singapore"  # just for init, ignore the value
+        "region": "ap-singapore",  # just for init, ignore the value
+        "output_dir": "null://",
+        "log_group": "null://",
+        "cache": False,
     })
 
 

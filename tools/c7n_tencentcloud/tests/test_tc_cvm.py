@@ -3,15 +3,24 @@
 
 import pytest
 from tc_common import BaseTest
-from c7n.config import Config
 from c7n_tencentcloud.resources.cvm import CVM
 from c7n_tencentcloud.resources.cvm import CvmStopAction
 from c7n.exceptions import PolicyExecutionError
 
 
-@pytest.fixture(scope="session")
-def get_ctx(ctx):
-    return ctx
+# @pytest.fixture(scope="session")
+# def get_ctx(ctx):
+#     return ctx
+
+
+# @pytest.fixture
+# def config():
+#     return Config.empty(**{
+#                         "region": "ap-singapore",  # just for init, ignore the value
+#                         "output_dir": "null://",
+#                         "log_group": "null://",
+#                         "cache": False,
+#                         })
 
 
 class TestCvmAction(BaseTest):
@@ -29,12 +38,12 @@ class TestCvmAction(BaseTest):
         }
         self.cvm = CVM(self.ctx, policy)
 
-    @pytest.fixture(autouse=True)
-    def set_monkeypatch(self, monkeypatch):
-        self.monkeypatch = monkeypatch
+    # @pytest.fixture(autouse=True)
+    # def set_monkeypatch(self, monkeypatch):
+    #     self.monkeypatch = monkeypatch
 
     @pytest.mark.vcr
-    def test_cvm_stop(self):
+    def test_cvm_stop(self, options):
         resources = self.cvm.resources()
         assert resources[0]["InstanceState"] == "RUNNING"
 
@@ -54,9 +63,7 @@ class TestCvmAction(BaseTest):
                     }
                 ]
             },
-            config=Config.empty(**{
-                "region": "ap-singapore"  # just for init, ignore the value
-            })
+            config=options
         )
         policy.run()
 
@@ -65,7 +72,7 @@ class TestCvmAction(BaseTest):
                resources[0]["InstanceState"] == "STOPPED"
 
     @pytest.mark.vcr
-    def test_cvm_start(self):
+    def test_cvm_start(self, options):
         resources = self.cvm.resources()
         assert resources[0]["InstanceState"] == "STOPPED"
 
@@ -85,9 +92,7 @@ class TestCvmAction(BaseTest):
                     }
                 ]
             },
-            config=Config.empty(**{
-                "region": "ap-singapore"  # just for init, ignore the value
-            })
+            config=options
         )
         policy.run()
 
@@ -96,7 +101,7 @@ class TestCvmAction(BaseTest):
                resources[0]["InstanceState"] == "RUNNING"
 
     @pytest.mark.vcr
-    def test_cvm_terminate(self):
+    def test_cvm_terminate(self, options):
         policy = {
             "filters": [
                 {
@@ -123,19 +128,17 @@ class TestCvmAction(BaseTest):
                     }
                 ]
             },
-            config=Config.empty(**{
-                "region": "ap-singapore"  # just for init, ignore the value
-            })
+            config=options
         )
         policy.run()
 
         assert len(cvm.resources()) == 0
 
     @pytest.mark.vcr
-    def test_cvm_exec_exception(self):
+    def test_cvm_exec_exception(self, monkeypatch):
         def get_params(*args):
             return {"InstanceIds": "hello"}
         stop = CvmStopAction({'type': 'stop'}, self.cvm)
-        self.monkeypatch.setattr(stop, "get_request_params", get_params)
+        monkeypatch.setattr(stop, "get_request_params", get_params)
         with pytest.raises(PolicyExecutionError):
             stop.process(self.cvm.resources())
