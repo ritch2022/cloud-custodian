@@ -3,6 +3,7 @@
 from c7n.schema import generate
 from c7n.testing import CustodianTestCore
 
+
 class BaseTest(CustodianTestCore):
     custodian_schema = generate()
 
