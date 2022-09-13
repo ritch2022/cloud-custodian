@@ -24,6 +24,7 @@ class TestClient:
         jsonpath = "Response.Products[]"
         resp = simple_client.execute_query(action, {})
         data = jmespath.search(jsonpath, resp)
+        # TODO assert some value
         assert data
 
     @pytest.fixture
