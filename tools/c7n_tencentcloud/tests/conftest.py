@@ -9,7 +9,9 @@ from c7n_tencentcloud.client import Session
 
 @pytest.fixture(scope="package")
 def vcr_config():
-    return {"filter_headers": ["authorization"]}
+    return {
+        "filter_headers": ["authorization", "X-TC-Timestamp", "X-TC-RequestClient", "X-TC-Language"]
+    }
 
 
 @pytest.fixture
