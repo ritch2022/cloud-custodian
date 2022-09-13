@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import pytest
-from tests.common import BaseTest
+from tc_common import BaseTest
 from c7n.config import Config
 from c7n_tencentcloud.resources.cvm import CVM
 from c7n_tencentcloud.resources.cvm import CvmStopAction
