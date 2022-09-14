@@ -8,21 +8,6 @@ from c7n_tencentcloud.resources.cvm import CvmStopAction
 from c7n.exceptions import PolicyExecutionError
 
 
-# @pytest.fixture(scope="session")
-# def get_ctx(ctx):
-#     return ctx
-
-
-# @pytest.fixture
-# def config():
-#     return Config.empty(**{
-#                         "region": "ap-singapore",  # just for init, ignore the value
-#                         "output_dir": "null://",
-#                         "log_group": "null://",
-#                         "cache": False,
-#                         })
-
-
 class TestCvmAction(BaseTest):
 
     @pytest.fixture(autouse=True)
@@ -37,10 +22,6 @@ class TestCvmAction(BaseTest):
             ]
         }
         self.cvm = CVM(self.ctx, policy)
-
-    # @pytest.fixture(autouse=True)
-    # def set_monkeypatch(self, monkeypatch):
-    #     self.monkeypatch = monkeypatch
 
     @pytest.mark.vcr
     def test_cvm_stop(self, options):

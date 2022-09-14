@@ -3,7 +3,6 @@
 
 import pytest
 from tc_common import BaseTest
-from c7n.config import Config
 from c7n_tencentcloud.resources.cvm import CVM
 
 
@@ -45,7 +44,7 @@ class TestCvmTagAction(BaseTest):
             },
             config=options
         )
-        resources = policy.run()
+        policy.run()
 
         resources = self.cvm.resources()
         assert resources[0]["Tags"][0]["Key"] == "maid_status"
@@ -62,13 +61,11 @@ class TestCvmTagAction(BaseTest):
                 "filters": [
                     {
                         "type": "marked-for-op",
-                        "InstanceId": "ins-00lycyy6",
                         "op": "stop",
                         "skew": 14
                     }, {
                         "not": [{
                             "type": "marked-for-op",
-                            "InstanceId": "ins-00lycyy6",
                             "op": "stop",
                             "skew": 14
                         }]
@@ -98,7 +95,6 @@ class TestCvmTagAction(BaseTest):
                 "filters": [
                     {
                         "type": "marked-for-op",
-                        "InstanceId": "ins-00lycyy6",
                         "op": "stop",
                         "skew": 14
                     }
@@ -152,7 +148,7 @@ class TestCvmTagAction(BaseTest):
             },
             config=options
         )
-        resources = policy.run()
+        policy.run()
 
         resources = self.cvm.resources()
         assert resources[0]["InstanceState"] == "STOPPING" or \
@@ -178,7 +174,6 @@ class TestCvmTagAction(BaseTest):
                 "filters": [
                     {
                         "type": "marked-for-op",
-                        "InstanceId": "ins-3zljmyzw",
                         "op": "terminate",
                         "skew": 7
                     }

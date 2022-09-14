@@ -206,6 +206,7 @@ class QueryResourceManager(ResourceManager, metaclass=QueryMeta):
 @sources.register(DESC_SOURCE_NAME)
 class DescribeSource:
     """DescribeSource"""
+
     def __init__(self, resource_manager: QueryResourceManager) -> None:
         """
         :param query: The query to execute from query in policy.yaml
@@ -215,7 +216,7 @@ class DescribeSource:
         self.region = resource_manager.config.region
         self.query_helper = ResourceQuery(resource_manager.session_factory)
         self._session = None
-        self.tag_batch_size: int = 10
+        self.tag_batch_size: int = 9
 
     def resources(self, params=None):
         """
