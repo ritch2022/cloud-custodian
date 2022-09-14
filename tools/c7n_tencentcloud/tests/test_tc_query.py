@@ -96,4 +96,4 @@ class TestQueryResourceManager:
         monkeypatch.setattr(QueryResourceManager, "resource_type", CVMInfoNoPagination)
         resource_manager = QueryResourceManager(ctx, {})
         res = resource_manager.resources()
-        assert len(res) == 20
+        assert len(res) == 6
