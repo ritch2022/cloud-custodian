@@ -65,7 +65,7 @@ class TestResourcetQuery:
 # (data, expected_query_params)
 data_test_cases = [
     ({}, {}),
-    ({"query": [{"Key": "Value"}]}, {"Filters": [{"Key": "Value"}]})
+    ({"query": {"Filters": [{"Key": "Value"}]}}, {"Filters": [{"Key": "Value"}]})
 ]
 
 

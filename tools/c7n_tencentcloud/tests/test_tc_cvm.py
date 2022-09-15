@@ -15,11 +15,9 @@ class TestCvmAction(BaseTest):
         self.ctx = ctx
         policy = {
             "name": "cvm-test",
-            "filters": [
-                {
-                    "InstanceId": "ins-00lycyy6"
-                }
-            ]
+            "query": {
+                    "InstanceIds": ["ins-00lycyy6"]
+            },
         }
         self.cvm = CVM(self.ctx, policy)
 
@@ -33,11 +31,9 @@ class TestCvmAction(BaseTest):
                 "name": "cvm-stop-test",
                 "resource": "tencentcloud.cvm",
                 "comment": "stop cvm",
-                "filters": [
-                    {
-                        "InstanceId": "ins-00lycyy6"
-                    }
-                ],
+                "query": {
+                    "InstanceIds": ["ins-00lycyy6"]
+                },
                 "actions": [
                     {
                         "type": "stop"
@@ -62,11 +58,9 @@ class TestCvmAction(BaseTest):
                 "name": "cvm-start-test",
                 "resource": "tencentcloud.cvm",
                 "comment": "start cvm",
-                "filters": [
-                    {
-                        "InstanceId": "ins-00lycyy6"
-                    }
-                ],
+                "query": {
+                    "InstanceIds": ["ins-00lycyy6"]
+                },
                 "actions": [
                     {
                         "type": "start"
@@ -84,11 +78,9 @@ class TestCvmAction(BaseTest):
     @pytest.mark.vcr
     def test_cvm_terminate(self, options):
         policy = {
-            "filters": [
-                {
-                    "InstanceId": "ins-bqbsb58o"
-                }
-            ]
+            "query": {
+                "InstanceIds": ["ins-0oivfctm"]
+            }
         }
         cvm = CVM(self.ctx, policy)
         assert len(cvm.resources()) == 1
@@ -98,11 +90,9 @@ class TestCvmAction(BaseTest):
                 "name": "cvm-terminate-test",
                 "resource": "tencentcloud.cvm",
                 "comment": "terminate cvm",
-                "filters": [
-                    {
-                        "InstanceId": "ins-bqbsb58o"
-                    }
-                ],
+                "query": {
+                    "InstanceIds": ["ins-0oivfctm"]
+                },
                 "actions": [
                     {
                         "type": "terminate"

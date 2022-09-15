@@ -12,11 +12,9 @@ class TestCvmTagAction(BaseTest):
         self.ctx = ctx
         policy = {
             "name": "cvm-test",
-            "filters": [
-                {
-                    "InstanceId": "ins-00lycyy6"
-                }
-            ]
+            "query": {
+                    "InstanceIds": ["ins-00lycyy6"]
+            },
         }
         self.cvm = CVM(self.ctx, policy)
 
@@ -29,11 +27,9 @@ class TestCvmTagAction(BaseTest):
             {
                 "name": "cvm-mark-for-op-stop",
                 "resource": "tencentcloud.cvm",
-                "filters": [
-                    {
-                        "InstanceId": "ins-00lycyy6"
-                    }
-                ],
+                "query": {
+                    "InstanceIds": ["ins-00lycyy6"]
+                },
                 "actions": [
                     {
                         "type": "mark-for-op",
@@ -58,6 +54,9 @@ class TestCvmTagAction(BaseTest):
             {
                 "name": "cvm-marked-for-op-stop",
                 "resource": "tencentcloud.cvm",
+                "query": {
+                    "InstanceIds": ["ins-00lycyy6"]
+                },
                 "filters": [
                     {
                         "type": "marked-for-op",
@@ -92,6 +91,9 @@ class TestCvmTagAction(BaseTest):
             {
                 "name": "cvm-marked-for-op-stop",
                 "resource": "tencentcloud.cvm",
+                "query": {
+                    "InstanceIds": ["ins-00lycyy6"]
+                },
                 "filters": [
                     {
                         "type": "marked-for-op",
@@ -115,11 +117,9 @@ class TestCvmTagAction(BaseTest):
     @pytest.mark.vcr
     def test_cvm_mark_op_terminate_and_stop(self, options):
         policy = {
-            "filters": [
-                {
-                    "InstanceId": "ins-3zljmyzw"
-                }
-            ]
+            "query": {
+                "InstanceIds": ["ins-7sg50hs2"]
+            }
         }
         cvm = CVM(self.ctx, policy)
         resources = cvm.resources()
@@ -130,11 +130,9 @@ class TestCvmTagAction(BaseTest):
             {
                 "name": "cvm-mark-for-op-terminate",
                 "resource": "tencentcloud.cvm",
-                "filters": [
-                    {
-                        "InstanceId": "ins-3zljmyzw"
-                    }
-                ],
+                "query": {
+                    "InstanceIds": ["ins-7sg50hs2"]
+                },
                 "actions": [
                     {
                         "type": "mark-for-op",
@@ -158,11 +156,9 @@ class TestCvmTagAction(BaseTest):
     @pytest.mark.vcr
     def test_cvm_marked_op_terminate(self, options):
         policy = {
-            "filters": [
-                {
-                    "InstanceId": "ins-3zljmyzw"
-                }
-            ]
+            "query": {
+                "InstanceIds": ["ins-7sg50hs2"]
+            }
         }
         cvm = CVM(self.ctx, policy)
         assert len(cvm.resources()) == 1
@@ -171,6 +167,9 @@ class TestCvmTagAction(BaseTest):
             {
                 "name": "cvm-marked-for-op-terminate",
                 "resource": "tencentcloud.cvm",
+                "query": {
+                    "InstanceIds": ["ins-7sg50hs2"]
+                },
                 "filters": [
                     {
                         "type": "marked-for-op",
@@ -200,11 +199,9 @@ class TestCvmTagAction(BaseTest):
             {
                 "name": "cvm-test-tag",
                 "resource": "tencentcloud.cvm",
-                "filters": [
-                    {
-                        "InstanceId": "ins-00lycyy6",
-                    }
-                ],
+                "query": {
+                    "InstanceIds": ["ins-00lycyy6"]
+                },
                 "actions": [
                     {
                         "type": "tag",
@@ -240,11 +237,9 @@ class TestCvmTagAction(BaseTest):
             {
                 "name": "cvm-test-rename-tag",
                 "resource": "tencentcloud.cvm",
-                "filters": [
-                    {
-                        "InstanceId": "ins-00lycyy6",
-                    }
-                ],
+                "query": {
+                    "InstanceIds": ["ins-00lycyy6"]
+                },
                 "actions": [
                     {
                         "type": "rename-tag",
@@ -282,11 +277,9 @@ class TestCvmTagAction(BaseTest):
             {
                 "name": "cvm-test-remove-tag",
                 "resource": "tencentcloud.cvm",
-                "filters": [
-                    {
-                        "InstanceId": "ins-00lycyy6",
-                    }
-                ],
+                "query": {
+                    "InstanceIds": ["ins-00lycyy6"]
+                },
                 "actions": [
                     {
                         "type": "remove-tag",
