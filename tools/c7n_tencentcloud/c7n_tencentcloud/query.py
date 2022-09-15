@@ -176,7 +176,11 @@ class QueryResourceManager(ResourceManager, metaclass=QueryMeta):
         return self.source.get_permissions()
 
     def get_resource_query_params(self):
-        return self.data.get("query", {})
+        config_query = self.data.get("query", [])
+        params = {}
+        for it in config_query:
+            params.update(it)
+        return params
 
     def resources(self):
         params = self.get_resource_query_params()
