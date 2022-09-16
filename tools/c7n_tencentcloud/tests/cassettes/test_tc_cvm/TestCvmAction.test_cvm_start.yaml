@@ -40,14 +40,14 @@ interactions:
         {"KeyIds": ["skey-83mjf79v"]}, "ImageId": "img-eb30mz89", "OsName": "TencentOS
         Server 3.1 (TK4)", "DefaultLoginUser": "root", "DefaultLoginPort": 22, "RenewFlag":
         null, "CreatedTime": "2022-09-06T03:07:37Z", "ExpiredTime": null, "Tags":
-        [{"tagKey": "maid_status", "tagValue": "Resource does not meet policy: stop@2022-09-27T02:31:00+00:00",
-        "Key": "maid_status", "Value": "Resource does not meet policy: stop@2022-09-27T02:31:00+00:00"}],
+        [{"tagKey": "maid_status", "tagValue": "Resource does not meet policy: stop@2022-09-29T06:56:00+00:00",
+        "Key": "maid_status", "Value": "Resource does not meet policy: stop@2022-09-29T06:56:00+00:00"}],
         "PlatformProjectId": null, "DisasterRecoverGroupId": "", "DedicatedClusterId":
         "", "CamRoleName": "", "LatestOperation": "StopInstances", "LatestOperationState":
-        "SUCCESS", "LatestOperationRequestId": "bfefd463-506b-4e4c-8632-87a453b1ea88",
+        "SUCCESS", "LatestOperationRequestId": "cd195c32-c1cf-444f-b8a1-863539c3c367",
         "IsolatedSource": "NOTISOLATED", "HpcClusterId": "", "DisableApiTermination":
         false, "RdmaIpAddresses": null, "LicenseType": "TencentCloud", "StopChargingMode":
-        "STOP_CHARGING"}], "RequestId": "510dac01-2a08-41aa-b83e-b0481cff9097"}}'
+        "STOP_CHARGING"}], "RequestId": "e271ece9-76b4-4284-abd8-cf2944e9e68e"}}'
     headers:
       Connection:
       - keep-alive
@@ -56,7 +56,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 15 Sep 2022 06:46:57 GMT
+      - Fri, 16 Sep 2022 03:22:05 GMT
       Server:
       - nginx
     status:
@@ -89,7 +89,7 @@ interactions:
     uri: https://cvm.tencentcloudapi.com/
   response:
     body:
-      string: '{"Response": {"TotalCount": 1, "InstanceSet": [], "RequestId": "443df2dc-57b8-45dc-a8cd-1c0eafea2488"}}'
+      string: '{"Response": {"TotalCount": 1, "InstanceSet": [], "RequestId": "578f9163-5fd9-4989-a6be-1a04bfa5a8ef"}}'
     headers:
       Connection:
       - keep-alive
@@ -98,7 +98,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 15 Sep 2022 06:46:58 GMT
+      - Fri, 16 Sep 2022 03:22:06 GMT
       Server:
       - nginx
     status:
@@ -132,7 +132,7 @@ interactions:
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/100000750436:instance\/ins-00lycyy6","Tags":[{"TagKey":"maid_status","TagValue":"Resource
-        does not meet policy: stop@2022-09-27T02:31:00+00:00"}]}],"RequestId":"0e36e66f-34ba-4cd7-8174-2c028e03cf38"}}'
+        does not meet policy: stop@2022-09-29T06:56:00+00:00"}]}],"RequestId":"9ef4bbe6-4b03-4146-8162-7db4c012169d"}}'
     headers:
       Connection:
       - keep-alive
@@ -141,155 +141,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 15 Sep 2022 06:46:58 GMT
-      Server:
-      - nginx
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"InstanceIds": ["ins-00lycyy6"], "Offset": 0, "Limit": 20}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '59'
-      Content-Type:
-      - application/json
-      Host:
-      - cvm.tencentcloudapi.com
-      User-Agent:
-      - python-requests/2.28.1
-      X-TC-Action:
-      - DescribeInstances
-      X-TC-Region:
-      - ap-singapore
-      X-TC-Version:
-      - '2017-03-12'
-    method: POST
-    uri: https://cvm.tencentcloudapi.com/
-  response:
-    body:
-      string: '{"Response": {"TotalCount": 1, "InstanceSet": [{"Placement": {"Zone":
-        "ap-singapore-4", "HostId": null, "ProjectId": 0}, "InstanceId": "ins-00lycyy6",
-        "Uuid": "9683a76c-12cb-45f5-b7e9-70ae917a6ae4", "InstanceState": "STOPPED",
-        "RestrictState": "NORMAL", "InstanceType": "SA2.MEDIUM4", "CPU": 2, "Memory":
-        4, "InstanceName": "Unnamed", "InstanceChargeType": "POSTPAID_BY_HOUR", "SystemDisk":
-        {"DiskType": "CLOUD_BSSD", "DiskId": "disk-f4cbs4nc", "DiskSize": 50, "Encrypt":
-        false, "KmsKeyId": null, "ThroughputPerformance": 0, "CdcId": null}, "DataDisks":
-        [], "PrivateIpAddresses": ["192.168.0.8"], "PublicIpAddresses": null, "IPv6Addresses":
-        null, "InternetAccessible": {"InternetMaxBandwidthOut": 5, "InternetChargeType":
-        null}, "VirtualPrivateCloud": {"VpcId": "vpc-2hxl6jir", "SubnetId": "subnet-gnl4awp6",
-        "AsVpcGateway": false}, "SecurityGroupIds": ["sg-4rdhd5n6"], "LoginSettings":
-        {"KeyIds": ["skey-83mjf79v"]}, "ImageId": "img-eb30mz89", "OsName": "TencentOS
-        Server 3.1 (TK4)", "DefaultLoginUser": "root", "DefaultLoginPort": 22, "RenewFlag":
-        null, "CreatedTime": "2022-09-06T03:07:37Z", "ExpiredTime": null, "Tags":
-        [{"tagKey": "maid_status", "tagValue": "Resource does not meet policy: stop@2022-09-27T02:31:00+00:00",
-        "Key": "maid_status", "Value": "Resource does not meet policy: stop@2022-09-27T02:31:00+00:00"}],
-        "PlatformProjectId": null, "DisasterRecoverGroupId": "", "DedicatedClusterId":
-        "", "CamRoleName": "", "LatestOperation": "StopInstances", "LatestOperationState":
-        "SUCCESS", "LatestOperationRequestId": "bfefd463-506b-4e4c-8632-87a453b1ea88",
-        "IsolatedSource": "NOTISOLATED", "HpcClusterId": "", "DisableApiTermination":
-        false, "RdmaIpAddresses": null, "LicenseType": "TencentCloud", "StopChargingMode":
-        "STOP_CHARGING"}], "RequestId": "01065553-364f-45dd-a5bd-7f39b833ec33"}}'
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '1800'
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 15 Sep 2022 06:46:59 GMT
-      Server:
-      - nginx
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"InstanceIds": ["ins-00lycyy6"], "Offset": 20, "Limit": 20}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '60'
-      Content-Type:
-      - application/json
-      Host:
-      - cvm.tencentcloudapi.com
-      User-Agent:
-      - python-requests/2.28.1
-      X-TC-Action:
-      - DescribeInstances
-      X-TC-Region:
-      - ap-singapore
-      X-TC-Version:
-      - '2017-03-12'
-    method: POST
-    uri: https://cvm.tencentcloudapi.com/
-  response:
-    body:
-      string: '{"Response": {"TotalCount": 1, "InstanceSet": [], "RequestId": "e7731a0b-aecc-44db-b224-cc855bc0bcdf"}}'
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '103'
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 15 Sep 2022 06:46:59 GMT
-      Server:
-      - nginx
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"ResourceList": ["qcs::cvm:ap-singapore::instance/ins-00lycyy6"]}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '66'
-      Content-Type:
-      - application/json
-      Host:
-      - tag.tencentcloudapi.com
-      User-Agent:
-      - python-requests/2.28.1
-      X-TC-Action:
-      - GetResources
-      X-TC-Region:
-      - ap-singapore
-      X-TC-Version:
-      - '2018-08-13'
-    method: POST
-    uri: https://tag.tencentcloudapi.com/
-  response:
-    body:
-      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/100000750436:instance\/ins-00lycyy6","Tags":[{"TagKey":"maid_status","TagValue":"Resource
-        does not meet policy: stop@2022-09-27T02:31:00+00:00"}]}],"RequestId":"ad176355-9476-49cf-b70b-f6873d4902c7"}}'
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '300'
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 15 Sep 2022 06:46:59 GMT
+      - Fri, 16 Sep 2022 03:22:06 GMT
       Server:
       - nginx
     status:
@@ -322,7 +174,7 @@ interactions:
     uri: https://cvm.tencentcloudapi.com/
   response:
     body:
-      string: '{"Response": {"RequestId": "9aed769d-b5b4-417d-8d37-d6dada14a0c9"}}'
+      string: '{"Response": {"RequestId": "02fae3e6-21e0-41d2-9a90-c3692d8cb0de"}}'
     headers:
       Connection:
       - keep-alive
@@ -331,7 +183,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 15 Sep 2022 06:47:00 GMT
+      - Fri, 16 Sep 2022 03:22:07 GMT
       Server:
       - nginx
     status:
@@ -371,30 +223,31 @@ interactions:
         4, "InstanceName": "Unnamed", "InstanceChargeType": "POSTPAID_BY_HOUR", "SystemDisk":
         {"DiskType": "CLOUD_BSSD", "DiskId": "disk-f4cbs4nc", "DiskSize": 50, "Encrypt":
         false, "KmsKeyId": null, "ThroughputPerformance": 0, "CdcId": null}, "DataDisks":
-        [], "PrivateIpAddresses": ["192.168.0.8"], "PublicIpAddresses": null, "IPv6Addresses":
-        null, "InternetAccessible": {"InternetMaxBandwidthOut": 5, "InternetChargeType":
-        null}, "VirtualPrivateCloud": {"VpcId": "vpc-2hxl6jir", "SubnetId": "subnet-gnl4awp6",
-        "AsVpcGateway": false}, "SecurityGroupIds": ["sg-4rdhd5n6"], "LoginSettings":
-        {"KeyIds": ["skey-83mjf79v"]}, "ImageId": "img-eb30mz89", "OsName": "TencentOS
-        Server 3.1 (TK4)", "DefaultLoginUser": "root", "DefaultLoginPort": 22, "RenewFlag":
-        null, "CreatedTime": "2022-09-06T03:07:37Z", "ExpiredTime": null, "Tags":
-        [{"tagKey": "maid_status", "tagValue": "Resource does not meet policy: stop@2022-09-27T02:31:00+00:00",
-        "Key": "maid_status", "Value": "Resource does not meet policy: stop@2022-09-27T02:31:00+00:00"}],
+        [], "PrivateIpAddresses": ["192.168.0.8"], "PublicIpAddresses": ["43.134.236.22"],
+        "IPv6Addresses": null, "InternetAccessible": {"InternetMaxBandwidthOut": 5,
+        "InternetChargeType": "TRAFFIC_POSTPAID_BY_HOUR"}, "VirtualPrivateCloud":
+        {"VpcId": "vpc-2hxl6jir", "SubnetId": "subnet-gnl4awp6", "AsVpcGateway": false},
+        "SecurityGroupIds": ["sg-4rdhd5n6"], "LoginSettings": {"KeyIds": ["skey-83mjf79v"]},
+        "ImageId": "img-eb30mz89", "OsName": "TencentOS Server 3.1 (TK4)", "DefaultLoginUser":
+        "root", "DefaultLoginPort": 22, "RenewFlag": null, "CreatedTime": "2022-09-06T03:07:37Z",
+        "ExpiredTime": null, "Tags": [{"tagKey": "maid_status", "tagValue": "Resource
+        does not meet policy: stop@2022-09-29T06:56:00+00:00", "Key": "maid_status",
+        "Value": "Resource does not meet policy: stop@2022-09-29T06:56:00+00:00"}],
         "PlatformProjectId": null, "DisasterRecoverGroupId": "", "DedicatedClusterId":
         "", "CamRoleName": "", "LatestOperation": "StartInstances", "LatestOperationState":
-        "OPERATING", "LatestOperationRequestId": "9aed769d-b5b4-417d-8d37-d6dada14a0c9",
+        "OPERATING", "LatestOperationRequestId": "02fae3e6-21e0-41d2-9a90-c3692d8cb0de",
         "IsolatedSource": "NOTISOLATED", "HpcClusterId": "", "DisableApiTermination":
         false, "RdmaIpAddresses": null, "LicenseType": "TencentCloud", "StopChargingMode":
-        "NOT_APPLICABLE"}], "RequestId": "3858d6fa-8a05-447d-a680-742a0c4bb45e"}}'
+        "NOT_APPLICABLE"}], "RequestId": "38bc1bb9-5430-43be-b183-187112b5890b"}}'
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '1805'
+      - '1840'
       Content-Type:
       - application/json
       Date:
-      - Thu, 15 Sep 2022 06:47:11 GMT
+      - Fri, 16 Sep 2022 03:22:17 GMT
       Server:
       - nginx
     status:
@@ -427,7 +280,7 @@ interactions:
     uri: https://cvm.tencentcloudapi.com/
   response:
     body:
-      string: '{"Response": {"TotalCount": 1, "InstanceSet": [], "RequestId": "cc9d7731-5650-4068-b164-52340b859565"}}'
+      string: '{"Response": {"TotalCount": 1, "InstanceSet": [], "RequestId": "0fe8473b-f363-47d0-94bb-621f89b1a89d"}}'
     headers:
       Connection:
       - keep-alive
@@ -436,7 +289,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 15 Sep 2022 06:47:11 GMT
+      - Fri, 16 Sep 2022 03:22:18 GMT
       Server:
       - nginx
     status:
@@ -470,7 +323,7 @@ interactions:
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/100000750436:instance\/ins-00lycyy6","Tags":[{"TagKey":"maid_status","TagValue":"Resource
-        does not meet policy: stop@2022-09-27T02:31:00+00:00"}]}],"RequestId":"07f951be-5ff8-4468-88c4-c963efc8c59e"}}'
+        does not meet policy: stop@2022-09-29T06:56:00+00:00"}]}],"RequestId":"fd2a7dc3-9ef6-47e8-8fd4-c5571e9fd94c"}}'
     headers:
       Connection:
       - keep-alive
@@ -479,7 +332,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 15 Sep 2022 06:47:11 GMT
+      - Fri, 16 Sep 2022 03:22:18 GMT
       Server:
       - nginx
     status:

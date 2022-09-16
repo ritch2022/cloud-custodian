@@ -34,12 +34,7 @@ class CVM(QueryResourceManager):
 class CvmAction(TencentCloudBaseAction):
     schema_alias = True
 
-    """cvm base action """
-
-    def __init__(self, data=None, manager=None, log_dir=None):
-        super().__init__(data, manager, log_dir)
-        self.client = self.get_client()
-        self.action = ""
+    """cvm base api_method_name """
 
     def process(self, resources):
         for batch in chunks(resources, self.resource_type.batch_size):
@@ -50,7 +45,8 @@ class CvmAction(TencentCloudBaseAction):
     def do_request(self, params):
         """process_cvm"""
         try:
-            resp = self.client.execute_query(self.action, params)
+            client = self.get_client()
+            resp = client.execute_query(self.t_api_method_name, params)
             failed_resources = jmespath.search("Response.Error", resp)
             if failed_resources is not None:
                 raise PolicyExecutionError(f"{self.data.get('type')} error")
@@ -78,10 +74,7 @@ class CvmAction(TencentCloudBaseAction):
 class CvmStopAction(CvmAction):
     """stop_cvm"""
     schema = type_schema("stop")
-
-    def __init__(self, data=None, manager=None, log_dir=None):
-        super().__init__(data, manager, log_dir)
-        self.action = "StopInstances"
+    t_api_method_name = "StopInstances"
 
     def get_request_params(self, resources):
         """get_params_stop"""
@@ -102,17 +95,11 @@ class CvmStopAction(CvmAction):
 class CvmStartAction(CvmAction):
     """start_cvm"""
     schema = type_schema("start")
-
-    def __init__(self, data=None, manager=None, log_dir=None):
-        super().__init__(data, manager, log_dir)
-        self.action = "StartInstances"
+    t_api_method_name = "StartInstances"
 
 
 @CVM.action_registry.register('terminate')
 class CvmTerminateAction(CvmAction):
     """terminate_cvm"""
     schema = type_schema("terminate")
-
-    def __init__(self, data=None, manager=None, log_dir=None):
-        super().__init__(data, manager, log_dir)
-        self.action = "TerminateInstances"
+    t_api_method_name = "TerminateInstances"

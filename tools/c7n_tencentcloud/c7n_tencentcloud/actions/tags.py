@@ -4,7 +4,6 @@ import json
 import logging
 
 import pytz
-import jmespath
 from dateutil.parser import parse
 from datetime import datetime, timedelta
 
@@ -38,14 +37,9 @@ class TagAction(TencentCloudBaseAction):
 
     def __init__(self, data=None, manager=None, log_dir=None):
         super().__init__(data, manager, log_dir)
-
-        self.endpoint = "tag.tencentcloudapi.com"
-        self.service = "tag"
-        self.version = "2018-08-13"
-        self.region = ""
         self.log = logging.getLogger("custodian.tencentcloud.actions.TagAction")
         self.batch_size = 10
-        self.tags = []
+        self.tag_request_params = []
 
     def process(self, resources):
         self.process_tag_op(resources)
@@ -58,25 +52,27 @@ class TagAction(TencentCloudBaseAction):
         """
         qcs_list = self.manager.source.get_resource_qcs(resources)
 
-        if self.action == "UnTagResources":
+        if self.t_api_method_name == "UnTagResources":
             return {"ResourceList": qcs_list, "TagKeys": tags}
         else:
             return {"ResourceList": qcs_list, "Tags": tags}
+
+    def get_client(self):
+        endpoint = "tag.tencentcloudapi.com"
+        service = "tag"
+        version = "2018-08-13"
+        region = ""
+        return self.manager.session_factory.client(endpoint, service, version, region)
 
     def process_tag_op(self, resources):
         """process_tag"""
         try:
             client = self.get_client()
             for batch in chunks(resources, self.batch_size):
-                params = self._get_request_params(batch, self.tags)
-                resp = client.execute_query(self.action, params)
-                failed_resources = jmespath.search("Response.FailedResources[]", resp)
-                params_str = json.dumps(params)
-                if len(failed_resources) != 0:
-                    self.log.error("operation failed. %s , params: %s", self.data.get('type'),
-                                   params_str)
-                self.log.debug("%s , params: %s ", self.data.get('type'), params_str)
-            return True
+                params = self._get_request_params(batch, self.tag_request_params)
+                resp = client.execute_query(self.t_api_method_name, params)
+                self.log.debug("%s , params: %s,resp: %s ", self.data.get('type'),
+                               json.dumps(params), json.dumps(resp))
         except (RetryError, TencentCloudSDKException) as err:
             raise PolicyExecutionError(err) from err
 
@@ -89,11 +85,12 @@ class AddTagAction(TagAction):
                          key={"type": "string"},
                          value={"type": "string"})
     schema_alias = True
+    t_api_method_name = "TagResources"
 
     def __init__(self, data=None, manager=None, log_dir=None):
         super().__init__(data, manager, log_dir)
-        self.action = "TagResources"
-        self.tags = [{"TagKey": self.data.get("key"), "TagValue": self.data.get("value")}]
+        self.tag_request_params = [{"TagKey": self.data.get("key"),
+                                    "TagValue": self.data.get("value")}]
 
     def validate(self):
         """validate"""
@@ -111,6 +108,7 @@ class RenameTagAction(TagAction):
                          old_key={"type": "string"},
                          new_key={"type": "string"})
     schema_alias = True
+    t_api_method_name = "ModifyResourceTags"
 
     def validate(self):
         """validate"""
@@ -118,29 +116,48 @@ class RenameTagAction(TagAction):
             raise PolicyValidationError("Must specify key")
         return self
 
-    def _get_tag_params(self, resources):
+    def _get_tag_params(self, resource):
         old_key = self.data.get('old_key')
-        tags = resources[0]["Tags"]
+        tags = resource["Tags"]
         for t in tags:
             if t["Key"] == old_key:
                 return t
         return None
 
+    def _get_rename_request_params(self, resource):
+        """
+        get rename request params
+        https://cloud.tencent.com/document/api/651/35322
+        """
+        param = {}
+        old_tag = self._get_tag_params(resource)
+        qcs_list = self.manager.source.get_resource_qcs([resource])
+        param.update({"Resource": qcs_list[0]})
+        if old_tag is not None:
+            replaceTags = {"ReplaceTags": [{
+                "TagKey": self.data.get("new_key"),
+                "TagValue": old_tag["Value"]
+            }]}
+            param.update(replaceTags)
+
+        deleteTags = {"DeleteTags": [{"TagKey": self.data.get('old_key')}]}
+        param.update(deleteTags)
+
+        return param
+
     def process(self, resources, event=None):
         """
-        process
-        Add tags first, then delete tags
+        process rename tag
         """
-        old_tag = self._get_tag_params(resources)
-
-        if old_tag is not None:
-            self.action = "TagResources"
-            self.tags = [{"TagKey": self.data.get("new_key"), "TagValue": old_tag["Value"]}]
-            add_ok = self.process_tag_op(resources)
-            if add_ok:
-                self.action = "UnTagResources"
-                self.tags = [self.data.get('old_key')]
-                self.process_tag_op(resources)
+        try:
+            client = self.get_client()
+            for resource in resources:
+                params = self._get_rename_request_params(resource)
+                resp = client.execute_query(self.t_api_method_name, params)
+                self.log.debug("%s , params: %s,resp: %s ", self.data.get('type'),
+                               json.dumps(params), json.dumps(resp))
+        except (RetryError, TencentCloudSDKException) as err:
+            raise PolicyExecutionError(err) from err
 
 
 class DeleteTagAction(TagAction):
@@ -150,11 +167,11 @@ class DeleteTagAction(TagAction):
                          tags={"type": "array"},
                          msg={"type": "string"})
     schema_alias = True
+    t_api_method_name = "UnTagResources"
 
     def __init__(self, data=None, manager=None, log_dir=None):
         super().__init__(data, manager, log_dir)
-        self.action = "UnTagResources"
-        self.tags = self.data.get("tags")
+        self.tag_request_params = self.data.get("tags")
 
     def validate(self):
         """validate"""
@@ -178,6 +195,7 @@ class TagDelayedAction(TagAction):
         tz={"type": "string"},
         op={"type": "string"})
     schema_alias = True
+    t_api_method_name = "TagResources"
 
     default_template = "Resource does not meet policy: {op}@{action_date}"
 
@@ -235,8 +253,7 @@ class TagDelayedAction(TagAction):
                       cfg["op"],
                       cfg["action_date"])
 
-        self.tags = [{"TagKey": cfg["tag"], "TagValue": msg}]
-        self.action = "TagResources"
+        self.tag_request_params = [{"TagKey": cfg["tag"], "TagValue": msg}]
         self.process_tag_op(resources)
 
 

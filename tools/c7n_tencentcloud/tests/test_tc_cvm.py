@@ -1,5 +1,6 @@
 # Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
+import time
 
 import pytest
 from tc_common import BaseTest
@@ -10,22 +11,8 @@ from c7n.exceptions import PolicyExecutionError
 
 class TestCvmAction(BaseTest):
 
-    @pytest.fixture(autouse=True)
-    def set_ctx(self, ctx):
-        self.ctx = ctx
-        policy = {
-            "name": "cvm-test",
-            "query": [{
-                    "InstanceIds": ["ins-00lycyy6"]
-            }],
-        }
-        self.cvm = CVM(self.ctx, policy)
-
     @pytest.mark.vcr
-    def test_cvm_stop(self, options):
-        resources = self.cvm.resources()
-        assert resources[0]["InstanceState"] == "RUNNING"
-
+    def test_cvm_stop(self, options, cvm):
         policy = self.load_policy(
             {
                 "name": "cvm-stop-test",
@@ -42,17 +29,16 @@ class TestCvmAction(BaseTest):
             },
             config=options
         )
-        policy.run()
-
-        resources = self.cvm.resources()
+        resources = policy.run()
+        assert resources[0]["InstanceState"] == "RUNNING"
+        if self.recording:
+            time.sleep(10)
+        resources = cvm.resources()
         assert resources[0]["InstanceState"] == "STOPPING" or \
                resources[0]["InstanceState"] == "STOPPED"
 
     @pytest.mark.vcr
-    def test_cvm_start(self, options):
-        resources = self.cvm.resources()
-        assert resources[0]["InstanceState"] == "STOPPED"
-
+    def test_cvm_start(self, options, cvm):
         policy = self.load_policy(
             {
                 "name": "cvm-start-test",
@@ -69,29 +55,23 @@ class TestCvmAction(BaseTest):
             },
             config=options
         )
-        policy.run()
-
-        resources = self.cvm.resources()
+        resources = policy.run()
+        assert resources[0]["InstanceState"] == "STOPPED"
+        if self.recording:
+            time.sleep(10)
+        resources = cvm.resources()
         assert resources[0]["InstanceState"] == "STARTING" or \
                resources[0]["InstanceState"] == "RUNNING"
 
     @pytest.mark.vcr
-    def test_cvm_terminate(self, options):
-        policy = {
-            "query": [{
-                "InstanceIds": ["ins-0oivfctm"]
-            }]
-        }
-        cvm = CVM(self.ctx, policy)
-        assert len(cvm.resources()) == 1
-
+    def test_cvm_terminate(self, options, ctx):
         policy = self.load_policy(
             {
                 "name": "cvm-terminate-test",
                 "resource": "tencentcloud.cvm",
                 "comment": "terminate cvm",
                 "query": [{
-                    "InstanceIds": ["ins-0oivfctm"]
+                    "InstanceIds": ["ins-8ktxnl0g"]
                 }],
                 "actions": [
                     {
@@ -101,15 +81,23 @@ class TestCvmAction(BaseTest):
             },
             config=options
         )
-        policy.run()
-
+        resources = policy.run()
+        assert len(resources) == 1
+        if self.recording:
+            time.sleep(10)
+        policy = {
+            "query": [{
+                "InstanceIds": ["ins-8ktxnl0g"]
+            }]
+        }
+        cvm = CVM(ctx, policy)
         assert len(cvm.resources()) == 0
 
     @pytest.mark.vcr
-    def test_cvm_exec_exception(self, monkeypatch):
+    def test_cvm_exec_exception(self, monkeypatch, cvm):
         def get_params(*args):
             return {"InstanceIds": "hello"}
-        stop = CvmStopAction({'type': 'stop'}, self.cvm)
+        stop = CvmStopAction({'type': 'stop'}, cvm)
         monkeypatch.setattr(stop, "get_request_params", get_params)
         with pytest.raises(PolicyExecutionError):
-            stop.process(self.cvm.resources())
+            stop.process(cvm.resources())
