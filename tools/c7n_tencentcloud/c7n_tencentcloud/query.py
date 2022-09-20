@@ -2,19 +2,18 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import jmespath
-from c7n.utils import local_session, chunks
 from retrying import RetryError
+from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
 
-from .actions.tags import register_tag_actions, register_tag_filters
-from .client import Session
 from c7n.actions import ActionRegistry
 from c7n.ctx import ExecutionContext
 from c7n.exceptions import PolicyExecutionError
 from c7n.filters import FilterRegistry
 from c7n.manager import ResourceManager
 from c7n.query import sources
-from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
-from linq import Query
+from c7n.utils import local_session, chunks
+from .actions.tags import register_tag_actions, register_tag_filters
+from .client import Session
 
 DESC_SOURCE_NAME = "describe-tencentcloud"
 
@@ -251,16 +250,13 @@ class DescribeSource:
         for batch in chunks(resources, self.tag_batch_size):
             qcs_list = self.get_resource_qcs(batch)
             tags = self.query_helper.get_resource_tags(self.region, qcs_list)
-
             for res in batch:
-                tag = Query(tags).where(
-                    lambda x: x["Resource"].find(res[self.resource_type.id]) > 0).to_list()
-                if len(tag) > 0:
-                    result_tags = []
-                    for t in tag[0]["Tags"]:
-                        result_tags.append({"Key": t["TagKey"], "Value": t["TagValue"]})
-                    res["Tags"] = result_tags
-
+                for tag in tags:
+                    if tag["Resource"].find(res[self.resource_type.id]) > 0:
+                        result_tags = []
+                        for t in tag["Tags"]:
+                            result_tags.append({"Key": t["TagKey"], "Value": t["TagValue"]})
+                        res["Tags"] = result_tags
         return resources
 
     def get_resource_qcs(self, resources):
