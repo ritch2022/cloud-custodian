@@ -1,6 +1,7 @@
 # Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
 
+import os
 import logging
 from .client import Session
 
@@ -36,7 +37,7 @@ class TencentCloud(Provider):
         # support --region option
         # when set multi regions, only the first one will be used
         if len(options.regions) == 0:
-            options.region = DEFAULT_REGION
+            options.region = os.environ.get("TENCENTCLOUD_REGION", DEFAULT_REGION)
         else:
             options.region = options.regions[0]
         return options
