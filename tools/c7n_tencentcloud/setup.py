@@ -15,9 +15,9 @@ package_data = \
 install_requires = \
 ['argcomplete (>=2.0.0,<3.0.0)',
  'attrs (>=22.1.0,<23.0.0)',
- 'boto3 (>=1.24.72,<2.0.0)',
- 'botocore (>=1.27.72,<2.0.0)',
- 'c7n (>=0.9.18,<0.10.0)',
+ 'boto3 (>=1.24.77,<2.0.0)',
+ 'botocore (>=1.27.77,<2.0.0)',
+ 'c7n (>=0.9.19,<0.10.0)',
  'docutils (>=0.17.1,<0.18.0)',
  'importlib-metadata (>=4.12.0,<5.0.0)',
  'importlib-resources (>=5.9.0,<6.0.0)',
@@ -40,7 +40,7 @@ install_requires = \
 
 setup_kwargs = {
     'name': 'c7n-tencentcloud',
-    'version': '0.1.0',
+    'version': '0.1.1',
     'description': 'Cloud Custodian - Tencent Cloud Provider',
     'license': 'Apache-2.0',
     'classifiers': [
