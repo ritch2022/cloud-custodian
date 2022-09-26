@@ -61,7 +61,7 @@ class TagAction(TencentCloudBaseAction):
         endpoint = "tag.tencentcloudapi.com"
         service = "tag"
         version = "2018-08-13"
-        region = ""
+        region = self.manager.config.region
         return self.manager.session_factory.client(endpoint, service, version, region)
 
     def process_tag_op(self, resources):
@@ -74,6 +74,7 @@ class TagAction(TencentCloudBaseAction):
                 self.log.debug("%s , params: %s,resp: %s ", self.data.get('type'),
                                json.dumps(params), json.dumps(resp))
         except (RetryError, TencentCloudSDKException) as err:
+            raise
             raise PolicyExecutionError(err) from err
 
 
@@ -157,6 +158,7 @@ class RenameTagAction(TagAction):
                 self.log.debug("%s , params: %s,resp: %s ", self.data.get('type'),
                                json.dumps(params), json.dumps(resp))
         except (RetryError, TencentCloudSDKException) as err:
+            raise
             raise PolicyExecutionError(err) from err
 
 

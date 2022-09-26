@@ -14,7 +14,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -24,7 +24,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 2, "InstanceSet": [{"Placement": {"Zone":
@@ -97,7 +97,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -107,7 +107,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 2, "InstanceSet": [], "RequestId": "32866ef1-8e14-44b4-8f2f-7d9bca6ca073"}}'
@@ -139,7 +139,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -149,7 +149,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/100000750436:instance\/ins-00lycyy6","Tags":[{"TagKey":"maid_status","TagValue":"Resource
@@ -183,7 +183,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -191,7 +191,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"FailedResources":[],"RequestId":"75d2ddb9-9dcf-4eb7-89b7-dbe05cbe7541"}}'
@@ -224,7 +224,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -234,7 +234,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 2, "InstanceSet": [{"Placement": {"Zone":
@@ -311,7 +311,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -321,7 +321,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 2, "InstanceSet": [], "RequestId": "4ec09676-a2d1-447b-a8a3-fc42e939d5a9"}}'
@@ -353,7 +353,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -363,7 +363,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/100000750436:instance\/ins-00lycyy6","Tags":[{"TagKey":"tag_add_test_key_for_test","TagValue":"tag_add_test_value_for_test"},{"TagKey":"maid_status","TagValue":"Resource
