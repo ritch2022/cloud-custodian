@@ -13,7 +13,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -29,7 +29,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: "{\"Response\": {\"TotalCount\": 40, \"InstanceSet\": [{\"Placement\":
@@ -819,7 +819,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -835,7 +835,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: "{\"Response\": {\"TotalCount\": 40, \"InstanceSet\": [{\"Placement\":
@@ -1674,7 +1674,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -1690,7 +1690,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 40, "InstanceSet": [], "RequestId": "4d19cf3f-3e05-4c48-bfbd-d379b24e38c6"}}'
@@ -1722,7 +1722,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -1738,7 +1738,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-5m1qoe12","Tags":[{"TagKey":"maid_status","TagValue":"Resource
@@ -1771,7 +1771,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -1787,7 +1787,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-lquxvxc0","Tags":[{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[TKE][\u903b\u8f91]_1233351"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][QCintlBackend]_1177037"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"6825f034-2af6-44ce-aa08-c94a7e763d7b"}}'
@@ -1819,7 +1819,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -1835,7 +1835,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-cazj1vbe","Tags":[{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[TKE][\u903b\u8f91]_1233351"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][QCintlBackend]_1177037"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"c71a69ad-ce09-42bc-9207-9d2375aa4999"}}'
@@ -1867,7 +1867,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -1883,7 +1883,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-kvl0w2ma","Tags":[{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[TKE][\u903b\u8f91]_1233351"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][QCintlBackend]_1177037"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"66b6f731-e50e-4e6c-a9b2-5070446997d6"}}'
@@ -1915,7 +1915,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -1931,7 +1931,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-qsglba6k","Tags":[{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[TKE][\u903b\u8f91]_1233351"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][QCintlBackend]_1177037"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"e8407ed6-55da-4973-a317-85c377468281"}}'
@@ -1963,7 +1963,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -1979,7 +1979,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-9o2kyd4y","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[\u56fd\u9645\u7ad9\u8d26\u53f7\u540e\u53f0][\u903b\u8f91]_1523761"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][\u56fd\u9645\u7ad9\u8d26\u53f7\u540e\u53f0]_1523759"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"svkingfang"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"c7353cae-c09c-4720-995e-cc4f9feb42a8"}}'
@@ -2011,7 +2011,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2027,7 +2027,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-pdeakyss","Tags":[{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"junoma"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[\u73b0\u7f51\u73af\u5883][WEB]_1481933"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u524d\u7aef\u670d\u52a1][\u8fd0\u8425\u5e73\u53f0]_1481930"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"cedbda02-e85b-4390-92f4-9ea0106cea92"}}'
@@ -2059,7 +2059,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2075,7 +2075,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-fh0uofmu","Tags":[{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"junoma"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[\u73b0\u7f51\u73af\u5883][WEB]_1481933"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u524d\u7aef\u670d\u52a1][\u8fd0\u8425\u5e73\u53f0]_1481930"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"ed2d6e41-94cb-4ec3-8211-9f17803d168f"}}'
@@ -2107,7 +2107,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2123,7 +2123,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-opgb2z8u","Tags":[{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"kairongsun"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[\u6d4b\u8bd5\u73af\u5883][WEB]_1481932"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u524d\u7aef\u670d\u52a1][\u8fd0\u8425\u5e73\u53f0]_1481930"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"3ad175d5-d093-4de6-ad13-4846d2583491"}}'
@@ -2155,7 +2155,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2171,7 +2171,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-cnbvisqw","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[TKE][\u903b\u8f91]_1233351"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][QCintlBackend]_1177037"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"db7c7a7a-a2d7-4d2e-9232-66e54a56cc52"}}'
@@ -2203,7 +2203,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2219,7 +2219,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-b33khmau","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[TKE][\u903b\u8f91]_1233351"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][QCintlBackend]_1177037"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"72d8eed2-3257-4872-bdfb-a1a658681f43"}}'
@@ -2251,7 +2251,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2267,7 +2267,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-6tr12fgu","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u7aef_\u6b63\u5f0f_SGP2][\u5176\u4ed6]_1325549"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"yuiffydong"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u524d\u7aef\u670d\u52a1][\u540e\u7aef\u670d\u52a1]_1325546"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"86e03a75-846d-4912-934e-91c50b2ed70a"}}'
@@ -2299,7 +2299,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2315,7 +2315,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-2bxfa3gi","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u7aef_\u6b63\u5f0f_SGP2][\u5176\u4ed6]_1325549"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"yuiffydong"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u524d\u7aef\u670d\u52a1][\u540e\u7aef\u670d\u52a1]_1325546"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"f1eb5791-4b36-48ba-9412-1ef7f5837d02"}}'
@@ -2347,7 +2347,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2363,7 +2363,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-ig8ceoh4","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[TKE][\u903b\u8f91]_1233351"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][QCintlBackend]_1177037"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"6595b5b2-3f32-4c25-966e-37950fa3cebe"}}'
@@ -2395,7 +2395,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2411,7 +2411,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-eoux8wtm","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[TKE][\u903b\u8f91]_1233351"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][QCintlBackend]_1177037"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"76e7dd21-b882-4529-8c03-03bba991258c"}}'
@@ -2443,7 +2443,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2459,7 +2459,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-occ2nl6s","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u7aef_\u6b63\u5f0f_SGP2][\u5176\u4ed6]_1325549"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"yuiffydong"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u524d\u7aef\u670d\u52a1][\u540e\u7aef\u670d\u52a1]_1325546"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"da69129d-b5e9-4333-8b58-c1215f87648d"}}'
@@ -2491,7 +2491,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2507,7 +2507,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-mdcokq98","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[\u5f00\u53d1][\u5176\u4ed6]_1325553"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"yuiffydong"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u524d\u7aef\u670d\u52a1][\u975e\u6b63\u5f0f\u670d\u52a1]_1325551"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"a2a9f2ff-4b6b-42e3-8451-3366b466a249"}}'
@@ -2539,7 +2539,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2555,7 +2555,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-ewpgkq5m","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u7aef_\u6b63\u5f0f_SGP1][\u5176\u4ed6]_1325548"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"breezmchen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u524d\u7aef\u670d\u52a1][\u540e\u7aef\u670d\u52a1]_1325546"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"54e81672-15cf-43f2-8ddd-d19ee51a34ca"}}'
@@ -2587,7 +2587,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2603,7 +2603,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-7l2hz5s0","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u7aef_\u6b63\u5f0f_SGP1][\u5176\u4ed6]_1325548"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"breezmchen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u524d\u7aef\u670d\u52a1][\u540e\u7aef\u670d\u52a1]_1325546"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"ef87f409-4926-497b-88d0-8405331a1617"}}'
@@ -2635,7 +2635,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2651,7 +2651,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-81e19k7c","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[TKE][\u903b\u8f91]_1233351"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][QCintlBackend]_1177037"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"d483f399-54c3-4250-b7f2-933c12685028"}}'
@@ -2683,7 +2683,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2699,7 +2699,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-j8c1m65q","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[TKE][\u903b\u8f91]_1233351"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][QCintlBackend]_1177037"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"c9b2506e-ae72-4f69-9070-2751c6e9d84c"}}'
@@ -2731,7 +2731,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2747,7 +2747,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-lxqenzuw","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[TKE][\u903b\u8f91]_1233351"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][QCintlBackend]_1177037"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"72d1e8d2-5825-4932-b137-c045dfda9f73"}}'
@@ -2779,7 +2779,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2795,7 +2795,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-rybpuhnw","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[TKE][\u903b\u8f91]_1233351"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][QCintlBackend]_1177037"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"13e2914b-ff01-40c8-846e-967af634e5c0"}}'
@@ -2827,7 +2827,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2843,7 +2843,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-ij5m40hy","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[TKE][\u903b\u8f91]_1233351"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][QCintlBackend]_1177037"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"6652fac4-9ab6-4d90-ba5b-e3a4833de2c5"}}'
@@ -2875,7 +2875,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2891,7 +2891,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-earktg9y","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[TKE][\u903b\u8f91]_1233351"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][QCintlBackend]_1177037"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"f059a257-10d6-4801-8bee-f272934cd944"}}'
@@ -2923,7 +2923,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2939,7 +2939,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-e6mdubmu","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[PUBGM_SGP][WEB]_1327106"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"shaohuali"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[PUBGM][\u516c\u5171\u670d\u52a1\u5668]_1327104"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"0bc15b8b-922b-4bb4-aaaf-da885003d810"}}'
@@ -2971,7 +2971,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -2987,7 +2987,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-o1hbwh54","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[\u6d4b\u8bd5][\u5176\u4ed6]_1325554"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"yuiffydong"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u524d\u7aef\u670d\u52a1][\u975e\u6b63\u5f0f\u670d\u52a1]_1325551"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"3ff23003-d892-48d7-b68a-f8db77246e65"}}'
@@ -3019,7 +3019,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -3035,7 +3035,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-oop30fwq","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[\u79bb\u7ebf_\u6b63\u5f0f_SGP][WEB]_1326949"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"yuiffydong"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u524d\u7aef\u670d\u52a1][\u79bb\u7ebf\u670d\u52a1]_1326947"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"4779cfb0-2fcc-4020-87d2-f1e4b9a822ae"}}'
@@ -3067,7 +3067,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -3083,7 +3083,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-3jtdpbvu","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u7aef_\u6b63\u5f0f_SGP1][\u5176\u4ed6]_1325548"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"breezmchen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u524d\u7aef\u670d\u52a1][\u540e\u7aef\u670d\u52a1]_1325546"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"193d6797-f00e-4efa-895e-bd90743980b2"}}'
@@ -3115,7 +3115,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -3131,7 +3131,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-6e5k0flw","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[\u9884\u53d1][\u5176\u4ed6]_1325555"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"kairongsun"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u524d\u7aef\u670d\u52a1][\u975e\u6b63\u5f0f\u670d\u52a1]_1325551"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"7d6469f1-8a8b-4214-b15b-81128d90f8e8"}}'
@@ -3163,7 +3163,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -3179,7 +3179,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-3qoxwfkc","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[TKE][\u903b\u8f91]_1233351"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][QCintlBackend]_1177037"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"4921b051-9020-4e04-9bd6-8224b9ac01d8"}}'
@@ -3211,7 +3211,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -3227,7 +3227,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-g1nr75ly","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[TKE][\u903b\u8f91]_1233351"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][QCintlBackend]_1177037"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"52dc42d7-ae40-4f67-9eef-4200bcbb2c4f"}}'
@@ -3259,7 +3259,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -3275,7 +3275,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-hwask3og","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[QcatProd][\u903b\u8f91]_1451967"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[Qcat][TKE\u540e\u53f0]_1451964"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"f3d8a9da-f443-4535-88da-c9f03a26fe1f"}}'
@@ -3307,7 +3307,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -3323,7 +3323,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-pws7le08","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[TKE][\u903b\u8f91]_1233351"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][QCintlBackend]_1177037"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"293a0d5f-597f-4b2e-933c-2ce6b68c4301"}}'
@@ -3355,7 +3355,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -3371,7 +3371,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-hgpb1si4","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[QcatProd][\u903b\u8f91]_1451967"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[Qcat][TKE\u540e\u53f0]_1451964"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"0759d1c2-aa3b-4dcf-bf55-1132f563092e"}}'
@@ -3403,7 +3403,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -3419,7 +3419,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-d27ciw8c","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[TKE][\u903b\u8f91]_1233351"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][QCintlBackend]_1177037"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"36df3cf9-e819-4414-b54c-8b8838697ce9"}}'
@@ -3451,7 +3451,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -3467,7 +3467,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-99a1z3uq","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[QcatProd][\u903b\u8f91]_1451967"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[Qcat][TKE\u540e\u53f0]_1451964"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"59b67bc8-93b6-41e5-8ff8-8ce3a5d6f9e8"}}'
@@ -3499,7 +3499,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -3515,7 +3515,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-3rqj55qk","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[QcatBeta][\u903b\u8f91]_1451971"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[Qcat][TKE\u540e\u53f0]_1451964"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"ec35a16c-e7ac-42fe-86ba-e3b11cfee7fd"}}'
@@ -3547,7 +3547,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -3563,7 +3563,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-0hioe9fs","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[QcatDev][\u903b\u8f91]_1451970"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[Qcat][TKE\u540e\u53f0]_1451964"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"329eb591-c859-422e-ad20-ed0e704bb292"}}'
@@ -3595,7 +3595,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -3611,7 +3611,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-o20umf2m","Tags":[{"TagKey":"\u4e09\u7ea7\u4e1a\u52a1","TagValue":"[TKE][\u903b\u8f91]_1233351"},{"TagKey":"\u5907\u4efd\u8d1f\u8d23\u4eba","TagValue":"rostachen"},{"TagKey":"\u8d1f\u8d23\u4eba","TagValue":"patrickjxli"},{"TagKey":"\u4e8c\u7ea7\u4e1a\u52a1","TagValue":"[\u540e\u53f0\u670d\u52a1][QCintlBackend]_1177037"},{"TagKey":"\u4e00\u7ea7\u4e1a\u52a1","TagValue":"[N][\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51]_1175429"},{"TagKey":"\u8fd0\u8425\u4ea7\u54c1","TagValue":"\u817e\u8baf\u4e91\u56fd\u9645\u7248\u5b98\u7f51_2462"},{"TagKey":"\u8fd0\u8425\u90e8\u95e8","TagValue":"\u56fd\u9645\u4ea7\u54c1\u7814\u53d1\u4e2d\u5fc3_1182"}]}],"RequestId":"bc4fe9e1-d4db-4011-a503-6812ca905138"}}'

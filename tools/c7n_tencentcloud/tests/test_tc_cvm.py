@@ -12,7 +12,7 @@ from c7n.exceptions import PolicyExecutionError
 class TestCvmAction(BaseTest):
 
     @pytest.mark.vcr
-    def test_cvm_stop(self, options, cvm):
+    def test_cvm_stop(self, options):
         policy = self.load_policy(
             {
                 "name": "cvm-stop-test",
@@ -21,6 +21,7 @@ class TestCvmAction(BaseTest):
                 "query": [{
                     "InstanceIds": ["ins-00lycyy6"]
                 }],
+                "filters": [{"InstanceState": "RUNNING"}],
                 "actions": [
                     {
                         "type": "stop"
@@ -30,12 +31,11 @@ class TestCvmAction(BaseTest):
             config=options
         )
         resources = policy.run()
-        assert resources[0]["InstanceState"] == "RUNNING"
+        assert resources
         if self.recording:
             time.sleep(10)
-        resources = cvm.resources()
-        assert resources[0]["InstanceState"] == "STOPPING" or \
-               resources[0]["InstanceState"] == "STOPPED"
+        resources = policy.resource_manager.source.resources()
+        assert resources[0]["InstanceState"] in ("STOPPING", "STOPPED")
 
     @pytest.mark.vcr
     def test_cvm_start(self, options, cvm):

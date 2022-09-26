@@ -40,6 +40,14 @@ class TencentCloud(Provider):
             options.region = os.environ.get("TENCENTCLOUD_REGION", DEFAULT_REGION)
         else:
             options.region = options.regions[0]
+        if not options.account_id:
+            session = self.get_session_factory(options)
+            options.account_id = session.client(
+                endpoint='sts.tencentcloudapi.com',
+                service='sts',
+                version='2018-08-13',
+                region=options.region
+            ).execute_query("GetCallerIdentity", {}).get('AccountId')
         return options
 
     def initialize_policies(self, policy_collection: PolicyCollection, options: dict):

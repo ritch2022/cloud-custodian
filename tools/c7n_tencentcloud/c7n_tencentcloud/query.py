@@ -43,7 +43,7 @@ class ResourceTypeInfo(metaclass=TypeMeta):
     metrics_batch_size: int = 10
     metrics_instance_id_name: str = ""  # the field name to set resource instance id
 
-    resource_preifx: str = ""
+    resource_prefix: str = ""
 
 
 class ResourceQuery:
@@ -116,95 +116,11 @@ class ResourceQuery:
         return self.filter(region, tag_resource_type, params)
 
 
-class QueryMeta(type):
-    """
-    metaclass to have consistent action/filter registry for new resources.
-    """
-
-    def __new__(cls, name, parents, attrs):
-        if 'filter_registry' not in attrs:
-            attrs['filter_registry'] = FilterRegistry(f"{name.lower()}.filters")
-        if 'action_registry' not in attrs:
-            attrs['action_registry'] = ActionRegistry(f"{name.lower()}%s.actions")
-
-        if attrs['resource_type']:
-            m = ResourceQuery.resolve(attrs['resource_type'])
-            if getattr(m, 'taggable', True):
-                register_tag_actions(attrs['action_registry'])
-                register_tag_filters(attrs['filter_registry'])
-
-        return super(QueryMeta, cls).__new__(cls, name, parents, attrs)
-
-
-class QueryResourceManager(ResourceManager, metaclass=QueryMeta):
-    """QueryResourceManager"""
-
-    class resource_type(ResourceTypeInfo):
-        pass
-
-    def __init__(self, ctx: ExecutionContext, data):
-        """
-        A constructor for the class.
-
-        :param ctx: ExecutionContext - this is the context of the execution. It contains
-        information about the execution, such as the execution ID, the execution status,
-        the execution start time, etc
-        :type ctx: ExecutionContext
-        :param data: one policy configured in the yaml file.
-        """
-        super().__init__(ctx, data)
-        self._session = None
-        self.source: DescribeSource = self.get_source(self.source_type)
-
-    @property
-    def source_type(self):
-        return self.data.get("source", DESC_SOURCE_NAME)
-
-    def get_model(self):
-        return self.resource_type
-
-    def get_source(self, source_type):
-        return sources.get(source_type)(self)
-
-    def get_session(self):
-        if self._session is None:
-            self._session = local_session(self.session_factory)
-        return self._session
-
-    def get_permissions(self):
-        return self.source.get_permissions()
-
-    def get_resource_query_params(self):
-        config_query = self.data.get("query", [])
-        params = {}
-        for it in config_query:
-            params.update(it)
-        return params
-
-    def resources(self):
-        params = self.get_resource_query_params()
-        resources = self.source.resources(params)
-
-        # filter resoures
-        resources = self.filter_resources(resources)
-
-        self.check_resource_limit(resources)
-        return resources
-
-    def augment(self, resources):
-        return resources
-
-    # TODO
-    # to support configs: max-resources, max-resources-percent
-    def check_resource_limit(self, resources):
-        return resources
-
-
 @sources.register(DESC_SOURCE_NAME)
 class DescribeSource:
     """DescribeSource"""
 
-    def __init__(self, resource_manager: QueryResourceManager) -> None:
+    def __init__(self, resource_manager) -> None:
         """
         :param query: The query to execute from query in policy.yaml
         """
@@ -247,16 +163,16 @@ class DescribeSource:
         Get resource tag
         All resource tags need to be obtained separately
         """
-        for batch in chunks(resources, self.tag_batch_size):
-            qcs_list = self.get_resource_qcs(batch)
-            tags = self.query_helper.get_resource_tags(self.region, qcs_list)
-            for res in batch:
-                for tag in tags:
-                    if tag["Resource"].find(res[self.resource_type.id]) > 0:
-                        result_tags = []
-                        for t in tag["Tags"]:
-                            result_tags.append({"Key": t["TagKey"], "Value": t["TagValue"]})
-                        res["Tags"] = result_tags
+        resource_map = dict(zip(self.get_resource_qcs(resources), resources))
+
+        for batch in chunks(resource_map, self.tag_batch_size):
+            # construct a separate id to qcs code map,since we're using unqualified qcs
+            # without uin/account id. ideally we could get rid of this if we always have
+            # the account id
+            tags = self.query_helper.get_resource_tags(self.region, batch)
+            for tag in tags:
+                resource_map[tag['Resource']]['Tags'] = [
+                    {'Key': t['TagKey'], 'Value': t['TagValue']} for t in tag['Tags']]
         return resources
 
     def get_resource_qcs(self, resources):
@@ -268,10 +184,104 @@ class DescribeSource:
         # qcs::cvm:ap-singapore::instance/ins-ibu7wp2a
         qcs_list = []
         for r in resources:
-            qcs = "qcs::{}:{}::{}/{}".format(
+            qcs = "qcs::{}:{}:".format(
                 self.resource_type.service,
-                self.region,
-                self.resource_type.resource_preifx,
+                self.region)
+            if self.resource_manager.config.account_id:
+                qcs += "uin/{}".format(self.resource_manager.config.account_id)
+            qcs += ":{}/{}".format(
+                self.resource_type.resource_prefix,
                 r[self.resource_type.id])
             qcs_list.append(qcs)
         return qcs_list
+
+
+class QueryMeta(type):
+    """
+    metaclass to have consistent action/filter registry for new resources.
+    """
+
+    def __new__(cls, name, parents, attrs):
+        if 'filter_registry' not in attrs:
+            attrs['filter_registry'] = FilterRegistry(f"{name.lower()}.filters")
+        if 'action_registry' not in attrs:
+            attrs['action_registry'] = ActionRegistry(f"{name.lower()}%s.actions")
+
+        if attrs['resource_type']:
+            m = ResourceQuery.resolve(attrs['resource_type'])
+            if getattr(m, 'taggable', True):
+                register_tag_actions(attrs['action_registry'])
+                register_tag_filters(attrs['filter_registry'])
+
+        return super(QueryMeta, cls).__new__(cls, name, parents, attrs)
+
+
+class QueryResourceManager(ResourceManager, metaclass=QueryMeta):
+    """QueryResourceManager"""
+
+    source_mapping = {'describe': DescribeSource}
+
+    class resource_type(ResourceTypeInfo):
+        pass
+
+    def __init__(self, ctx: ExecutionContext, data):
+        """
+        A constructor for the class.
+
+        :param ctx: ExecutionContext - this is the context of the execution. It contains
+        information about the execution, such as the execution ID, the execution status,
+        the execution start time, etc
+        :type ctx: ExecutionContext
+        :param data: one policy configured in the yaml file.
+        """
+        super().__init__(ctx, data)
+        self._session = None
+        self.source: DescribeSource = self.get_source(self.source_type)
+
+    @property
+    def source_type(self):
+        return self.data.get("source", DESC_SOURCE_NAME)
+
+    def get_model(self):
+        return self.resource_type
+
+    def get_source(self, source_type):
+        factory = self.source_mapping.get(
+            source_type in ("describe", DESC_SOURCE_NAME) and "describe",
+            sources.get(source_type))
+        if factory is None:
+            raise ValueError("Invalid source type %s" % source_type)
+        return factory(self)
+
+    def get_session(self):
+        if self._session is None:
+            self._session = local_session(self.session_factory)
+        return self._session
+
+    def get_permissions(self):
+        return self.source.get_permissions()
+
+    def get_resource_query_params(self):
+        config_query = self.data.get("query", [])
+        params = {}
+        for it in config_query:
+            params.update(it)
+        return params
+
+    def resources(self):
+        params = self.get_resource_query_params()
+        resources = self.source.resources(params)
+
+        # filter resoures
+        resources = self.filter_resources(resources)
+
+        self.check_resource_limit(resources)
+        return resources
+
+    def augment(self, resources):
+        return resources
+
+    # TODO
+    # to support configs: max-resources, max-resources-percent
+    def check_resource_limit(self, resources):
+        return resources

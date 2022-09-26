@@ -13,7 +13,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -23,7 +23,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 1, "InstanceSet": [{"Placement": {"Zone":
@@ -74,7 +74,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -84,7 +84,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 1, "InstanceSet": [], "RequestId": "62f43547-37a9-44de-bc69-a7eee2ef0e3b"}}'
@@ -116,7 +116,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -126,7 +126,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[],"RequestId":"7a555345-7671-4e44-bb53-1abbec37a637"}}'
@@ -159,7 +159,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -167,7 +167,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"FailedResources":[],"RequestId":"39c1011e-7fc2-402d-9ff3-8cf356ba6791"}}'
@@ -199,7 +199,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -209,7 +209,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"RequestId": "7e50cf3f-30c0-4d4e-a3b2-e492ca71f2df"}}'
@@ -241,7 +241,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -251,7 +251,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 1, "InstanceSet": [{"Placement": {"Zone":
@@ -304,7 +304,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -314,7 +314,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 1, "InstanceSet": [], "RequestId": "a6be3a86-930d-4fde-be1b-5588a9e3d495"}}'
@@ -346,7 +346,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - tag.tencentcloudapi.com
+      - tag.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -356,7 +356,7 @@ interactions:
       X-TC-Version:
       - '2018-08-13'
     method: POST
-    uri: https://tag.tencentcloudapi.com/
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/100000750436:instance\/ins-nhhm5ppo","Tags":[{"TagKey":"maid_status","TagValue":"Resource
