@@ -45,6 +45,7 @@ def client_tag(session):
 def options():
     return Config.empty(**{
         "region": "ap-singapore",  # just for init, ignore the value
+        "account_id": "100000750436",
         "output_dir": "null://",
         "log_group": "null://",
         "cache": False,

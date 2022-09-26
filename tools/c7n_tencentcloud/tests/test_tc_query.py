@@ -14,7 +14,7 @@ class RegionInfo(ResourceTypeInfo):
     version = "2017-03-12"
     enum_spec = ("DescribeRegions", "Response.RegionSet[]", {})
     metrics_instance_id_name = "InstanceId"
-    resource_preifx = "instance"
+    resource_prefix = "instance"
     taggable = True
 
 
@@ -27,7 +27,7 @@ class CVMInfo(ResourceTypeInfo):
     enum_spec = ("DescribeInstances", "Response.InstanceSet[]", {})
     metrics_instance_id_name = "InstanceId"
     paging_def = {"method": PageMethod.Offset, "limit": {"key": "Limit", "value": 20}}
-    resource_preifx = "instance"
+    resource_prefix = "instance"
     taggable = True
 
 
@@ -39,7 +39,7 @@ class CVMInfoNoPagination(ResourceTypeInfo):
     version = "2017-03-12"
     enum_spec = ("DescribeInstances", "Response.InstanceSet[]", {})
     metrics_instance_id_name = "InstanceId"
-    resource_preifx = "instance"
+    resource_prefix = "instance"
     taggable = True
 
 

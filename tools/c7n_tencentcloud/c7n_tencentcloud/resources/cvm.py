@@ -34,7 +34,7 @@ class CVM(QueryResourceManager):
         enum_spec = ("DescribeInstances", "Response.InstanceSet[]", {})
         metrics_instance_id_name = "InstanceId"
         paging_def = {"method": PageMethod.Offset, "limit": {"key": "Limit", "value": 20}}
-        resource_preifx = "instance"
+        resource_prefix = "instance"
         taggable = True
         batch_size = 10
 

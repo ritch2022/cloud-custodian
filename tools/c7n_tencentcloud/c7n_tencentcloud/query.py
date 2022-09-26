@@ -43,7 +43,7 @@ class ResourceTypeInfo(metaclass=TypeMeta):
     metrics_batch_size: int = 10
     metrics_instance_id_name: str = ""  # the field name to set resource instance id
 
-    resource_preifx: str = ""
+    resource_prefix: str = ""
 
 
 class ResourceQuery:
@@ -163,16 +163,17 @@ class DescribeSource:
         Get resource tag
         All resource tags need to be obtained separately
         """
-        for batch in chunks(resources, self.tag_batch_size):
-            qcs_list = self.get_resource_qcs(batch)
-            tags = self.query_helper.get_resource_tags(self.region, qcs_list)
-            for res in batch:
-                for tag in tags:
-                    if tag["Resource"].find(res[self.resource_type.id]) > 0:
-                        result_tags = []
-                        for t in tag["Tags"]:
-                            result_tags.append({"Key": t["TagKey"], "Value": t["TagValue"]})
-                        res["Tags"] = result_tags
+        resource_map = dict(zip(self.get_resource_qcs(resources), resources))
+        id_map = {k.rsplit('/', 1)[-1]: v for k, v in resource_map.items()}
+
+        for batch in chunks(resource_map, self.tag_batch_size):
+            # construct a separate id to qcs code map,since we're using unqualified qcs
+            # without uin/account id. ideally we could get rid of this if we always have
+            # the account id
+            tags = self.query_helper.get_resource_tags(self.region, batch)
+            for tag in tags:
+                id_map[tag['Resource'].rsplit('/', 1)[-1]]['Tags'] = [
+                    {'Key': t['TagKey'], 'Value': t['TagValue']} for t in tag['Tags']]
         return resources
 
     def get_resource_qcs(self, resources):
@@ -184,10 +185,13 @@ class DescribeSource:
         # qcs::cvm:ap-singapore::instance/ins-ibu7wp2a
         qcs_list = []
         for r in resources:
-            qcs = "qcs::{}:{}::{}/{}".format(
+            qcs = "qcs::{}:{}:".format(
                 self.resource_type.service,
-                self.region,
-                self.resource_type.resource_preifx,
+                self.region)
+            if self.resource_manager.config.account_id:
+                qcs += "uin/{}".format(self.resource_manager.config.account_id)
+            qcs += ":{}/{}".format(
+                self.resource_type.resource_prefix,
                 r[self.resource_type.id])
             qcs_list.append(qcs)
         return qcs_list
