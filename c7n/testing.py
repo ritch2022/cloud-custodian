@@ -265,7 +265,9 @@ class TextTestIO(io.StringIO):
 
 # Per http://blog.xelnor.net/python-mocking-datetime/
 # naive implementation has issues with pypy
-
+#
+# freezegun package is available now for use in tests.
+#
 real_datetime_class = datetime.datetime
 
 
