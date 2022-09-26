@@ -246,7 +246,9 @@ class QueryResourceManager(ResourceManager, metaclass=QueryMeta):
         return self.resource_type
 
     def get_source(self, source_type):
-        factory = self.source_mapping.get(source_type, sources.get(source_type))
+        factory = self.source_mapping.get(
+            source_type in ("describe", DESC_SOURCE_NAME) and "describe",
+            sources.get(source_type))
         if factory is None:
             raise ValueError("Invalid source type %s" % source_type)
         return factory(self)
