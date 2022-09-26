@@ -164,7 +164,6 @@ class DescribeSource:
         All resource tags need to be obtained separately
         """
         resource_map = dict(zip(self.get_resource_qcs(resources), resources))
-        id_map = {k.rsplit('/', 1)[-1]: v for k, v in resource_map.items()}
 
         for batch in chunks(resource_map, self.tag_batch_size):
             # construct a separate id to qcs code map,since we're using unqualified qcs
@@ -172,7 +171,7 @@ class DescribeSource:
             # the account id
             tags = self.query_helper.get_resource_tags(self.region, batch)
             for tag in tags:
-                id_map[tag['Resource'].rsplit('/', 1)[-1]]['Tags'] = [
+                resource_map[tag['Resource']]['Tags'] = [
                     {'Key': t['TagKey'], 'Value': t['TagValue']} for t in tag['Tags']]
         return resources
 

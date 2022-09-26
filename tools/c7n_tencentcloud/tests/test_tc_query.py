@@ -86,6 +86,7 @@ class TestQueryResourceManager:
 
     @pytest.mark.vcr
     def test_resources(self, ctx, monkeypatch):
+        ctx.options['account_id'] = '438167613'
         monkeypatch.setattr(QueryResourceManager, "resource_type", CVMInfo)
         resource_manager = QueryResourceManager(ctx, {})
         res = resource_manager.resources()
