@@ -13,7 +13,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -23,7 +23,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 1, "InstanceSet": [{"Placement": {"Zone":
@@ -77,7 +77,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -87,7 +87,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 1, "InstanceSet": [], "RequestId": "5add7970-38b2-45ac-ad02-9fa9e4c34018"}}'
@@ -132,7 +132,7 @@ interactions:
     uri: https://tag.tencentcloudapi.com/
   response:
     body:
-      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/100000750436:instance\/ins-00lycyy6","Tags":[{"TagKey":"maid_status","TagValue":"Resource
+      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-00lycyy6","Tags":[{"TagKey":"maid_status","TagValue":"Resource
         does not meet policy: stop@2022-09-30T03:52:00+00:00"}]}],"RequestId":"6638a02f-4329-4b7f-93d9-332aabdcfac7"}}'
     headers:
       Connection:
@@ -162,7 +162,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -172,7 +172,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"RequestId": "e8abc823-2321-4465-96a3-dd32d30615fe"}}'
@@ -204,7 +204,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -214,7 +214,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 1, "InstanceSet": [{"Placement": {"Zone":
@@ -268,7 +268,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -278,7 +278,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 1, "InstanceSet": [], "RequestId": "e70aa5d5-f26c-4638-90b5-ed8a98c7937c"}}'
@@ -323,7 +323,7 @@ interactions:
     uri: https://tag.tencentcloudapi.com/
   response:
     body:
-      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/100000750436:instance\/ins-00lycyy6","Tags":[{"TagKey":"maid_status","TagValue":"Resource
+      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-00lycyy6","Tags":[{"TagKey":"maid_status","TagValue":"Resource
         does not meet policy: stop@2022-09-30T03:52:00+00:00"}]}],"RequestId":"f4de8020-e412-4086-9073-e89e4a643a3e"}}'
     headers:
       Connection:

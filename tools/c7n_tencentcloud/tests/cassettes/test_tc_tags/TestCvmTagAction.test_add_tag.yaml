@@ -14,7 +14,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -24,7 +24,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 2, "InstanceSet": [{"Placement": {"Zone":
@@ -97,7 +97,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -107,7 +107,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 2, "InstanceSet": [], "RequestId": "32866ef1-8e14-44b4-8f2f-7d9bca6ca073"}}'
@@ -152,7 +152,7 @@ interactions:
     uri: https://tag.tencentcloudapi.com/
   response:
     body:
-      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/100000750436:instance\/ins-00lycyy6","Tags":[{"TagKey":"maid_status","TagValue":"Resource
+      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-00lycyy6","Tags":[{"TagKey":"maid_status","TagValue":"Resource
         does not meet policy: stop@2022-09-30T03:52:00+00:00"}]}],"RequestId":"d27e7565-bfdc-4fa6-abb5-787aa9b8c12a"}}'
     headers:
       Connection:
@@ -224,7 +224,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -234,7 +234,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 2, "InstanceSet": [{"Placement": {"Zone":
@@ -311,7 +311,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -321,7 +321,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 2, "InstanceSet": [], "RequestId": "4ec09676-a2d1-447b-a8a3-fc42e939d5a9"}}'
@@ -366,8 +366,8 @@ interactions:
     uri: https://tag.tencentcloudapi.com/
   response:
     body:
-      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/100000750436:instance\/ins-00lycyy6","Tags":[{"TagKey":"tag_add_test_key_for_test","TagValue":"tag_add_test_value_for_test"},{"TagKey":"maid_status","TagValue":"Resource
-        does not meet policy: stop@2022-09-30T03:52:00+00:00"}]},{"Resource":"qcs::cvm:ap-singapore:uin\/100000750436:instance\/ins-nhhm5ppo","Tags":[{"TagKey":"tag_add_test_key_for_test","TagValue":"tag_add_test_value_for_test"}]}],"RequestId":"c5dbbdc1-135f-443d-9003-867df71d57af"}}'
+      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-00lycyy6","Tags":[{"TagKey":"tag_add_test_key_for_test","TagValue":"tag_add_test_value_for_test"},{"TagKey":"maid_status","TagValue":"Resource
+        does not meet policy: stop@2022-09-30T03:52:00+00:00"}]},{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-nhhm5ppo","Tags":[{"TagKey":"tag_add_test_key_for_test","TagValue":"tag_add_test_value_for_test"}]}],"RequestId":"c5dbbdc1-135f-443d-9003-867df71d57af"}}'
     headers:
       Connection:
       - keep-alive

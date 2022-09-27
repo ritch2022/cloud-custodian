@@ -1,6 +1,7 @@
 # Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
 
+import json
 import jmespath
 from retrying import RetryError
 from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
@@ -43,7 +44,7 @@ class ResourceTypeInfo(metaclass=TypeMeta):
     metrics_batch_size: int = 10
     metrics_instance_id_name: str = ""  # the field name to set resource instance id
 
-    resource_preifx: str = ""
+    resource_prefix: str = ""
 
 
 class ResourceQuery:
@@ -116,6 +117,85 @@ class ResourceQuery:
         return self.filter(region, tag_resource_type, params)
 
 
+@sources.register(DESC_SOURCE_NAME)
+class DescribeSource:
+    """DescribeSource"""
+
+    def __init__(self, resource_manager) -> None:
+        """
+        :param query: The query to execute from query in policy.yaml
+        """
+        self.resource_manager = resource_manager
+        self.resource_type = resource_manager.resource_type
+        self.region = resource_manager.config.region
+        self.query_helper = ResourceQuery(resource_manager.session_factory)
+        self._session = None
+        self.tag_batch_size: int = 9
+
+    def resources(self, params=None):
+        """
+        It returns a list of resources that match the given parameters
+        :param params: A dictionary of parameters to filter the list of resources returned
+        :return: A list of resources.
+        """
+        if params is None:
+            params = {}
+
+        if self.resource_manager.resource_type.paging_def:
+            res = self.query_helper.paged_filter(self.resource_manager.config.region,
+                                                 self.resource_manager.resource_type,
+                                                 params)
+        else:
+            res = self.query_helper.filter(self.resource_manager.config.region,
+                                           self.resource_manager.resource_type,
+                                           params)
+        self.augment(res)
+        return res
+
+    def get_permissions(self):
+        return []
+
+    def augment(self, resources):
+        return self.get_resource_tag(resources)
+
+    def get_resource_tag(self, resources):
+        """
+        Get resource tag
+        All resource tags need to be obtained separately
+        """
+        resource_map = dict(zip(self.get_resource_qcs(resources), resources))
+
+        for batch in chunks(resource_map, self.tag_batch_size):
+            # construct a separate id to qcs code map, since we're using unqualified qcs
+            # without uin/account id. ideally we could get rid of this if we always have
+            # the account id
+            tags = self.query_helper.get_resource_tags(self.region, batch)
+            for tag in tags:
+                resource_map[tag['Resource']]['Tags'] = [
+                    {'Key': t['TagKey'], 'Value': t['TagValue']} for t in tag['Tags']]
+        return resources
+
+    def get_resource_qcs(self, resources):
+        """
+        get_resource_qcs
+        resource description https://cloud.tencent.com/document/product/598/10606
+        """
+        # qcs::${ServiceType}:${Region}:${Account}:${ResourcePreifx}/${ResourceId}
+        # qcs::cvm:ap-singapore::instance/ins-ibu7wp2a
+        qcs_list = []
+        for r in resources:
+            qcs = "qcs::{}:{}:".format(
+                self.resource_type.service,
+                self.region)
+            if self.resource_manager.config.account_id:
+                qcs += "uin/{}".format(self.resource_manager.config.account_id)
+            qcs += ":{}/{}".format(
+                self.resource_type.resource_prefix,
+                r[self.resource_type.id])
+            qcs_list.append(qcs)
+        return qcs_list
+
+
 class QueryMeta(type):
     """
     metaclass to have consistent action/filter registry for new resources.
@@ -138,6 +218,8 @@ class QueryMeta(type):
 
 class QueryResourceManager(ResourceManager, metaclass=QueryMeta):
     """QueryResourceManager"""
+
+    source_mapping = {'describe': DescribeSource}
 
     class resource_type(ResourceTypeInfo):
         pass
@@ -164,7 +246,12 @@ class QueryResourceManager(ResourceManager, metaclass=QueryMeta):
         return self.resource_type
 
     def get_source(self, source_type):
-        return sources.get(source_type)(self)
+        factory = self.source_mapping.get(
+            source_type in ("describe", DESC_SOURCE_NAME) and "describe",
+            sources.get(source_type))
+        if factory is None:
+            raise ValueError("Invalid source type %s" % source_type)
+        return factory(self)
 
     def get_session(self):
         if self._session is None:
@@ -198,80 +285,3 @@ class QueryResourceManager(ResourceManager, metaclass=QueryMeta):
     # to support configs: max-resources, max-resources-percent
     def check_resource_limit(self, resources):
         return resources
-
-
-@sources.register(DESC_SOURCE_NAME)
-class DescribeSource:
-    """DescribeSource"""
-
-    def __init__(self, resource_manager: QueryResourceManager) -> None:
-        """
-        :param query: The query to execute from query in policy.yaml
-        """
-        self.resource_manager = resource_manager
-        self.resource_type = resource_manager.resource_type
-        self.region = resource_manager.config.region
-        self.query_helper = ResourceQuery(resource_manager.session_factory)
-        self._session = None
-        self.tag_batch_size: int = 9
-
-    def resources(self, params=None):
-        """
-        It returns a list of resources that match the given parameters
-
-        :param params: A dictionary of parameters to filter the list of resources returned
-        :return: A list of resources.
-        """
-        if params is None:
-            params = {}
-
-        if self.resource_manager.resource_type.paging_def:
-            res = self.query_helper.paged_filter(self.resource_manager.config.region,
-                                                 self.resource_manager.resource_type,
-                                                 params)
-        else:
-            res = self.query_helper.filter(self.resource_manager.config.region,
-                                           self.resource_manager.resource_type,
-                                           params)
-        self.augment(res)
-        return res
-
-    def get_permissions(self):
-        return []
-
-    def augment(self, resources):
-        return self.get_resource_tag(resources)
-
-    def get_resource_tag(self, resources):
-        """
-        Get resource tag
-        All resource tags need to be obtained separately
-        """
-        for batch in chunks(resources, self.tag_batch_size):
-            qcs_list = self.get_resource_qcs(batch)
-            tags = self.query_helper.get_resource_tags(self.region, qcs_list)
-            for res in batch:
-                for tag in tags:
-                    if tag["Resource"].find(res[self.resource_type.id]) > 0:
-                        result_tags = []
-                        for t in tag["Tags"]:
-                            result_tags.append({"Key": t["TagKey"], "Value": t["TagValue"]})
-                        res["Tags"] = result_tags
-        return resources
-
-    def get_resource_qcs(self, resources):
-        """
-        get_resource_qcs
-        resource description https://cloud.tencent.com/document/product/598/10606
-        """
-        # qcs::${ServiceType}:${Region}:${Account}:${ResourcePreifx}/${ResourceId}
-        # qcs::cvm:ap-singapore::instance/ins-ibu7wp2a
-        qcs_list = []
-        for r in resources:
-            qcs = "qcs::{}:{}::{}/{}".format(
-                self.resource_type.service,
-                self.region,
-                self.resource_type.resource_preifx,
-                r[self.resource_type.id])
-            qcs_list.append(qcs)
-        return qcs_list

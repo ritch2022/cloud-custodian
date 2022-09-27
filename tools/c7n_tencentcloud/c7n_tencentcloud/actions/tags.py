@@ -61,6 +61,8 @@ class TagAction(TencentCloudBaseAction):
         endpoint = "tag.tencentcloudapi.com"
         service = "tag"
         version = "2018-08-13"
+        # no need to set region
+        # https://www.tencentcloud.com/document/api/651/46532
         region = ""
         return self.manager.session_factory.client(endpoint, service, version, region)
 
@@ -202,10 +204,7 @@ class TagDelayedAction(TagAction):
     def __init__(self, data=None, manager=None, log_dir=None):
         super().__init__(data, manager, log_dir)
         self.resource_type = self.manager.get_model()
-        try:
-            self.tz = pytz.timezone(self.data.get("tz", "utc"))
-        except pytz.exceptions.UnknownTimeZoneError as err:
-            raise PolicyValidationError(f"Invalid tz specified in {self.manager.data}") from err
+        self.tz = None
 
     def get_permissions(self):
         """get_permissions"""
@@ -216,7 +215,10 @@ class TagDelayedAction(TagAction):
         op = self.data.get("op")
         if self.manager and op not in self.manager.action_registry.keys():
             raise PolicyValidationError(f"mark-for-op invalid op:{op} in {self.manager.data}")
-        return self
+        try:
+            self.tz = pytz.timezone(self.data.get("tz", "utc"))
+        except pytz.exceptions.UnknownTimeZoneError as err:
+            raise PolicyValidationError(f"Invalid tz specified in {self.manager.data}") from err
 
     def generate_timestamp(self, days, hours):
         """generate_timestamp"""

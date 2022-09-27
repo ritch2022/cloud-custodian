@@ -13,7 +13,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -23,7 +23,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 1, "InstanceSet": [{"Placement": {"Zone":
@@ -74,7 +74,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -84,7 +84,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 1, "InstanceSet": [], "RequestId": "62f43547-37a9-44de-bc69-a7eee2ef0e3b"}}'
@@ -199,7 +199,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -209,7 +209,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"RequestId": "7e50cf3f-30c0-4d4e-a3b2-e492ca71f2df"}}'
@@ -241,7 +241,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -251,7 +251,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 1, "InstanceSet": [{"Placement": {"Zone":
@@ -304,7 +304,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -314,7 +314,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 1, "InstanceSet": [], "RequestId": "a6be3a86-930d-4fde-be1b-5588a9e3d495"}}'
@@ -359,7 +359,7 @@ interactions:
     uri: https://tag.tencentcloudapi.com/
   response:
     body:
-      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/100000750436:instance\/ins-nhhm5ppo","Tags":[{"TagKey":"maid_status","TagValue":"Resource
+      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-nhhm5ppo","Tags":[{"TagKey":"maid_status","TagValue":"Resource
         does not meet policy: terminate@2022-09-23T09:55:00+00:00"}]}],"RequestId":"5a8d41c8-9503-4c90-9290-11446c4afad5"}}'
     headers:
       Connection:

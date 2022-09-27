@@ -9,14 +9,21 @@ from c7n.exceptions import PolicyExecutionError
 from c7n.utils import type_schema, chunks
 from c7n_tencentcloud.actions import TencentCloudBaseAction
 from c7n_tencentcloud.provider import resources
-from c7n_tencentcloud.query import ResourceTypeInfo, QueryResourceManager
+from c7n_tencentcloud.query import ResourceTypeInfo, QueryResourceManager, DescribeSource
 from c7n_tencentcloud.utils import PageMethod
+
+
+class CVMDescribe(DescribeSource):
+    """CVMDescribe"""
+    def augment(self, resources):
+        return resources
 
 
 @resources.register("cvm")
 class CVM(QueryResourceManager):
     """CVM"""
-
+    source_mapping = {"describe": CVMDescribe}
+    
     class resource_type(ResourceTypeInfo):
         """resource_type"""
         id = "InstanceId"
@@ -26,7 +33,7 @@ class CVM(QueryResourceManager):
         enum_spec = ("DescribeInstances", "Response.InstanceSet[]", {})
         metrics_instance_id_name = "InstanceId"
         paging_def = {"method": PageMethod.Offset, "limit": {"key": "Limit", "value": 20}}
-        resource_preifx = "instance"
+        resource_prefix = "instance"
         taggable = True
         batch_size = 10
 

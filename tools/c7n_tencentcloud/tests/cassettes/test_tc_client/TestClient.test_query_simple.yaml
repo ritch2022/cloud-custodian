@@ -29,7 +29,7 @@ interactions:
       X-TC-Version:
       - '2022-06-27'
     method: POST
-    uri: https://region.tencentcloudapi.com/
+    uri: https://region.ap-shanghai.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 86, "Products": [{"Name": "apigateway"},

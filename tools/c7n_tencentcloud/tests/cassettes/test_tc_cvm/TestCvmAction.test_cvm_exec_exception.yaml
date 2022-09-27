@@ -13,7 +13,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -23,7 +23,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: "{\"Response\": {\"TotalCount\": 5, \"InstanceSet\": [{\"Placement\":
@@ -176,7 +176,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -186,7 +186,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: '{"Response": {"TotalCount": 5, "InstanceSet": [], "RequestId": "e48d1fb6-25ce-4484-9d91-cd22725c5c75"}}'
@@ -233,8 +233,8 @@ interactions:
     uri: https://tag.tencentcloudapi.com/
   response:
     body:
-      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/100000750436:instance\/ins-a4vgayks","Tags":[{"TagKey":"test_pro","TagValue":"andyxbchen"},{"TagKey":"test_pro_00122","TagValue":"andyxbchen"},{"TagKey":"test_test-rfc26","TagValue":"Resource
-        does not meet policy: tag@2022-09-08T02:46:00+00:00"},{"TagKey":"\u8fd0\u7ef4\u8d1f\u8d23\u4eba2","TagValue":"andyxbchen"},{"TagKey":"test","TagValue":"test"}]},{"Resource":"qcs::cvm:ap-singapore:uin\/100000750436:instance\/ins-00lycyy6","Tags":[{"TagKey":"maid_status","TagValue":"Resource
+      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-a4vgayks","Tags":[{"TagKey":"test_pro","TagValue":"andyxbchen"},{"TagKey":"test_pro_00122","TagValue":"andyxbchen"},{"TagKey":"test_test-rfc26","TagValue":"Resource
+        does not meet policy: tag@2022-09-08T02:46:00+00:00"},{"TagKey":"\u8fd0\u7ef4\u8d1f\u8d23\u4eba2","TagValue":"andyxbchen"},{"TagKey":"test","TagValue":"test"}]},{"Resource":"qcs::cvm:ap-singapore:uin\/438167613:instance\/ins-00lycyy6","Tags":[{"TagKey":"maid_status","TagValue":"Resource
         does not meet policy: stop@2022-09-21T09:10:00+00:00"}]}],"RequestId":"73cc1368-8d80-4977-bbe3-61d30eda083e"}}'
     headers:
       Connection:
@@ -264,7 +264,7 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - cvm.tencentcloudapi.com
+      - cvm.ap-singapore.tencentcloudapi.com
       User-Agent:
       - python-requests/2.28.1
       X-TC-Action:
@@ -274,7 +274,7 @@ interactions:
       X-TC-Version:
       - '2017-03-12'
     method: POST
-    uri: https://cvm.tencentcloudapi.com/
+    uri: https://cvm.ap-singapore.tencentcloudapi.com/
   response:
     body:
       string: "{\"Response\":{\"Error\":{\"Code\":\"InvalidParameter\",\"Message\":\"\u53C2\u6570

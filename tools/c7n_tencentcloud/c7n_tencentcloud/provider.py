@@ -40,6 +40,17 @@ class TencentCloud(Provider):
             options.region = os.environ.get("TENCENTCLOUD_REGION", DEFAULT_REGION)
         else:
             options.region = options.regions[0]
+        if not options.account_id:
+            session = self.get_session_factory(options)
+            resp = session.client(
+                endpoint='cam.tencentcloudapi.com',
+                service='cam',
+                version='2019-01-16',
+                region=""  # region not required
+            ).execute_query("GetUserAppId", {})
+            options.account_id = resp["Response"]["OwnerUin"]
+            # for some service, it should use app_id to call tencentcloud API
+            options.app_id = resp["Response"]["AppId"]
         return options
 
     def initialize_policies(self, policy_collection: PolicyCollection, options: dict):
