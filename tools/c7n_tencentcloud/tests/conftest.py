@@ -54,4 +54,4 @@ def options():
 
 @pytest.fixture
 def ctx(session, options):
-    return ExecutionContext(session, {}, options)
+    return ExecutionContext(lambda: session, {}, options)

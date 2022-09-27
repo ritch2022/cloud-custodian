@@ -12,10 +12,7 @@ class TencentCloudBaseAction(BaseAction):
         self.resource_type = self.manager.get_model()
 
     def get_client(self):
-        return self.manager.session_factory.client(self.resource_type.endpoint,
-                                                   self.resource_type.service,
-                                                   self.resource_type.version,
-                                                   self.manager.config.region)
+        return self.manager.get_client()
 
     def process(self, resources):
         pass

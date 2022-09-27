@@ -127,13 +127,14 @@ class DescribeSource:
         self.resource_manager = resource_manager
         self.resource_type = resource_manager.resource_type
         self.region = resource_manager.config.region
-        self.query_helper = ResourceQuery(resource_manager.session_factory)
+        self.query_helper = ResourceQuery(local_session(resource_manager.session_factory))
         self._session = None
         self.tag_batch_size: int = 9
 
     def resources(self, params=None):
         """
         It returns a list of resources that match the given parameters
+
         :param params: A dictionary of parameters to filter the list of resources returned
         :return: A list of resources.
         """
@@ -165,11 +166,13 @@ class DescribeSource:
         resource_map = dict(zip(self.get_resource_qcs(resources), resources))
 
         for batch in chunks(resource_map, self.tag_batch_size):
-            # construct a separate id to qcs code map, since we're using unqualified qcs
+            # construct a separate id to qcs code map,since we're using unqualified qcs
             # without uin/account id. ideally we could get rid of this if we always have
             # the account id
             tags = self.query_helper.get_resource_tags(self.region, batch)
             for tag in tags:
+                if tag['Resource'] not in resource_map:
+                    continue
                 resource_map[tag['Resource']]['Tags'] = [
                     {'Key': t['TagKey'], 'Value': t['TagValue']} for t in tag['Tags']]
         return resources
@@ -252,10 +255,16 @@ class QueryResourceManager(ResourceManager, metaclass=QueryMeta):
             raise ValueError("Invalid source type %s" % source_type)
         return factory(self)
 
+    def get_client(self):
+        type_info = self.resource_type
+        return self.get_session().client(
+            type_info.endpoint,
+            type_info.service,
+            type_info.version,
+            self.config.region)
+
     def get_session(self):
-        if self._session is None:
-            self._session = local_session(self.session_factory)
-        return self._session
+        return local_session(self.session_factory)
 
     def get_permissions(self):
         return self.source.get_permissions()

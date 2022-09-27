@@ -1,6 +1,8 @@
 # Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
+
 import os
+
 import pytest
 from c7n.config import Config
 from c7n_tencentcloud.client import Session
@@ -14,7 +16,8 @@ def tc_provider():
 
 
 def test_get_session_factory(tc_provider):
-    session = tc_provider.get_session_factory(None)
+    session_factory = tc_provider.get_session_factory(None)
+    session = session_factory()
     assert isinstance(session, Session)
 
     endpoint = "cvm.tencentcloudapi.com"

@@ -12,7 +12,7 @@ from tencentcloud.common.exception import TencentCloudSDKException
 
 from c7n.filters import FilterValidationError, Filter
 from c7n.exceptions import PolicyValidationError, PolicyExecutionError
-from c7n.utils import type_schema, chunks
+from c7n.utils import type_schema, chunks, local_session
 from c7n_tencentcloud.actions.core import TencentCloudBaseAction
 
 DEFAULT_TAG = "maid_status"
@@ -35,9 +35,10 @@ def register_tag_filters(filters):
 class TagAction(TencentCloudBaseAction):
     """tag base action"""
 
+    log = logging.getLogger("custodian.tencentcloud.actions.TagAction")
+
     def __init__(self, data=None, manager=None, log_dir=None):
         super().__init__(data, manager, log_dir)
-        self.log = logging.getLogger("custodian.tencentcloud.actions.TagAction")
         self.batch_size = 10
         self.tag_request_params = []
 
@@ -58,13 +59,8 @@ class TagAction(TencentCloudBaseAction):
             return {"ResourceList": qcs_list, "Tags": tags}
 
     def get_client(self):
-        endpoint = "tag.tencentcloudapi.com"
-        service = "tag"
-        version = "2018-08-13"
-        # no need to set region
-        # https://www.tencentcloud.com/document/api/651/46532
-        region = ""
-        return self.manager.session_factory.client(endpoint, service, version, region)
+        return local_session(self.manager.session_factory).client(
+            "tag.tencentcloudapi.com", "tag", "2018-08-13", self.manager.config.region)
 
     def process_tag_op(self, resources):
         """process_tag"""
