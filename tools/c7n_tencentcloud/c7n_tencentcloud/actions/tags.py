@@ -35,9 +35,10 @@ def register_tag_filters(filters):
 class TagAction(TencentCloudBaseAction):
     """tag base action"""
 
+    log = logging.getLogger("custodian.tencentcloud.actions.TagAction")
+
     def __init__(self, data=None, manager=None, log_dir=None):
         super().__init__(data, manager, log_dir)
-        self.log = logging.getLogger("custodian.tencentcloud.actions.TagAction")
         self.batch_size = 10
         self.tag_request_params = []
 

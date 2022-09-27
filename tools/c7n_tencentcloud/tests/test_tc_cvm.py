@@ -1,27 +1,29 @@
 # Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
 import time
-
 import pytest
-from tc_common import BaseTest
+
 from c7n.exceptions import PolicyExecutionError
+
+from tc_common import BaseTest
 
 
 STATE_MISSING = "MISSING"
 
 
-class TestCvmAction(BaseTest):
+def assert_instance_states(policy, instance, states):
+    manager = policy.resource_manager
+    client = manager.get_client()
+    result = client.execute_query(
+        "DescribeInstances", {'InstanceIds': instance[manager.resource_type.id]})
+    if states is STATE_MISSING:
+        assert not result['Response']['InstanceSet']
+        return
+    data = result['Response']['InstanceSet'][0]
+    assert data['InstanceState'] in states
 
-    def assert_instance_states(self, policy, instance, states):
-        manager = policy.resource_manager
-        client = manager.get_client()
-        result = client.execute_query(
-            "DescribeInstances", {'InstanceIds': instance[manager.resource_type.id]})
-        if states is STATE_MISSING:
-            assert not result['Response']['InstanceSet']
-            return
-        data = result['Response']['InstanceSet'][0]
-        assert data['InstanceState'] in states
+
+class TestCvmAction(BaseTest):
 
     @pytest.mark.vcr
     def test_cvm_stop(self):
@@ -45,7 +47,7 @@ class TestCvmAction(BaseTest):
         assert resources
         if self.recording:
             time.sleep(10)
-        self.assert_instance_states(policy, resources.pop(), ("STOPPING", "STOPPED"))
+        assert_instance_states(policy, resources.pop(), ("STOPPING", "STOPPED"))
 
     @pytest.mark.vcr
     def test_cvm_start(self):
@@ -69,7 +71,7 @@ class TestCvmAction(BaseTest):
         assert resources
         if self.recording:
             time.sleep(10)
-        self.assert_instance_states(policy, resources.pop(), ("STARTING", "RUNNING"))
+        assert_instance_states(policy, resources.pop(), ("STARTING", "RUNNING"))
 
     @pytest.mark.vcr
     def test_cvm_terminate(self):
@@ -92,7 +94,7 @@ class TestCvmAction(BaseTest):
         assert len(resources) == 1
         if self.recording:
             time.sleep(10)
-        self.assert_instance_states(policy, resources.pop(), STATE_MISSING)
+        assert_instance_states(policy, resources.pop(), STATE_MISSING)
 
     @pytest.mark.vcr
     def test_cvm_exec_exception(self, monkeypatch):

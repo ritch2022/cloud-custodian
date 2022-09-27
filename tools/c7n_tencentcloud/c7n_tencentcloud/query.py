@@ -171,6 +171,8 @@ class DescribeSource:
             # the account id
             tags = self.query_helper.get_resource_tags(self.region, batch)
             for tag in tags:
+                if tag['Resource'] not in resource_map:
+                    continue
                 resource_map[tag['Resource']]['Tags'] = [
                     {'Key': t['TagKey'], 'Value': t['TagValue']} for t in tag['Tags']]
         return resources
