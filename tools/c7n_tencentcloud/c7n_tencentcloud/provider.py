@@ -67,9 +67,9 @@ class TencentCloud(Provider):
         The function returns a session factory
 
         :param options: A dictionary of options that are passed to the session factory
-        :return: A session object.
+        :return: A session factory
         """
-        return Session()
+        return Session
 
 
 resources = TencentCloud.resources

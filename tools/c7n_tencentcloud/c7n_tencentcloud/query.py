@@ -127,7 +127,7 @@ class DescribeSource:
         self.resource_manager = resource_manager
         self.resource_type = resource_manager.resource_type
         self.region = resource_manager.config.region
-        self.query_helper = ResourceQuery(resource_manager.session_factory)
+        self.query_helper = ResourceQuery(local_session(resource_manager.session_factory))
         self._session = None
         self.tag_batch_size: int = 9
 
@@ -253,10 +253,16 @@ class QueryResourceManager(ResourceManager, metaclass=QueryMeta):
             raise ValueError("Invalid source type %s" % source_type)
         return factory(self)
 
+    def get_client(self):
+        type_info = self.resource_type
+        return self.get_session().client(
+            type_info.endpoint,
+            type_info.service,
+            type_info.version,
+            self.config.region)
+
     def get_session(self):
-        if self._session is None:
-            self._session = local_session(self.session_factory)
-        return self._session
+        return local_session(self.session_factory)
 
     def get_permissions(self):
         return self.source.get_permissions()

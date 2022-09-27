@@ -16,7 +16,8 @@ def tc_provider():
 
 
 def test_get_session_factory(tc_provider):
-    session = tc_provider.get_session_factory(None)
+    session_factory = tc_provider.get_session_factory(None)
+    session = session_factory()
     assert isinstance(session, Session)
 
     endpoint = "cvm.tencentcloudapi.com"

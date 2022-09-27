@@ -4,15 +4,27 @@ import time
 
 import pytest
 from tc_common import BaseTest
-from c7n_tencentcloud.resources.cvm import CVM
-from c7n_tencentcloud.resources.cvm import CvmStopAction
 from c7n.exceptions import PolicyExecutionError
+
+
+STATE_MISSING = "MISSING"
 
 
 class TestCvmAction(BaseTest):
 
+    def assert_instance_states(self, policy, instance, states):
+        manager = policy.resource_manager
+        client = manager.get_client()
+        result = client.execute_query(
+            "DescribeInstances", {'InstanceIds': instance[manager.resource_type.id]})
+        if states is STATE_MISSING:
+            assert not result['Response']['InstanceSet']
+            return
+        data = result['Response']['InstanceSet'][0]
+        assert data['InstanceState'] in states
+
     @pytest.mark.vcr
-    def test_cvm_stop(self, options):
+    def test_cvm_stop(self):
         policy = self.load_policy(
             {
                 "name": "cvm-stop-test",
@@ -28,17 +40,15 @@ class TestCvmAction(BaseTest):
                     }
                 ]
             },
-            config=options
         )
         resources = policy.run()
         assert resources
         if self.recording:
             time.sleep(10)
-        resources = policy.resource_manager.source.resources()
-        assert resources[0]["InstanceState"] in ("STOPPING", "STOPPED")
+        self.assert_instance_states(policy, resources.pop(), ("STOPPING", "STOPPED"))
 
     @pytest.mark.vcr
-    def test_cvm_start(self, options, cvm):
+    def test_cvm_start(self):
         policy = self.load_policy(
             {
                 "name": "cvm-start-test",
@@ -47,24 +57,22 @@ class TestCvmAction(BaseTest):
                 "query": [{
                     "InstanceIds": ["ins-00lycyy6"]
                 }],
+                "filters": [{"InstanceState": "STOPPED"}],
                 "actions": [
                     {
                         "type": "start"
                     }
                 ]
             },
-            config=options
         )
         resources = policy.run()
-        assert resources[0]["InstanceState"] == "STOPPED"
+        assert resources
         if self.recording:
             time.sleep(10)
-        resources = cvm.resources()
-        assert resources[0]["InstanceState"] == "STARTING" or \
-               resources[0]["InstanceState"] == "RUNNING"
+        self.assert_instance_states(policy, resources.pop(), ("STARTING", "RUNNING"))
 
     @pytest.mark.vcr
-    def test_cvm_terminate(self, options, ctx):
+    def test_cvm_terminate(self):
         policy = self.load_policy(
             {
                 "name": "cvm-terminate-test",
@@ -79,25 +87,23 @@ class TestCvmAction(BaseTest):
                     }
                 ]
             },
-            config=options
         )
         resources = policy.run()
         assert len(resources) == 1
         if self.recording:
             time.sleep(10)
-        policy = {
-            "query": [{
-                "InstanceIds": ["ins-8ktxnl0g"]
-            }]
-        }
-        cvm = CVM(ctx, policy)
-        assert len(cvm.resources()) == 0
+        self.assert_instance_states(policy, resources.pop(), STATE_MISSING)
 
     @pytest.mark.vcr
-    def test_cvm_exec_exception(self, monkeypatch, cvm):
+    def test_cvm_exec_exception(self, monkeypatch):
         def get_params(*args):
             return {"InstanceIds": "hello"}
-        stop = CvmStopAction({'type': 'stop'}, cvm)
+        policy = self.load_policy({
+            "name": "cvm-err-test",
+            "resource": "tencentcloud.cvm",
+            "actions": ["stop"]})
+
+        stop = policy.resource_manager.actions[0]
         monkeypatch.setattr(stop, "get_request_params", get_params)
         with pytest.raises(PolicyExecutionError):
-            stop.process(cvm.resources())
+            stop.process([{'InstanceState': 'RUNNING'}])

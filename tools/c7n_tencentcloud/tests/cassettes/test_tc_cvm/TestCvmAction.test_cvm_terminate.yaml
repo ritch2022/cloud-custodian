@@ -103,48 +103,6 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"ResourceList": ["qcs::cvm:ap-singapore::instance/ins-8ktxnl0g"]}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '66'
-      Content-Type:
-      - application/json
-      Host:
-      - tag.ap-singapore.tencentcloudapi.com
-      User-Agent:
-      - python-requests/2.28.1
-      X-TC-Action:
-      - GetResources
-      X-TC-Region:
-      - ap-singapore
-      X-TC-Version:
-      - '2018-08-13'
-    method: POST
-    uri: https://tag.ap-singapore.tencentcloudapi.com/
-  response:
-    body:
-      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[],"RequestId":"e9ddc393-70cc-4cd8-9375-92ed37098761"}}'
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '114'
-      Content-Type:
-      - application/json
-      Date:
-      - Fri, 16 Sep 2022 03:27:41 GMT
-      Server:
-      - nginx
-    status:
-      code: 200
-      message: OK
-- request:
     body: '{"InstanceIds": ["ins-8ktxnl0g"]}'
     headers:
       Accept:

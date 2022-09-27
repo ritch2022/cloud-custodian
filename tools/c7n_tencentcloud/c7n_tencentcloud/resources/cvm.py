@@ -70,12 +70,7 @@ class CvmAction(TencentCloudBaseAction):
         The default value returns InstanceIds , if there is customization,
         it will be implemented in subclasses
         """
-        ids = []
-        for resource in resources:
-            ids.append(resource[self.resource_type.id])
-        if len(ids) > 0:
-            return {"InstanceIds": ids}
-        return None
+        return {"InstanceIds": [r[self.resource_type.id] for r in resources]}
 
 
 @CVM.action_registry.register('stop')
@@ -84,19 +79,18 @@ class CvmStopAction(CvmAction):
     schema = type_schema("stop")
     t_api_method_name = "StopInstances"
 
+    def process(self, resources):
+        # only applies to running instances
+        resources = self.filter_resources(resources, "InstanceState", ("RUNNING",))
+        return super().process(resources)
+
     def get_request_params(self, resources):
         """get_params_stop"""
-        ids = []
-        for resource in resources:
-            if resource["InstanceState"] == "RUNNING":
-                ids.append(resource[self.resource_type.id])
-        if len(ids) > 0:
-            return {
-                "InstanceIds": ids,
-                "StopType": "SOFT",
-                "StoppedMode": "STOP_CHARGING"
-            }
-        return None
+        return {
+            "InstanceIds": [r[self.resource_type.id] for r in resources],
+            "StopType": "SOFT",
+            "StoppedMode": "STOP_CHARGING"
+        }
 
 
 @CVM.action_registry.register('start')

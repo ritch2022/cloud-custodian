@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 import pytest
 
+from c7n.config import Config
 from c7n.schema import generate
 from c7n.testing import CustodianTestCore
 
@@ -23,3 +24,15 @@ class BaseTest(CustodianTestCore):
             self.recording = len(vcr.data) == 0
         else:
             self.recording = True
+
+    def load_policy(self, data, *args, **kw):
+        if "config" not in kw:
+            config = Config.empty(**{
+                "region": "ap-singapore",  # just for init, ignore the value
+                "account_id": kw.get('account_id', "100000750436"),
+                "output_dir": "null://",
+                "log_group": "null://",
+                "cache": False,
+            })
+            kw['config'] = config
+        return super().load_policy(data, *args, **kw)

@@ -105,49 +105,6 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"ResourceList": ["qcs::cvm:ap-singapore::instance/ins-00lycyy6"]}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '66'
-      Content-Type:
-      - application/json
-      Host:
-      - tag.ap-singapore.tencentcloudapi.com
-      User-Agent:
-      - python-requests/2.28.1
-      X-TC-Action:
-      - GetResources
-      X-TC-Region:
-      - ap-singapore
-      X-TC-Version:
-      - '2018-08-13'
-    method: POST
-    uri: https://tag.ap-singapore.tencentcloudapi.com/
-  response:
-    body:
-      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/100000750436:instance\/ins-00lycyy6","Tags":[{"TagKey":"maid_status","TagValue":"Resource
-        does not meet policy: stop@2022-09-29T06:56:00+00:00"}]}],"RequestId":"9ef4bbe6-4b03-4146-8162-7db4c012169d"}}'
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '300'
-      Content-Type:
-      - application/json
-      Date:
-      - Fri, 16 Sep 2022 03:22:06 GMT
-      Server:
-      - nginx
-    status:
-      code: 200
-      message: OK
-- request:
     body: '{"InstanceIds": ["ins-00lycyy6"]}'
     headers:
       Accept:
@@ -286,49 +243,6 @@ interactions:
       - keep-alive
       Content-Length:
       - '103'
-      Content-Type:
-      - application/json
-      Date:
-      - Fri, 16 Sep 2022 03:22:18 GMT
-      Server:
-      - nginx
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"ResourceList": ["qcs::cvm:ap-singapore::instance/ins-00lycyy6"]}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '66'
-      Content-Type:
-      - application/json
-      Host:
-      - tag.ap-singapore.tencentcloudapi.com
-      User-Agent:
-      - python-requests/2.28.1
-      X-TC-Action:
-      - GetResources
-      X-TC-Region:
-      - ap-singapore
-      X-TC-Version:
-      - '2018-08-13'
-    method: POST
-    uri: https://tag.ap-singapore.tencentcloudapi.com/
-  response:
-    body:
-      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cvm:ap-singapore:uin\/100000750436:instance\/ins-00lycyy6","Tags":[{"TagKey":"maid_status","TagValue":"Resource
-        does not meet policy: stop@2022-09-29T06:56:00+00:00"}]}],"RequestId":"fd2a7dc3-9ef6-47e8-8fd4-c5571e9fd94c"}}'
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '300'
       Content-Type:
       - application/json
       Date:
