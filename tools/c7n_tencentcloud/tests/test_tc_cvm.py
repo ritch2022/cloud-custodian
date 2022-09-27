@@ -35,8 +35,6 @@ class TestCvmAction(BaseTest):
         if self.recording:
             time.sleep(10)
         resources = policy.resource_manager.source.resources()
-        import json
-        print(json.dumps(resources))
         assert resources[0]["InstanceState"] in ("STOPPING", "STOPPED")
 
     @pytest.mark.vcr

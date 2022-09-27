@@ -23,7 +23,7 @@ class CVMDescribe(DescribeSource):
 class CVM(QueryResourceManager):
     """CVM"""
     source_mapping = {"describe": CVMDescribe}
-    
+
     class resource_type(ResourceTypeInfo):
         """resource_type"""
         id = "InstanceId"

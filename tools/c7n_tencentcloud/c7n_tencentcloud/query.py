@@ -1,7 +1,6 @@
 # Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
 
-import json
 import jmespath
 from retrying import RetryError
 from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
