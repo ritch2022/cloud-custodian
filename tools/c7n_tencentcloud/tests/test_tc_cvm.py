@@ -1,12 +1,13 @@
 # Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
 import time
-
 import pytest
 from tc_common import BaseTest
-from c7n_tencentcloud.resources.cvm import CVM
 from c7n_tencentcloud.resources.cvm import CvmStopAction
 from c7n.exceptions import PolicyExecutionError
+
+
+instance_id = "ins-g0h2eo1a"
 
 
 class TestCvmAction(BaseTest):
@@ -19,9 +20,8 @@ class TestCvmAction(BaseTest):
                 "resource": "tencentcloud.cvm",
                 "comment": "stop cvm",
                 "query": [{
-                    "InstanceIds": ["ins-00lycyy6"]
+                    "InstanceIds": [instance_id]
                 }],
-                "filters": [{"InstanceState": "RUNNING"}],
                 "actions": [
                     {
                         "type": "stop"
@@ -34,18 +34,18 @@ class TestCvmAction(BaseTest):
         assert resources
         if self.recording:
             time.sleep(10)
-        resources = policy.resource_manager.source.resources()
+        resources = policy.resource_manager.resources()
         assert resources[0]["InstanceState"] in ("STOPPING", "STOPPED")
 
     @pytest.mark.vcr
-    def test_cvm_start(self, options, cvm):
+    def test_cvm_start(self, options):
         policy = self.load_policy(
             {
                 "name": "cvm-start-test",
                 "resource": "tencentcloud.cvm",
                 "comment": "start cvm",
                 "query": [{
-                    "InstanceIds": ["ins-00lycyy6"]
+                    "InstanceIds": [instance_id]
                 }],
                 "actions": [
                     {
@@ -56,12 +56,11 @@ class TestCvmAction(BaseTest):
             config=options
         )
         resources = policy.run()
-        assert resources[0]["InstanceState"] == "STOPPED"
+        assert resources
         if self.recording:
             time.sleep(10)
-        resources = cvm.resources()
-        assert resources[0]["InstanceState"] == "STARTING" or \
-               resources[0]["InstanceState"] == "RUNNING"
+        resources = policy.resource_manager.resources()
+        assert resources[0]["InstanceState"] in ("STARTING", "RUNNING")
 
     @pytest.mark.vcr
     def test_cvm_terminate(self, options, ctx):
@@ -71,7 +70,7 @@ class TestCvmAction(BaseTest):
                 "resource": "tencentcloud.cvm",
                 "comment": "terminate cvm",
                 "query": [{
-                    "InstanceIds": ["ins-8ktxnl0g"]
+                    "InstanceIds": [instance_id]
                 }],
                 "actions": [
                     {
@@ -85,13 +84,9 @@ class TestCvmAction(BaseTest):
         assert len(resources) == 1
         if self.recording:
             time.sleep(10)
-        policy = {
-            "query": [{
-                "InstanceIds": ["ins-8ktxnl0g"]
-            }]
-        }
-        cvm = CVM(ctx, policy)
-        assert len(cvm.resources()) == 0
+        resources = policy.resource_manager.source.resources()
+        instance_ids = [it["InstanceId"] for it in resources]
+        assert instance_id not in instance_ids
 
     @pytest.mark.vcr
     def test_cvm_exec_exception(self, monkeypatch, cvm):

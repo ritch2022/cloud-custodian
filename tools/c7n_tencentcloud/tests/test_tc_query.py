@@ -32,7 +32,7 @@ class CVMInfo(ResourceTypeInfo):
 
 
 class CVMInfoNoPagination(ResourceTypeInfo):
-    """CVMInfo"""
+    """CVMInfoNoPagination"""
     id = "InstanceId"
     endpoint = "cvm.tencentcloudapi.com"
     service = "cvm"
@@ -53,13 +53,13 @@ class TestResourcetQuery:
     def test_filter(self, session):
         resource_query = ResourceQuery(session)
         res = resource_query.filter("ap-singapore", RegionInfo, {})
-        assert len(res) == 41
+        assert len(res) == 20
 
     @pytest.mark.vcr
     def test_paged_filter(self, session):
         resource_query = ResourceQuery(session)
         res = resource_query.paged_filter("ap-singapore", CVMInfo, {})
-        assert len(res) == 40
+        assert len(res) == 6
 
 
 # (data, expected_query_params)
@@ -89,7 +89,7 @@ class TestQueryResourceManager:
         monkeypatch.setattr(QueryResourceManager, "resource_type", CVMInfo)
         resource_manager = QueryResourceManager(ctx, {})
         res = resource_manager.resources()
-        assert len(res) == 40
+        assert len(res) == 6
 
     @pytest.mark.vcr
     def test_resources_no_pagination(self, ctx, monkeypatch):
