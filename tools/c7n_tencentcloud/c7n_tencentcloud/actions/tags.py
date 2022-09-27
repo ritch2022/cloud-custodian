@@ -69,8 +69,6 @@ class TagAction(TencentCloudBaseAction):
             for batch in chunks(resources, self.batch_size):
                 params = self._get_request_params(batch, self.tag_request_params)
                 resp = client.execute_query(self.t_api_method_name, params)
-                self.log.debug("%s , params: %s,resp: %s ", self.data.get('type'),
-                               json.dumps(params), json.dumps(resp))
         except (RetryError, TencentCloudSDKException) as err:
             raise PolicyExecutionError(err) from err
 
