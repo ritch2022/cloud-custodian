@@ -5,7 +5,6 @@ import pytest
 from c7n.config import Config
 from c7n.ctx import ExecutionContext
 from c7n_tencentcloud.client import Session
-from c7n_tencentcloud.resources.cvm import CVM
 
 
 @pytest.fixture(scope="package")
@@ -13,17 +12,6 @@ def vcr_config():
     return {
         "filter_headers": ["authorization", "X-TC-Timestamp", "X-TC-RequestClient", "X-TC-Language"]
     }
-
-
-@pytest.fixture
-def cvm(ctx):
-    policy = {
-        "name": "cvm-test",
-        "query": [{
-            "InstanceIds": ["ins-00lycyy6"]
-        }],
-    }
-    return CVM(ctx, policy)
 
 
 @pytest.fixture
