@@ -5472,6 +5472,9 @@ modified date</p></li>
 passed as this value. Further customizations of dimensions require subclass metrics filter</p></li>
 <li><p><strong>cfn_type</strong> – AWS Cloudformation type</p></li>
 <li><p><strong>config_type</strong> – AWS Config Service resource type name</p></li>
+<li><p><strong>config_id</strong> – Resource attribute that maps to the resourceId field in AWS Config. Intended
+for resources which use one ID attribute for service API calls and a different one for
+AWS Config (example: IAM resources).</p></li>
 <li><p><strong>universal_taggable</strong> – Whether or not resource group tagging api can be used, in which case
 we’ll automatically register tag actions/filters. Note: values of True will register legacy
 tag filters/actions, values of object() will just register current standard
