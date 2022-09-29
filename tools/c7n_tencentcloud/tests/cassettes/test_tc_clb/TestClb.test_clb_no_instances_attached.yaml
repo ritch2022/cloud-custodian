@@ -46,7 +46,7 @@ interactions:
         \"\", \"ClusterTag\": null, \"LocalBgp\": false, \"MixIpTarget\": false, \"Zones\":
         null, \"NfvInfo\": \"\", \"HealthLogSetId\": \"\", \"HealthLogTopicId\": \"\",
         \"ClusterIds\": null, \"AttributeFlags\": [], \"VipIsp\": \"BGP\"}], \"RequestId\":
-        \"7fe8f42c-42b4-4850-a6b5-ff0ef68c20e5\"}}"
+        \"1105c677-6497-410a-8e2c-3f20cdcfcd5a\"}}"
     headers:
       Connection:
       - keep-alive
@@ -55,50 +55,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 28 Sep 2022 08:13:26 GMT
-      Server:
-      - nginx
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"LoadBalancerIds": ["lb-aqsfvh8m"], "Offset": 20, "Limit": 20}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '63'
-      Content-Type:
-      - application/json
-      Host:
-      - clb.ap-singapore.tencentcloudapi.com
-      User-Agent:
-      - python-requests/2.28.1
-      X-TC-Action:
-      - DescribeLoadBalancers
-      X-TC-Region:
-      - ap-singapore
-      X-TC-Version:
-      - '2018-03-17'
-    method: POST
-    uri: https://clb.ap-singapore.tencentcloudapi.com/
-  response:
-    body:
-      string: '{"Response": {"TotalCount": 1, "LoadBalancerSet": [], "RequestId":
-        "456c12f3-7f38-40fa-ba32-883bd7c181d2"}}'
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '107'
-      Content-Type:
-      - application/json
-      Date:
-      - Wed, 28 Sep 2022 08:13:26 GMT
+      - Thu, 29 Sep 2022 12:51:42 GMT
       Server:
       - nginx
     status:
@@ -131,7 +88,7 @@ interactions:
     uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
-      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[],"RequestId":"1b116fda-51f5-4425-9e76-4584eef2b39c"}}'
+      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[],"RequestId":"1fef28f9-9d99-4455-9620-e572c15edc31"}}'
     headers:
       Connection:
       - keep-alive
@@ -140,7 +97,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 28 Sep 2022 08:13:27 GMT
+      - Thu, 29 Sep 2022 12:51:42 GMT
       Server:
       - nginx
     status:
@@ -173,7 +130,7 @@ interactions:
     uri: https://clb.ap-singapore.tencentcloudapi.com/
   response:
     body:
-      string: '{"Response": {"Listeners": [], "RequestId": "0cb811fb-b0bf-4adb-b303-bde5cfdd232f"}}'
+      string: '{"Response": {"Listeners": [], "RequestId": "8efa9f67-cf95-44b6-87d1-a31d99aca8e2"}}'
     headers:
       Connection:
       - keep-alive
@@ -182,7 +139,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 28 Sep 2022 08:13:27 GMT
+      - Thu, 29 Sep 2022 12:51:43 GMT
       Server:
       - nginx
     status:
