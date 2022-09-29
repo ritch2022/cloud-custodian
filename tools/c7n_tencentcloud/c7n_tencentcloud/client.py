@@ -98,7 +98,7 @@ class Client:
             if len(items) > 0:
                 results.extend(items)
                 if paging_method == PageMethod.Offset:
-                    if len(items) < paging_def["limit"]["value"]:
+                    if len(items) < int(paging_def["limit"]["value"]):
                         # no more data
                         break
                     params[PageMethod.Offset.name] = int(params[PageMethod.Offset.name]) +\
