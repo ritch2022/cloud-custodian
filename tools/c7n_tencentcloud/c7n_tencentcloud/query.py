@@ -279,7 +279,7 @@ class QueryResourceManager(ResourceManager, metaclass=QueryMeta):
     def resources(self):
         params = self.get_resource_query_params()
         resources = self.source.resources(params)
-
+        resources = self.augment(resources)
         # filter resoures
         resources = self.filter_resources(resources)
 
