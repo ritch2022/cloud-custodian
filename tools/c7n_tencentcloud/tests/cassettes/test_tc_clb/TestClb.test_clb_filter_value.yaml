@@ -47,7 +47,7 @@ interactions:
         "SlaType": "", "ClusterTag": null, "LocalBgp": false, "MixIpTarget": false,
         "Zones": null, "NfvInfo": "", "HealthLogSetId": "", "HealthLogTopicId": "",
         "ClusterIds": null, "AttributeFlags": [], "VipIsp": "INTERNAL"}], "RequestId":
-        "565677a8-0015-4d80-927b-b84fdfddcddd"}}'
+        "d87fb8e4-76b8-4ed1-9126-ad35c3740dba"}}'
     headers:
       Connection:
       - keep-alive
@@ -56,50 +56,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 28 Sep 2022 08:14:55 GMT
-      Server:
-      - nginx
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"LoadBalancerIds": ["lb-n6g4mc26"], "Offset": 20, "Limit": 20}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '63'
-      Content-Type:
-      - application/json
-      Host:
-      - clb.ap-singapore.tencentcloudapi.com
-      User-Agent:
-      - python-requests/2.28.1
-      X-TC-Action:
-      - DescribeLoadBalancers
-      X-TC-Region:
-      - ap-singapore
-      X-TC-Version:
-      - '2018-03-17'
-    method: POST
-    uri: https://clb.ap-singapore.tencentcloudapi.com/
-  response:
-    body:
-      string: '{"Response": {"TotalCount": 1, "LoadBalancerSet": [], "RequestId":
-        "edf017bf-ca70-4769-a2e5-6b8117912e7c"}}'
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '107'
-      Content-Type:
-      - application/json
-      Date:
-      - Wed, 28 Sep 2022 08:14:55 GMT
+      - Thu, 29 Sep 2022 12:51:37 GMT
       Server:
       - nginx
     status:
@@ -132,7 +89,7 @@ interactions:
     uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
-      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::clb:ap-singapore:uin\/100000750436:clb\/lb-n6g4mc26","Tags":[{"TagKey":"tke-created","TagValue":"yes"},{"TagKey":"tke-name","TagValue":"grafana-00004abbf1fa-grafana-4gohjl7g\/grafana-4gohjl7g-grafana"},{"TagKey":"tke-kind","TagValue":"service"},{"TagKey":"tke-clusterId","TagValue":"cls-57vn5lu8"}]}],"RequestId":"bab4479a-d753-4f0e-9cfa-6efe1f72df2e"}}'
+      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::clb:ap-singapore:uin\/100000750436:clb\/lb-n6g4mc26","Tags":[{"TagKey":"tke-created","TagValue":"yes"},{"TagKey":"tke-name","TagValue":"grafana-00004abbf1fa-grafana-4gohjl7g\/grafana-4gohjl7g-grafana"},{"TagKey":"tke-kind","TagValue":"service"},{"TagKey":"tke-clusterId","TagValue":"cls-57vn5lu8"}]}],"RequestId":"8ff43754-adfd-4e0e-9a64-8e8ae92c425d"}}'
     headers:
       Connection:
       - keep-alive
@@ -141,7 +98,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 28 Sep 2022 08:14:56 GMT
+      - Thu, 29 Sep 2022 12:51:41 GMT
       Server:
       - nginx
     status:
