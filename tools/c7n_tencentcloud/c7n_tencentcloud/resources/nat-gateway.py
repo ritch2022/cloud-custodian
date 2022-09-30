@@ -1,10 +1,9 @@
 # Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
 import pytz
-from datetime import datetime
 from c7n_tencentcloud.provider import resources
 from c7n_tencentcloud.query import ResourceTypeInfo, QueryResourceManager
-from c7n_tencentcloud.utils import PageMethod
+from c7n_tencentcloud.utils import PageMethod, isoformat_date_str
 
 
 @resources.register("nat-gateway")
@@ -24,8 +23,11 @@ class NatGateway(QueryResourceManager):
         taggable = True
 
     def augment(self, resources):
-        tz = pytz.timezone("Asia/Shanghai")
+        from_tz = pytz.timezone("Asia/Shanghai")
         for resource in resources:
-            dt = tz.localize(datetime.strptime(resource["CreatedTime"], "%Y-%m-%d %H:%M:%S"))
-            resource["CreatedTime"] = dt.astimezone(pytz.utc).isoformat()
+            isoformat_date_str(resource,
+                               ["CreatedTime"],
+                               "%Y-%m-%d %H:%M:%S",
+                               from_tz,
+                               pytz.utc)
         return resources
