@@ -1,6 +1,5 @@
 # Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
-import pytz
 from c7n_tencentcloud.provider import resources
 from c7n_tencentcloud.query import ResourceTypeInfo, QueryResourceManager
 from c7n_tencentcloud.utils import PageMethod, isoformat_date_str
@@ -24,5 +23,5 @@ class CBSSnapshot(QueryResourceManager):
 
     def augment(self, resources):
         for resource in resources:
-            isoformat_date_str(resource, ["CreateTime"], "%Y-%m-%d %H:%M:%S",)
+            isoformat_date_str(resource, ["CreateTime"], "%Y-%m-%d %H:%M:%S")
         return resources
