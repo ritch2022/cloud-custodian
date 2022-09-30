@@ -9,7 +9,7 @@ from c7n.exceptions import PolicyExecutionError, PolicyValidationError
 from c7n.utils import type_schema
 from c7n_tencentcloud.actions import TencentCloudBaseAction
 from c7n_tencentcloud.provider import resources
-from c7n_tencentcloud.query import ResourceTypeInfo, QueryResourceManager
+from c7n_tencentcloud.query import ResourceTypeInfo, QueryResourceManager, DescribeSource
 from c7n_tencentcloud.utils import PageMethod
 
 
@@ -92,10 +92,11 @@ class CbsCopyInstanceTagsAction(TencentCloudBaseAction):
         # qcs::${ServiceType}:${Region}:${Account}:${ResourcePrefix}/${ResourceId}
         qcs_list = []
         for r in resources:
-            qcs = "qcs::{}:{}::{}/{}".format(
-                r["InstanceType"].lower(),
-                self.manager.config.region,
-                "instance",
-                r["InstanceId"])
+            # TODO need further refactor: hide detailed info, for example CVM prefix
+            qcs = DescribeSource.get_qcs(r["InstanceType"].lower(),
+                                         self.manager.config.region,
+                                         None,
+                                         "instance",
+                                         r["InstanceId"])
             qcs_list.append(qcs)
         return qcs_list
