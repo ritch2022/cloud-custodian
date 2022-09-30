@@ -23,11 +23,6 @@ class CBSSnapshot(QueryResourceManager):
         taggable = True
 
     def augment(self, resources):
-        from_tz = pytz.timezone("Asia/Shanghai")
         for resource in resources:
-            isoformat_date_str(resource,
-                               ["CreateTime"],
-                               "%Y-%m-%d %H:%M:%S",
-                               from_tz,
-                               pytz.utc)
+            isoformat_date_str(resource, ["CreateTime"], "%Y-%m-%d %H:%M:%S",)
         return resources
