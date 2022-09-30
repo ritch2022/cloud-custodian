@@ -4,7 +4,7 @@ import jmespath
 
 from c7n_tencentcloud.provider import resources
 from c7n_tencentcloud.query import ResourceTypeInfo, QueryResourceManager
-from c7n_tencentcloud.utils import PageMethod
+from c7n_tencentcloud.utils import PageMethod, isoformat_date_str
 
 
 @resources.register("clb")
@@ -39,4 +39,6 @@ class CLB(QueryResourceManager):
                     for target in listener["Targets"]:
                         instance_ids.append(target["InstanceId"])
                 resource["Instances"] = instance_ids
+        for resource in resources_param:
+            isoformat_date_str(resource, ["CreateTime"], "%Y-%m-%d %H:%M:%S")
         return resources_param

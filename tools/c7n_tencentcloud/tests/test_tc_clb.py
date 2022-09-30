@@ -1,7 +1,5 @@
 # Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
-import time
-
 import pytest
 from tc_common import BaseTest
 
@@ -30,8 +28,7 @@ class TestClb(BaseTest):
             }
         )
         resources = policy.run()
-        time_array = time.strptime(resources[0]["CreateTime"], "%Y-%m-%d %H:%M:%S")
-        assert time.time() > time.mktime(time_array) + 3600 * 24 * 30
+        assert resources[0]["LoadBalancerId"] == "lb-n6g4mc26"
 
     @pytest.mark.vcr
     def test_clb_no_instances_attached(self):
