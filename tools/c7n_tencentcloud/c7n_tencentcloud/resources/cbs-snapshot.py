@@ -1,9 +1,9 @@
 # Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
-
+import pytz
 from c7n_tencentcloud.provider import resources
 from c7n_tencentcloud.query import ResourceTypeInfo, QueryResourceManager
-from c7n_tencentcloud.utils import PageMethod
+from c7n_tencentcloud.utils import PageMethod, isoformat_date_str
 
 
 @resources.register("cbs-snapshot")
@@ -21,3 +21,13 @@ class CBSSnapshot(QueryResourceManager):
         paging_def = {"method": PageMethod.Offset, "limit": {"key": "Limit", "value": 20}}
         resource_prefix = "volume"
         taggable = True
+
+    def augment(self, resources):
+        from_tz = pytz.timezone("Asia/Shanghai")
+        for resource in resources:
+            isoformat_date_str(resource,
+                               ["CreateTime"],
+                               "%Y-%m-%d %H:%M:%S",
+                               from_tz,
+                               pytz.utc)
+        return resources
