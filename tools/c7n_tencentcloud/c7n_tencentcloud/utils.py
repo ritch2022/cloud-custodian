@@ -17,10 +17,10 @@ class PageMethod(Enum):
 
 
 def isoformat_date_str(data: dict,
-                      field_keys: list,
-                      original_date_str_format: str,
-                      timezone_from=pytz.timezone("Asia/Shanghai"),
-                      timezone_to=pytz.utc):
+                       field_keys: list,
+                       original_date_str_format: str,
+                       timezone_from=pytz.timezone("Asia/Shanghai"),
+                       timezone_to=pytz.utc):
     """
     standardize the date string, using isoformat including timezone info
     example: '2022-09-28T15:28:28+00:00'
