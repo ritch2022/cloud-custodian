@@ -17,8 +17,10 @@ class TestAmi(BaseTest):
                         "type": "unused",
                         "value": True
                     }, {
-                        "type": "image-age",
-                        "days": 90,
+                        "type": "value",
+                        "key": "CreatedTime",
+                        "value_type": "age",
+                        "value": 90,
                         "op": "greater-than"
                     }
                 ]

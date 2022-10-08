@@ -73,7 +73,7 @@ interactions:
         null, \"CreatePercent\": null, \"IsSupportAutoInstallGPUDriver\": false, \"GPUDriverList\":
         [], \"ImageFormat\": \"QCOW2RAW\", \"_ImageClass\": \"SystemImage\", \"Architecture\":
         \"x86_64\", \"Platform\": \"Windows\", \"IsSupportCloudinit\": true, \"isSupportCloudinit\":
-        true, \"LicenseType\": \"TencentCloud\", \"Tags\": []}], \"RequestId\": \"8b40bf8f-8898-4e20-8c49-34bc2ab5dfae\"}}"
+        true, \"LicenseType\": \"TencentCloud\", \"Tags\": []}], \"RequestId\": \"bf1f47eb-65b6-4019-9bcf-1f882f50f2e6\"}}"
     headers:
       Connection:
       - keep-alive
@@ -82,7 +82,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 29 Sep 2022 10:03:01 GMT
+      - Sat, 08 Oct 2022 07:06:24 GMT
       Server:
       - nginx
     status:
@@ -117,7 +117,7 @@ interactions:
     uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
-      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[],"RequestId":"cd11b04f-ec11-4a62-8403-75aea4846760"}}'
+      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[],"RequestId":"3212b439-855c-4552-9c15-67c9ea93b4e2"}}'
     headers:
       Connection:
       - keep-alive
@@ -126,7 +126,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 29 Sep 2022 10:03:02 GMT
+      - Sat, 08 Oct 2022 07:06:25 GMT
       Server:
       - nginx
     status:
@@ -367,7 +367,7 @@ interactions:
         null, \"LatestOperationState\": null, \"LatestOperationRequestId\": null,
         \"IsolatedSource\": \"NOTISOLATED\", \"HpcClusterId\": \"\", \"DisableApiTermination\":
         false, \"RdmaIpAddresses\": null, \"LicenseType\": \"TencentCloud\", \"StopChargingMode\":
-        \"NOT_APPLICABLE\"}], \"RequestId\": \"ccfbd0a6-4a56-402c-8afd-022ebbbb593b\"}}"
+        \"NOT_APPLICABLE\"}], \"RequestId\": \"75cd38eb-5a62-4f0f-942b-b93417a2634b\"}}"
     headers:
       Connection:
       - keep-alive
@@ -376,7 +376,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 29 Sep 2022 10:03:03 GMT
+      - Sat, 08 Oct 2022 07:06:26 GMT
       Server:
       - nginx
     status:
