@@ -3,7 +3,7 @@
 import itertools
 
 from c7n.utils import type_schema
-from c7n.filters import Filter, AgeFilter
+from c7n.filters import Filter
 from c7n_tencentcloud.provider import resources
 from c7n_tencentcloud.query import ResourceTypeInfo, QueryResourceManager
 from c7n_tencentcloud.utils import PageMethod
@@ -20,7 +20,6 @@ class AMI(QueryResourceManager):
         service = "cvm"
         version = "2017-03-12"
         enum_spec = ("DescribeImages", "Response.ImageSet[]", {})
-        metrics_instance_id_name = "VpcId"
         paging_def = {"method": PageMethod.Offset, "limit": {"key": "Limit", "value": 20}}
         resource_prefix = "instance"
         taggable = True
@@ -43,28 +42,6 @@ class AMI(QueryResourceManager):
             params.update(it)
 
         return params
-
-
-@AMI.filter_registry.register('image-age')
-class ImageAgeFilter(AgeFilter):
-    """Filters images based on the age (in days)
-
-    :example:
-
-    .. code-block:: yaml
-
-            policies:
-              - name: ami-remove-launch-permissions
-                resource: tencentcloud.ami
-                filters:
-                  - type: image-age
-                    days: 30
-    """
-    date_attribute = "CreatedTime"
-    schema = type_schema(
-        'image-age',
-        op={'$ref': '#/definitions/filters_common/comparison_operators'},
-        days={'type': 'number', 'minimum': 0})
 
 
 @AMI.filter_registry.register('unused')
