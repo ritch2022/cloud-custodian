@@ -9,7 +9,7 @@ from c7n.exceptions import PolicyExecutionError, PolicyValidationError
 from c7n.utils import type_schema
 from c7n_tencentcloud.actions import TencentCloudBaseAction
 from c7n_tencentcloud.provider import resources
-from c7n_tencentcloud.query import ResourceTypeInfo, QueryResourceManager, DescribeSource
+from c7n_tencentcloud.query import ResourceTypeInfo, QueryResourceManager
 from c7n_tencentcloud.utils import PageMethod
 
 
@@ -78,25 +78,8 @@ class CbsCopyInstanceTagsAction(TencentCloudBaseAction):
         get instances tag
         """
         dict_tag: dir = {}
-        qcs = self.get_cvm_resource_qcs(resources)
+        qcs = self.manager.get_resource_manager('tencentcloud.cvm').get_qcs_for_cbs(resources)
         tags = self.manager.source.query_helper.get_resource_tags(self.manager.config.region, qcs)
         for tag in tags:
             dict_tag.update({tag["Resource"].split('/')[-1]: tag["Tags"]})
         return dict_tag
-
-    def get_cvm_resource_qcs(self, resources):
-        """
-        get cvm resource qcs
-        Get the qcs of the cvm to which the cbs belongs
-        """
-        # qcs::${ServiceType}:${Region}:${Account}:${ResourcePrefix}/${ResourceId}
-        qcs_list = []
-        for r in resources:
-            # TODO need further refactor: hide detailed info, for example CVM prefix
-            qcs = DescribeSource.get_qcs(r["InstanceType"].lower(),
-                                         self.manager.config.region,
-                                         None,
-                                         "instance",
-                                         r["InstanceId"])
-            qcs_list.append(qcs)
-        return qcs_list
