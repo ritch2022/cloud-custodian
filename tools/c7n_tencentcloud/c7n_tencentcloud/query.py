@@ -156,6 +156,11 @@ class DescribeSource:
         return []
 
     def augment(self, resources):
+        if (self.resource_type.service == "cam"
+                and self.resource_type.resource_prefix == "policyid"):
+            # policy don't have tags
+            # if we try getting policy's tags, tencentcloud api will return error
+            return resources
         return self.get_resource_tag(resources)
 
     def get_resource_tag(self, resources):
@@ -185,10 +190,14 @@ class DescribeSource:
         # qcs::${ServiceType}:${Region}:${Account}:${ResourcePrefix}/${ResourceId}
         # qcs::cvm:ap-singapore::instance/ins-ibu7wp2a
         qcs_list = []
+
+        # for CAM, there is no region in qcs
+        region = "" if self.resource_type.service in ["cam"] else self.region
+
         for r in resources:
             qcs = "qcs::{}:{}:".format(
                 self.resource_type.service,
-                self.region)
+                region)
             if self.resource_manager.config.account_id:
                 qcs += "uin/{}".format(self.resource_manager.config.account_id)
             qcs += ":{}/{}".format(
@@ -279,8 +288,8 @@ class QueryResourceManager(ResourceManager, metaclass=QueryMeta):
     def resources(self):
         params = self.get_resource_query_params()
         resources = self.source.resources(params)
-
-        # filter resources
+        resources = self.augment(resources)
+        # filter resoures
         resources = self.filter_resources(resources)
 
         self.check_resource_limit(resources)
