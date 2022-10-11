@@ -35,5 +35,6 @@ class BaseTest(CustodianTestCore):
                 "cache": False,
             })
             kw['config'] = config
-        kw.pop('account_id')
+        if 'account_id' in kw:
+            kw.pop('account_id')
         return super().load_policy(data, *args, **kw)
