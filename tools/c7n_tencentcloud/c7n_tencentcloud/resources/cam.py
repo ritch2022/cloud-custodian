@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 from concurrent.futures import as_completed
 import json
+import pytz
 from c7n.exceptions import PolicyValidationError
 from c7n.utils import chunks, type_schema
 from c7n_tencentcloud.provider import resources
@@ -24,6 +25,12 @@ class User(QueryResourceManager):
         taggable = True
         resource_prefix = "uin"
         batch_size = 10
+        datetime_fields_format = {
+            "CreateTime": ("%Y-%m-%d %H:%M:%S", pytz.timezone("Asia/Shanghai")),
+            "LastLoginTime": ("%Y-%m-%d %H:%M:%S", pytz.timezone("Asia/Shanghai")),
+            "access_keys.CreateTime": ("%Y-%m-%d %H:%M:%S", pytz.timezone("Asia/Shanghai")),
+            "access_keys.LastUsedDate": ("%Y-%m-%d", pytz.timezone("Asia/Shanghai"))
+        }
 
     def __init__(self, ctx, data):
         super().__init__(ctx, data)
@@ -32,7 +39,8 @@ class User(QueryResourceManager):
     def augment(self, resources):
         for item in resources:
             item["password_enabled"] = not item["ConsoleLogin"] == 0
-            item["CreateDate"] = isoformat_datetime_str(item["CreateTime"])
+            fm = self.resource_type.datetime_fields_format["CreateTime"]
+            item["CreateDate"] = isoformat_datetime_str(item["CreateTime"], fm[0], fm[1])
         return resources
 
     def set_user_login_mfa_active(self, resource):
@@ -59,11 +67,14 @@ class User(QueryResourceManager):
                 data = self.client.execute_query("GetSecurityLastUsed", params)
                 for idx, v in enumerate(data["Response"]["SecretIdLastUsedRows"]):
                     if v["LastUsedDate"]:
+                        fm = self.resource_type.datetime_fields_format["access_keys.LastUsedDate"]
                         batch[idx]["last_used_date"] = convert_date_str(v["LastUsedDate"],
-                                                                        "%Y-%m-%d")
+                                                                        fm[0], fm[1])
                     # pre-process for filter
                     batch[idx]["active"] = True if batch[idx]["Status"] == "Active" else False
-                    batch[idx]["last_rotated"] = isoformat_datetime_str(batch[idx]["CreateTime"])
+                    fm = self.resource_type.datetime_fields_format["access_keys.CreateTime"]
+                    batch[idx]["last_rotated"] = isoformat_datetime_str(batch[idx]["CreateTime"],
+                                                                        fm[0], fm[1])
         resource["access_keys"] = access_keys
 
     def set_user_last_login_time(self, resources):
@@ -79,8 +90,9 @@ class User(QueryResourceManager):
             for resource in batch:
                 uin = resource[self.resource_type.id]
                 if uin in uin_map:
+                    fm = self.resource_type.datetime_fields_format["LastLoginTime"]
                     resource["password_last_used"] = \
-                        isoformat_datetime_str(uin_map[uin]["LastLoginTime"])
+                        isoformat_datetime_str(uin_map[uin]["LastLoginTime"], fm[0], fm[1])
         return result
 
     def set_user_groups(self, resource, group_field_name):
