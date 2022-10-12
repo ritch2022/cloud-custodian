@@ -22,8 +22,8 @@ class NatGateway(QueryResourceManager):
         resource_prefix = "nat"
         taggable = True
         datetime_fields_format = {
-             "CreatedTime": ("%Y-%m-%d %H:%M:%S", pytz.timezone("Asia/Shanghai"))
-         }
+            "CreatedTime": ("%Y-%m-%d %H:%M:%S", pytz.timezone("Asia/Shanghai"))
+        }
 
     def augment(self, resources):
         for resource in resources:

@@ -22,9 +22,8 @@ class CBSSnapshot(QueryResourceManager):
         resource_prefix = "volume"
         taggable = True
         datetime_fields_format = {
-             "CreateTime": ("%Y-%m-%d %H:%M:%S", pytz.timezone("Asia/Shanghai"))
-         }
-
+            "CreateTime": ("%Y-%m-%d %H:%M:%S", pytz.timezone("Asia/Shanghai"))
+        }
 
     def augment(self, resources):
         for resource in resources:
