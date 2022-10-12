@@ -16,15 +16,13 @@ class PageMethod(Enum):
     PaginationToken = 1
 
 
-def isoformat_date_str(data: dict,
-                       field_keys: list,
-                       original_date_str_format: str,
+def isoformat_datetime_str(date_str: str,
+                       date_str_format="%Y-%m-%d %H:%M:%S",
                        timezone_from=pytz.timezone("Asia/Shanghai"),
                        timezone_to=pytz.utc):
     """
     standardize the date string, using isoformat including timezone info
     example: '2022-09-28T15:28:28+00:00'
     """
-    for key in field_keys:
-        dt = timezone_from.localize(datetime.strptime(data[key], original_date_str_format))
-        data[key] = dt.astimezone(timezone_to).isoformat()
+    dt = timezone_from.localize(datetime.strptime(date_str, date_str_format))
+    return dt.astimezone(timezone_to).isoformat()

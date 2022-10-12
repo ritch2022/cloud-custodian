@@ -1,10 +1,11 @@
 # Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
 import jmespath
+import pytz
 
 from c7n_tencentcloud.provider import resources
 from c7n_tencentcloud.query import ResourceTypeInfo, QueryResourceManager
-from c7n_tencentcloud.utils import PageMethod, isoformat_date_str
+from c7n_tencentcloud.utils import PageMethod, isoformat_datetime_str
 
 
 @resources.register("clb")
@@ -22,6 +23,9 @@ class CLB(QueryResourceManager):
         paging_def = {"method": PageMethod.Offset, "limit": {"key": "Limit", "value": 20}}
         resource_prefix = "clb"
         taggable = True
+        datetime_fields_format = {
+            "CreateTime": ("%Y-%m-%d %H:%M:%S", pytz.timezone("Asia/Shanghai"))
+        }
 
     def augment(self, resources_param):
         instances = jmespath.search("filters[*].Instances", self.data)
@@ -40,5 +44,8 @@ class CLB(QueryResourceManager):
                         instance_ids.append(target["InstanceId"])
                 resource["Instances"] = instance_ids
         for resource in resources_param:
-            isoformat_date_str(resource, ["CreateTime"], "%Y-%m-%d %H:%M:%S")
+            field_format = self.resource_type.datetime_fields_format["CreateTime"]
+            resource["CreateTime"] = isoformat_datetime_str(resource["CreateTime"],
+                                                        field_format[0],
+                                                        field_format[1])
         return resources_param
