@@ -195,6 +195,7 @@ class DescribeSource:
         region = "" if self.resource_type.service in ["cam"] else self.region
 
         for r in resources:
+<<<<<<< HEAD
             qcs = "qcs::{}:{}:".format(
                 self.resource_type.service,
                 region)
@@ -203,8 +204,26 @@ class DescribeSource:
             qcs += ":{}/{}".format(
                 self.resource_type.resource_prefix,
                 r[self.resource_type.id])
+=======
+            qcs = self.get_qcs(self.resource_type.service,
+                               self.region,
+                               self.resource_manager.config.account_id,
+                               self.resource_type.resource_prefix,
+                               r[self.resource_type.id])
+>>>>>>> 9e213b2d23974c90d6175c6e3081ec66e7f6a49d
             qcs_list.append(qcs)
         return qcs_list
+
+    @staticmethod
+    def get_qcs(service, region, account_id, prefix, resource_id):
+        """
+        get_qcs
+        resource description https://cloud.tencent.com/document/product/598/10606
+        """
+        # qcs::${ServiceType}:${Region}:${Account}:${ResourcePreifx}/${ResourceId}
+        # qcs::cvm:ap-singapore::instance/ins-ibu7wp2a
+        account_id = f"uin/{account_id}" if account_id else ""
+        return f"qcs::{service}:{region}:{account_id}:{prefix}/{resource_id}"
 
 
 class QueryMeta(type):
@@ -289,7 +308,7 @@ class QueryResourceManager(ResourceManager, metaclass=QueryMeta):
         params = self.get_resource_query_params()
         resources = self.source.resources(params)
         resources = self.augment(resources)
-        # filter resoures
+        # filter resources
         resources = self.filter_resources(resources)
 
         self.check_resource_limit(resources)
