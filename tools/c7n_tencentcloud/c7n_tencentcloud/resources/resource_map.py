@@ -6,4 +6,6 @@ ResourceMap = {
     "tencentcloud.cbs-snapshot": "c7n_tencentcloud.resources.cbs_snapshot.CBSSnapshot",
     "tencentcloud.ami": "c7n_tencentcloud.resources.ami.AMI",
     "tencentcloud.nat-gateway": "c7n_tencentcloud.resources.nat_gateway.NatGateway",
+    "tencentcloud.clb": "c7n_tencentcloud.resources.clb.CLB",
+    "tencentcloud.cbs": "c7n_tencentcloud.resources.cbs.CBS",
 }
