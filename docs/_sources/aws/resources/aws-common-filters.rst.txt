@@ -1593,12 +1593,6 @@ Note the default statistic for metrics is Average.
       period:
         type: number
       statistics:
-        enum:
-        - Average
-        - Sum
-        - Maximum
-        - Minimum
-        - SampleCount
         type: string
       type:
         enum:
@@ -2321,12 +2315,6 @@ Specialized metrics filter for shield
       period:
         type: number
       statistics:
-        enum:
-        - Average
-        - Sum
-        - Maximum
-        - Minimum
-        - SampleCount
         type: string
       type:
         enum:
