@@ -195,22 +195,11 @@ class DescribeSource:
         region = "" if self.resource_type.service in ["cam"] else self.region
 
         for r in resources:
-<<<<<<< HEAD
-            qcs = "qcs::{}:{}:".format(
-                self.resource_type.service,
-                region)
-            if self.resource_manager.config.account_id:
-                qcs += "uin/{}".format(self.resource_manager.config.account_id)
-            qcs += ":{}/{}".format(
-                self.resource_type.resource_prefix,
-                r[self.resource_type.id])
-=======
             qcs = self.get_qcs(self.resource_type.service,
-                               self.region,
+                               region,
                                self.resource_manager.config.account_id,
                                self.resource_type.resource_prefix,
                                r[self.resource_type.id])
->>>>>>> 9e213b2d23974c90d6175c6e3081ec66e7f6a49d
             qcs_list.append(qcs)
         return qcs_list
 
