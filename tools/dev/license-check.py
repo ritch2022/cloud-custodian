@@ -24,6 +24,7 @@ accept_classifiers = set(
         'License :: OSI Approved :: MIT License',
         'License :: OSI Approved :: BSD License',
         'License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)',
+        'License :: Public Domain'
         #    'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)'
     )
 )
@@ -51,6 +52,7 @@ whitelist_packages = set(
         'typed-ast',  # apache 2.0
         'starkbank-ecdsa',  # MIT
         'portalocker',  # PSF
+        'dicttoxml',  # cos-python-sdk-v5 dependency, GNU General Public License v2.0
     )
 )
 
