@@ -155,6 +155,7 @@ class BucketEncryption(Filter):
       filters:
         - type: bucket-encryption
           state: False
+          crypto: AES256
     """
     schema = type_schema('bucket-encryption',
                          state={'type': 'boolean'},
