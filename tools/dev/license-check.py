@@ -52,6 +52,7 @@ whitelist_packages = set(
         'typed-ast',  # apache 2.0
         'starkbank-ecdsa',  # MIT
         'portalocker',  # PSF
+        'dicttoxml',  # GNU General Public License v2.0
     )
 )
 
