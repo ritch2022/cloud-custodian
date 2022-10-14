@@ -162,16 +162,9 @@ class BucketEncryption(Filter):
 
     def process(self, buckets, event=None):
         results = []
-        with self.executor_factory(max_workers=2) as w:
-            futures = {w.submit(self.process_bucket, b): b for b in buckets}
-            for future in as_completed(futures):
-                b = futures[future]
-                if future.exception():
-                    self.log.error("Message: %s Bucket: %s", future.exception(),
-                                   b['Name'])
-                    continue
-                if future.result():
-                    results.append(b)
+        for b in buckets:
+            if self.process_bucket(b):
+                results.append(b)
         return results
 
     def process_bucket(self, b):

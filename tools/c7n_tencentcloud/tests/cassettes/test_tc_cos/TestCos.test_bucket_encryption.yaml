@@ -24,11 +24,11 @@ interactions:
       Content-Type:
       - application/xml
       Date:
-      - Fri, 14 Oct 2022 02:04:52 GMT
+      - Fri, 14 Oct 2022 12:07:36 GMT
       Server:
       - tencent-cos
       x-cos-request-id:
-      - NjM0OGMzYzRfZDJhZDM1MGFfOWYwY18zNmM3ZmE4
+      - NjM0OTUxMDhfMjNiMjM1MGFfODU2NF8zNzVjZTJj
     status:
       code: 200
       message: OK
@@ -65,7 +65,7 @@ interactions:
     body:
       string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::cos:ap-singapore:uid\/1253831162:custodian-test-1253831162","Tags":[{"TagKey":"test_test-rfc26","TagValue":"Resource
         does not meet policy: tag@2022-09-08T02:46:00+00:00"},{"TagKey":"test_pro_001_1","TagValue":"andyxbchen"},{"TagKey":"test_pro_00001","TagValue":"this
-        is test"}]}],"RequestId":"36a66d09-c58c-4e37-bb02-26645823017b"}}'
+        is test"}]}],"RequestId":"a26f4f3c-21b1-48a7-a70b-75d4a940e6ed"}}'
     headers:
       Connection:
       - keep-alive
@@ -74,7 +74,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 14 Oct 2022 02:04:53 GMT
+      - Fri, 14 Oct 2022 12:07:37 GMT
       Server:
       - nginx
     status:
@@ -107,7 +107,7 @@ interactions:
     uri: https://tag.ap-singapore.tencentcloudapi.com/
   response:
     body:
-      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[],"RequestId":"715c5dd4-2980-4377-a0e9-e60f6dbb5eee"}}'
+      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[],"RequestId":"6da68deb-5ac8-486b-93dd-dd0d1aaa954a"}}'
     headers:
       Connection:
       - keep-alive
@@ -116,12 +116,48 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 14 Oct 2022 02:04:54 GMT
+      - Fri, 14 Oct 2022 12:07:37 GMT
       Server:
       - nginx
     status:
       code: 200
       message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - !!binary |
+        Y29zLXB5dGhvbi1zZGstdjUuMS45LjIw
+    method: GET
+    uri: https://42342-1253831162.cos.ap-singapore.myqcloud.com/?encryption=
+  response:
+    body:
+      string: "<?xml version='1.0' encoding='utf-8' ?>\n<Error>\n\t<Code>NoSuchEncryptionConfiguration</Code>\n\t<Message>The
+        specified bucket does not have a Encryption configuration</Message>\n\t<Resource>/</Resource>\n\t<RequestId>NjM0OTUxMGJfOGFlZjc4MGJfZTAyYl82Y2IyMDI3</RequestId>\n\t<TraceId>OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=</TraceId>\n</Error>\n\n"
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '466'
+      Content-Type:
+      - application/xml
+      Date:
+      - Fri, 14 Oct 2022 12:07:39 GMT
+      Server:
+      - tencent-cos
+      x-cos-request-id:
+      - NjM0OTUxMGJfOGFlZjc4MGJfZTAyYl82Y2IyMDI3
+      x-cos-trace-id:
+      - OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=
+    status:
+      code: 404
+      message: Not Found
 - request:
     body: null
     headers:
@@ -147,11 +183,11 @@ interactions:
       Content-Type:
       - application/xml
       Date:
-      - Fri, 14 Oct 2022 02:04:55 GMT
+      - Fri, 14 Oct 2022 12:07:41 GMT
       Server:
       - tencent-cos
       x-cos-request-id:
-      - NjM0OGMzYzdfZWUzNjEzMGJfMjI4Nl82YmExNjhk
+      - NjM0OTUxMGNfZWUzNjEzMGJfMjI2NF82ZGQ1OTgz
     status:
       code: 200
       message: OK
@@ -172,7 +208,7 @@ interactions:
   response:
     body:
       string: "<?xml version='1.0' encoding='utf-8' ?>\n<Error>\n\t<Code>NoSuchEncryptionConfiguration</Code>\n\t<Message>The
-        specified bucket does not have a Encryption configuration</Message>\n\t<Resource>/</Resource>\n\t<RequestId>NjM0OGMzYzhfYmJlZjc4MGJfZTdhMl82YmMzY2I5</RequestId>\n\t<TraceId>OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=</TraceId>\n</Error>\n\n"
+        specified bucket does not have a Encryption configuration</Message>\n\t<Resource>/</Resource>\n\t<RequestId>NjM0OTUxMGVfZjI4YzdjMWVfOTgxNV82ZDM1MjRk</RequestId>\n\t<TraceId>OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=</TraceId>\n</Error>\n\n"
     headers:
       Connection:
       - keep-alive
@@ -181,11 +217,11 @@ interactions:
       Content-Type:
       - application/xml
       Date:
-      - Fri, 14 Oct 2022 02:04:56 GMT
+      - Fri, 14 Oct 2022 12:07:43 GMT
       Server:
       - tencent-cos
       x-cos-request-id:
-      - NjM0OGMzYzhfYmJlZjc4MGJfZTdhMl82YmMzY2I5
+      - NjM0OTUxMGVfZjI4YzdjMWVfOTgxNV82ZDM1MjRk
       x-cos-trace-id:
       - OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=
     status:
@@ -208,7 +244,7 @@ interactions:
   response:
     body:
       string: "<?xml version='1.0' encoding='utf-8' ?>\n<Error>\n\t<Code>NoSuchEncryptionConfiguration</Code>\n\t<Message>The
-        specified bucket does not have a Encryption configuration</Message>\n\t<Resource>/</Resource>\n\t<RequestId>NjM0OGMzYzlfODZlZjc4MGJfMWZjYThfNmJiNzhlYg==</RequestId>\n\t<TraceId>OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=</TraceId>\n</Error>\n\n"
+        specified bucket does not have a Encryption configuration</Message>\n\t<Resource>/</Resource>\n\t<RequestId>NjM0OTUxMGZfZWQ4YzdjMWVfMmVjOTFfNmM4NGYwNQ==</RequestId>\n\t<TraceId>OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=</TraceId>\n</Error>\n\n"
     headers:
       Connection:
       - keep-alive
@@ -217,11 +253,11 @@ interactions:
       Content-Type:
       - application/xml
       Date:
-      - Fri, 14 Oct 2022 02:04:57 GMT
+      - Fri, 14 Oct 2022 12:07:44 GMT
       Server:
       - tencent-cos
       x-cos-request-id:
-      - NjM0OGMzYzlfODZlZjc4MGJfMWZjYThfNmJiNzhlYg==
+      - NjM0OTUxMGZfZWQ4YzdjMWVfMmVjOTFfNmM4NGYwNQ==
       x-cos-trace-id:
       - OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=
     status:
@@ -244,7 +280,7 @@ interactions:
   response:
     body:
       string: "<?xml version='1.0' encoding='utf-8' ?>\n<Error>\n\t<Code>NoSuchEncryptionConfiguration</Code>\n\t<Message>The
-        specified bucket does not have a Encryption configuration</Message>\n\t<Resource>/</Resource>\n\t<RequestId>NjM0OGMzY2FfYzkzNjEzMGJfMjFiNl82YzJhZWZl</RequestId>\n\t<TraceId>OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=</TraceId>\n</Error>\n\n"
+        specified bucket does not have a Encryption configuration</Message>\n\t<Resource>/</Resource>\n\t<RequestId>NjM0OTUxMTdfODY3NWI3MDlfYzAyY182ZTUyZGQy</RequestId>\n\t<TraceId>OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=</TraceId>\n</Error>\n\n"
     headers:
       Connection:
       - keep-alive
@@ -253,11 +289,47 @@ interactions:
       Content-Type:
       - application/xml
       Date:
-      - Fri, 14 Oct 2022 02:04:58 GMT
+      - Fri, 14 Oct 2022 12:07:51 GMT
       Server:
       - tencent-cos
       x-cos-request-id:
-      - NjM0OGMzY2FfYzkzNjEzMGJfMjFiNl82YzJhZWZl
+      - NjM0OTUxMTdfODY3NWI3MDlfYzAyY182ZTUyZGQy
+      x-cos-trace-id:
+      - OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=
+    status:
+      code: 404
+      message: Not Found
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - !!binary |
+        Y29zLXB5dGhvbi1zZGstdjUuMS45LjIw
+    method: GET
+    uri: https://tcr-2akkg1yo-1253831162.cos.ap-singapore.myqcloud.com/?encryption=
+  response:
+    body:
+      string: "<?xml version='1.0' encoding='utf-8' ?>\n<Error>\n\t<Code>NoSuchEncryptionConfiguration</Code>\n\t<Message>The
+        specified bucket does not have a Encryption configuration</Message>\n\t<Resource>/</Resource>\n\t<RequestId>NjM0OTUxMThfZTQzNjEzMGJfMmQ1NDZfNmQ2YTAzNQ==</RequestId>\n\t<TraceId>OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=</TraceId>\n</Error>\n\n"
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '470'
+      Content-Type:
+      - application/xml
+      Date:
+      - Fri, 14 Oct 2022 12:07:53 GMT
+      Server:
+      - tencent-cos
+      x-cos-request-id:
+      - NjM0OTUxMThfZTQzNjEzMGJfMmQ1NDZfNmQ2YTAzNQ==
       x-cos-trace-id:
       - OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=
     status:
@@ -280,7 +352,43 @@ interactions:
   response:
     body:
       string: "<?xml version='1.0' encoding='utf-8' ?>\n<Error>\n\t<Code>NoSuchEncryptionConfiguration</Code>\n\t<Message>The
-        specified bucket does not have a Encryption configuration</Message>\n\t<Resource>/</Resource>\n\t<RequestId>NjM0OGMzY2NfZGMzNjEzMGJfMTExOWJfNmM2MzA2OQ==</RequestId>\n\t<TraceId>OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=</TraceId>\n</Error>\n\n"
+        specified bucket does not have a Encryption configuration</Message>\n\t<Resource>/</Resource>\n\t<RequestId>NjM0OTUxMWJfNjg4ZDdjMWVfYThlZV82YzY2MmY3</RequestId>\n\t<TraceId>OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=</TraceId>\n</Error>\n\n"
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '466'
+      Content-Type:
+      - application/xml
+      Date:
+      - Fri, 14 Oct 2022 12:07:56 GMT
+      Server:
+      - tencent-cos
+      x-cos-request-id:
+      - NjM0OTUxMWJfNjg4ZDdjMWVfYThlZV82YzY2MmY3
+      x-cos-trace-id:
+      - OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=
+    status:
+      code: 404
+      message: Not Found
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - !!binary |
+        Y29zLXB5dGhvbi1zZGstdjUuMS45LjIw
+    method: GET
+    uri: https://tcr-q1d20ypg-1253831162.cos.ap-singapore.myqcloud.com/?encryption=
+  response:
+    body:
+      string: "<?xml version='1.0' encoding='utf-8' ?>\n<Error>\n\t<Code>NoSuchEncryptionConfiguration</Code>\n\t<Message>The
+        specified bucket does not have a Encryption configuration</Message>\n\t<Resource>/</Resource>\n\t<RequestId>NjM0OTUxMjBfZGMzNjEzMGJfMTExOGJfNmQ2ODQ5MQ==</RequestId>\n\t<TraceId>OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=</TraceId>\n</Error>\n\n"
     headers:
       Connection:
       - keep-alive
@@ -289,11 +397,11 @@ interactions:
       Content-Type:
       - application/xml
       Date:
-      - Fri, 14 Oct 2022 02:05:00 GMT
+      - Fri, 14 Oct 2022 12:08:00 GMT
       Server:
       - tencent-cos
       x-cos-request-id:
-      - NjM0OGMzY2NfZGMzNjEzMGJfMTExOWJfNmM2MzA2OQ==
+      - NjM0OTUxMjBfZGMzNjEzMGJfMTExOGJfNmQ2ODQ5MQ==
       x-cos-trace-id:
       - OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=
     status:
@@ -316,20 +424,56 @@ interactions:
   response:
     body:
       string: "<?xml version='1.0' encoding='utf-8' ?>\n<Error>\n\t<Code>NoSuchEncryptionConfiguration</Code>\n\t<Message>The
-        specified bucket does not have a Encryption configuration</Message>\n\t<Resource>/</Resource>\n\t<RequestId>NjM0OGMzY2VfYmJlZjc4MGJfZTdhYl82YjhiNzFi</RequestId>\n\t<TraceId>OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=</TraceId>\n</Error>\n\n"
+        specified bucket does not have a Encryption configuration</Message>\n\t<Resource>/</Resource>\n\t<RequestId>NjM0OTUxMjRfYTNlZjc4MGJfMmI2OWVfNmRhN2ZmNQ==</RequestId>\n\t<TraceId>OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=</TraceId>\n</Error>\n\n"
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '466'
+      - '470'
       Content-Type:
       - application/xml
       Date:
-      - Fri, 14 Oct 2022 02:05:02 GMT
+      - Fri, 14 Oct 2022 12:08:05 GMT
       Server:
       - tencent-cos
       x-cos-request-id:
-      - NjM0OGMzY2VfYmJlZjc4MGJfZTdhYl82YjhiNzFi
+      - NjM0OTUxMjRfYTNlZjc4MGJfMmI2OWVfNmRhN2ZmNQ==
+      x-cos-trace-id:
+      - OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=
+    status:
+      code: 404
+      message: Not Found
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - !!binary |
+        Y29zLXB5dGhvbi1zZGstdjUuMS45LjIw
+    method: GET
+    uri: https://zzhli-sing-1253831162.cos.ap-singapore.myqcloud.com/?encryption=
+  response:
+    body:
+      string: "<?xml version='1.0' encoding='utf-8' ?>\n<Error>\n\t<Code>NoSuchEncryptionConfiguration</Code>\n\t<Message>The
+        specified bucket does not have a Encryption configuration</Message>\n\t<Resource>/</Resource>\n\t<RequestId>NjM0OTUxMzFfZDllZjc4MGJfMjBkYjlfNmQ3Mzk2NA==</RequestId>\n\t<TraceId>OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=</TraceId>\n</Error>\n\n"
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '470'
+      Content-Type:
+      - application/xml
+      Date:
+      - Fri, 14 Oct 2022 12:08:18 GMT
+      Server:
+      - tencent-cos
+      x-cos-request-id:
+      - NjM0OTUxMzFfZDllZjc4MGJfMjBkYjlfNmQ3Mzk2NA==
       x-cos-trace-id:
       - OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODczNTBmNjMwZmQ0MTZkMjg0NjlkNTYyNmY4ZTRkZTk0NzAyMWIzNDJjY2Y0MTI4NWQyZTNjZjk5YzE1OGRhMDZkNGVkNDg1OTZkNTY1NGE4ZTAwMDhjZDY3NTBjYTIwYjg=
     status:
