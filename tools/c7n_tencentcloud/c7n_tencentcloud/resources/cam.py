@@ -6,15 +6,33 @@ import pytz
 from c7n.exceptions import PolicyValidationError
 from c7n.utils import chunks, type_schema
 from c7n_tencentcloud.provider import resources
-from c7n_tencentcloud.query import ResourceTypeInfo, QueryResourceManager
+from c7n_tencentcloud.query import ResourceTypeInfo, QueryResourceManager, DescribeSource
 from c7n_tencentcloud.utils import isoformat_datetime_str, PageMethod, convert_date_str
 from c7n.filters import ValueFilter, Filter
 from c7n_tencentcloud.actions.core import TencentCloudBaseAction
 
 
+class DescribeCAM(DescribeSource):
+    """DescribeCAM"""
+    def get_resource_qcs(self, resources):
+        qcs_list = []
+
+        # for CAM, there is no region in qcs
+        for r in resources:
+            qcs = self.get_qcs(self.resource_type.service,
+                               "",
+                               self.resource_manager.config.account_id,
+                               self.resource_type.resource_prefix,
+                               r[self.resource_type.id])
+            qcs_list.append(qcs)
+        return qcs_list
+
+
 @resources.register("cam-user")
 class User(QueryResourceManager):
     """User"""
+    source_mapping = {"describe": DescribeCAM}
+
     class resource_type(ResourceTypeInfo):
         """resource_type"""
         id = "Uin"
@@ -270,9 +288,21 @@ class UserRemoveAccessKey(TencentCloudBaseAction):
         pass
 
 
+class DescribePolicy(DescribeCAM):
+    """DescribePolicy"""
+    def augment(self, resources):
+        """
+        Policy don't have tags.
+        If we try getting policy's tags, tencentcloud api will return error.
+        """
+        return resources
+
+
 @resources.register("cam-policy")
 class Policy(QueryResourceManager):
     """Policy"""
+    source_mapping = {"describe": DescribePolicy}
+
     class resource_type(ResourceTypeInfo):
         """resource_type"""
         id = "PolicyId"
