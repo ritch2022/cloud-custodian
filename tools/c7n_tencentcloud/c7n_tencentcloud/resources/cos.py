@@ -3,7 +3,6 @@
 
 import json
 import logging
-from concurrent.futures import as_completed
 
 import jmespath
 from qcloud_cos import CosS3Client, CosConfig, CosServiceError
