@@ -15,10 +15,6 @@ class TencentCloudBaseAction(BaseAction):
     def get_client(self):
         return self.manager.get_client()
 
-    def get_tag_client(self):
-        return local_session(self.manager.session_factory).client(
-            "tag.tencentcloudapi.com", "tag", "2018-08-13", self.manager.config.region)
-
     def process(self, resources):
         pass
 
@@ -27,3 +23,7 @@ class TencentCloudBaseAction(BaseAction):
 
     def get_permissions(self):
         pass
+
+    def get_tag_client(self):
+        return local_session(self.manager.session_factory).client(
+            "tag.tencentcloudapi.com", "tag", "2018-08-13", self.manager.config.region)
