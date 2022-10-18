@@ -12,4 +12,5 @@ ResourceMap = {
     "tencentcloud.elasticsearch": "c7n_tencentcloud.resources.elasticsearch.Elasticsearch",
     "tencentcloud.cls": "c7n_tencentcloud.resources.cls.LogTopic",
     "tencentcloud.tcr": "c7n_tencentcloud.resources.tcr.TCR",
+    "tencentcloud.security-group": "c7n_tencentcloud.resources.security_group.SecurityGroup"
 }
