@@ -1,0 +1,130 @@
+interactions:
+- request:
+    body: '{"Offset": 0, "Limit": 20}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '26'
+      Content-Type:
+      - application/json
+      Host:
+      - tcr.ap-singapore.tencentcloudapi.com
+      User-Agent:
+      - python-requests/2.27.1
+      X-TC-Action:
+      - DescribeInstances
+      X-TC-Region:
+      - ap-singapore
+      X-TC-Version:
+      - '2019-09-24'
+    method: POST
+    uri: https://tcr.ap-singapore.tencentcloudapi.com/
+  response:
+    body:
+      string: '{"Response":{"RequestId":"aeb296ae-a502-4a8d-b4db-93f9570403ec","TotalCount":1,"Registries":[{"RegistryId":"tcr-ad4hohkq","RegistryName":"custodian-test","RegionId":9,"RegionName":"ap-singapore","EnableAnonymous":true,"TokenValidTime":87600,"Status":"Running","RegistryType":"basic","PublicDomain":"custodian-test.tencentcloudcr.com","InternalEndpoint":"10.9.0.115","CreatedAt":"2022-10-17T19:53:55+08:00","TagSpecification":{"ResourceType":"instance","Tags":[{"Key":"test_pro_3","Value":"this
+        is test"},{"Key":"test_pro_00001","Value":"this is test"}]},"ExpiredAt":"","PayMod":0,"RenewFlag":0}]}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '597'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Oct 2022 08:15:51 GMT
+      Server:
+      - nginx
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"ResourceList": ["qcs::tcr:ap-singapore:uin/100000750436:instance/tcr-ad4hohkq"]}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '82'
+      Content-Type:
+      - application/json
+      Host:
+      - tag.ap-singapore.tencentcloudapi.com
+      User-Agent:
+      - python-requests/2.27.1
+      X-TC-Action:
+      - GetResources
+      X-TC-Region:
+      - ap-singapore
+      X-TC-Version:
+      - '2018-08-13'
+    method: POST
+    uri: https://tag.ap-singapore.tencentcloudapi.com/
+  response:
+    body:
+      string: '{"Response":{"PaginationToken":"","ResourceTagMappingList":[{"Resource":"qcs::tcr:ap-singapore:uin\/100000750436:instance\/tcr-ad4hohkq","Tags":[{"TagKey":"test_pro_3","TagValue":"this
+        is test"},{"TagKey":"test_pro_00001","TagValue":"this is test"}]}],"RequestId":"f9d916a0-f7ec-44bd-af47-c09e0d6b86f7"}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '304'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Oct 2022 08:15:52 GMT
+      Server:
+      - nginx
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"RegistryId": "tcr-ad4hohkq", "Offset": 0, "Limit": 20}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '56'
+      Content-Type:
+      - application/json
+      Host:
+      - tcr.ap-singapore.tencentcloudapi.com
+      User-Agent:
+      - python-requests/2.27.1
+      X-TC-Action:
+      - DescribeTagRetentionRules
+      X-TC-Region:
+      - ap-singapore
+      X-TC-Version:
+      - '2019-09-24'
+    method: POST
+    uri: https://tcr.ap-singapore.tencentcloudapi.com/
+  response:
+    body:
+      string: '{"Response":{"RequestId":"fd4dd8a0-8e61-40bf-9d32-735fc30a9f1e","RetentionPolicyList":[],"TotalCount":0}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '105'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Oct 2022 08:15:52 GMT
+      Server:
+      - nginx
+    status:
+      code: 200
+      message: OK
+version: 1
