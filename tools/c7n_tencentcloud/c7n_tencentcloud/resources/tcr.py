@@ -3,7 +3,7 @@
 import jmespath
 
 from c7n.filters import Filter
-from c7n.utils import type_schema, local_session
+from c7n.utils import type_schema
 from c7n_tencentcloud.provider import resources
 from c7n_tencentcloud.query import ResourceTypeInfo, QueryResourceManager
 from c7n_tencentcloud.utils import PageMethod
