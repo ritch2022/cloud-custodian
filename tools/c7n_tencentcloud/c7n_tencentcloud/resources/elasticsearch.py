@@ -17,3 +17,4 @@ class Elasticsearch(QueryResourceManager):
         enum_spec = ("DescribeInstances", "Response.InstanceList[]", {})
         paging_def = {"method": PageMethod.Offset, "limit": {"key": "Limit", "value": 20}}
         resource_prefix = "instance"
+        taggable = True

@@ -20,6 +20,7 @@ class TCR(QueryResourceManager):
         enum_spec = ("DescribeInstances", "Response.Registries[]", {})
         paging_def = {"method": PageMethod.Offset, "limit": {"key": "Limit", "value": 20}}
         resource_prefix = "instance"
+        taggable = True
 
 
 @TCR.filter_registry.register('lifecycle-rule')

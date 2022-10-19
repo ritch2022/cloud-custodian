@@ -25,5 +25,6 @@ class LogTopic(QueryResourceManager):
         enum_spec = ("DescribeTopics", "Response.Topics[]", {})
         paging_def = {"method": PageMethod.Offset, "limit": {"key": "Limit", "value": 20}}
         resource_prefix = "topic"
+        taggable = True
 
     source_mapping = {'describe': LogGroupDescribe}
