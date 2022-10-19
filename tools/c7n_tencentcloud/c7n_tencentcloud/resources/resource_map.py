@@ -8,5 +8,7 @@ ResourceMap = {
     "tencentcloud.nat-gateway": "c7n_tencentcloud.resources.nat_gateway.NatGateway",
     "tencentcloud.clb": "c7n_tencentcloud.resources.clb.CLB",
     "tencentcloud.cbs": "c7n_tencentcloud.resources.cbs.CBS",
-    "tencentcloud.security-group": "c7n_tencentcloud.resources.security_group.SecurityGroup"
+    "tencentcloud.security-group": "c7n_tencentcloud.resources.security_group.SecurityGroup",
+    "tencentcloud.cdb": "c7n_tencentcloud.resources.cdb.CDB",
+    "tencentcloud.cdb-backup": "c7n_tencentcloud.resources.cdb_backup.CDBBackup"
 }
