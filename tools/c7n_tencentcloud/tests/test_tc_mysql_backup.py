@@ -4,14 +4,14 @@ import pytest
 from tc_common import BaseTest
 
 
-class TestCdb(BaseTest):
+class TestMySQLBackUp(BaseTest):
 
     @pytest.mark.vcr
-    def test_cdb_backup_create_time(self):
+    def test_mysql_backup_create_time(self):
         policy = self.load_policy(
             {
-                "name": "test_cdb_backup_create_time",
-                "resource": "tencentcloud.cdb-backup",
+                "name": "test_mysql_backup_create_time",
+                "resource": "tencentcloud.mysql-backup",
                 "filters": [
                     {
                         "type": "value",

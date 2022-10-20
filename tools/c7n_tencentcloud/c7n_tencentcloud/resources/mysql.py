@@ -6,9 +6,9 @@ from c7n_tencentcloud.utils import PageMethod, isoformat_datetime_str
 import pytz
 
 
-@resources.register("cdb-backup")
-class CDBBackup(QueryResourceManager):
-    """cdb-backup"""
+@resources.register("mysql")
+class MySQL(QueryResourceManager):
+    """mysql"""
 
     class resource_type(ResourceTypeInfo):
         """resource_type"""
@@ -17,24 +17,25 @@ class CDBBackup(QueryResourceManager):
         service = "cdb"
         version = "2017-03-20"
         enum_spec = ("DescribeDBInstances", "Response.Items[]", {})
+        metrics_instance_id_name = "InstanceId"
         paging_def = {"method": PageMethod.Offset, "limit": {"key": "Limit", "value": 20}}
         resource_prefix = "instanceId"
         taggable = True
+
         datetime_fields_format = {
-            "Date": ("%Y-%m-%d %H:%M:%S", pytz.timezone("Asia/Shanghai"))
+            "CreateTime": ("%Y-%m-%d %H:%M:%S", pytz.timezone("Asia/Shanghai"))
         }
 
     def augment(self, resources):
-        backup_resources = []
         for resource in resources:
             cli = self.get_client()
-            resp = cli.execute_query("DescribeBackups",
+            resp = cli.execute_query("DescribeDBInstanceInfo",
                                      {"InstanceId": resource["InstanceId"]})
-            items = resp["Response"]["Items"]
-            field_format = self.resource_type.datetime_fields_format["Date"]
-            for item in items:
-                item["Date"] = isoformat_datetime_str(item["Date"],
-                                                      field_format[0],
-                                                      field_format[1])
-            backup_resources += items
-        return backup_resources
+            encryption = resp["Response"]["Encryption"]
+            resource["Encryption"] = encryption
+
+            field_format = self.resource_type.datetime_fields_format["CreateTime"]
+            resource["CreateTime"] = isoformat_datetime_str(resource["CreateTime"],
+                                                            field_format[0],
+                                                            field_format[1])
+        return resources
