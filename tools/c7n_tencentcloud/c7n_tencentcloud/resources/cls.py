@@ -16,6 +16,11 @@ class LogGroupDescribe(DescribeSource):
 
 @resources.register("cls")
 class LogTopic(QueryResourceManager):
+    """"
+    CLS - Cloud Log Service (CLS) is a centralized logging solution
+    https://www.tencentcloud.com/document/product/614/11254?lang=en&pg=
+    """
+
     class resource_type(ResourceTypeInfo):
         """resource_type"""
         id = "TopicId"
@@ -25,6 +30,7 @@ class LogTopic(QueryResourceManager):
         enum_spec = ("DescribeTopics", "Response.Topics[]", {})
         paging_def = {"method": PageMethod.Offset, "limit": {"key": "Limit", "value": 20}}
         resource_prefix = "topic"
+        metrics_instance_id_name = "uin"  # Namespace=QCE/CLS
         taggable = True
 
     source_mapping = {'describe': LogGroupDescribe}

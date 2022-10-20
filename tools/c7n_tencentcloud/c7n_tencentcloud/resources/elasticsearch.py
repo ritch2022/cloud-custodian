@@ -8,6 +8,11 @@ from c7n_tencentcloud.utils import PageMethod
 
 @resources.register("elasticsearch")
 class Elasticsearch(QueryResourceManager):
+    """"
+    elasticsearch - Tencent Cloud Elasticsearch Service (ES) is a cloud-managed Elasticsearch
+     service that is highly available and scalable
+    https://www.tencentcloud.com/document/product/845/16478?lang=en&pg=
+    """
     class resource_type(ResourceTypeInfo):
         """resource_type"""
         id = "InstanceId"
@@ -17,4 +22,5 @@ class Elasticsearch(QueryResourceManager):
         enum_spec = ("DescribeInstances", "Response.InstanceList[]", {})
         paging_def = {"method": PageMethod.Offset, "limit": {"key": "Limit", "value": 20}}
         resource_prefix = "instance"
+        metrics_instance_id_name = "uInstanceId"
         taggable = True

@@ -11,7 +11,10 @@ from c7n_tencentcloud.utils import PageMethod
 
 @resources.register("vpc")
 class VPC(QueryResourceManager):
-    """vpc"""
+    """
+    vpc - Virtual Private Cloud (VPC)
+    https://www.tencentcloud.com/document/product/215/535?lang=en&pg=
+    """
 
     class resource_type(ResourceTypeInfo):
         """resource_type"""
@@ -20,7 +23,7 @@ class VPC(QueryResourceManager):
         service = "vpc"
         version = "2017-03-12"
         enum_spec = ("DescribeVpcs", "Response.VpcSet[]", {})
-        metrics_instance_id_name = "VpcId"
+        metrics_instance_id_name = "natId"
         paging_def = {"method": PageMethod.Offset, "limit": {"key": "Limit", "value": "20"}}
         resource_prefix = "vpc"
         taggable = True

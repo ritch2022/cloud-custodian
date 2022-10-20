@@ -11,6 +11,10 @@ from c7n_tencentcloud.utils import PageMethod
 
 @resources.register("tcr")
 class TCR(QueryResourceManager):
+    """
+    TCR - Tencent Container Registry (TCR) is a container image cloud hosting service
+    https://www.tencentcloud.com/document/product/614/11254?lang=en&pg=
+    """
     class resource_type(ResourceTypeInfo):
         """resource_type"""
         id = "RegistryId"
@@ -20,6 +24,7 @@ class TCR(QueryResourceManager):
         enum_spec = ("DescribeInstances", "Response.Registries[]", {})
         paging_def = {"method": PageMethod.Offset, "limit": {"key": "Limit", "value": 20}}
         resource_prefix = "instance"
+        metrics_instance_id_name = "tke_cluster_instance_id"
         taggable = True
 
 
