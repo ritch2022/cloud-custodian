@@ -8,7 +8,10 @@ import pytz
 
 @resources.register("mysql")
 class MySQL(QueryResourceManager):
-    """mysql"""
+    """
+    mysql: distributed data storage service, relational databases
+    https://www.tencentcloud.com/document/product/236/5147
+    """
 
     class resource_type(ResourceTypeInfo):
         """resource_type"""
