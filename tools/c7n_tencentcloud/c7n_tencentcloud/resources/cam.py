@@ -30,7 +30,10 @@ class DescribeCAM(DescribeSource):
 
 @resources.register("cam-user")
 class User(QueryResourceManager):
-    """User"""
+    """
+    User - user management in Cloud Access Management (CAM)
+    https://www.tencentcloud.com/document/product/1021/37656
+    """
     source_mapping = {"describe": DescribeCAM}
 
     class resource_type(ResourceTypeInfo):
@@ -300,7 +303,10 @@ class DescribePolicy(DescribeCAM):
 
 @resources.register("cam-policy")
 class Policy(QueryResourceManager):
-    """Policy"""
+    """
+    Policy - Policy management in Cloud Access Management (CAM)
+    https://www.tencentcloud.com/document/product/1021/37656
+    """
     source_mapping = {"describe": DescribePolicy}
 
     class resource_type(ResourceTypeInfo):
