@@ -9,6 +9,6 @@ ResourceMap = {
     "tencentcloud.clb": "c7n_tencentcloud.resources.clb.CLB",
     "tencentcloud.cbs": "c7n_tencentcloud.resources.cbs.CBS",
     "tencentcloud.security-group": "c7n_tencentcloud.resources.security_group.SecurityGroup",
-    "tencentcloud.cdb": "c7n_tencentcloud.resources.cdb.CDB",
-    "tencentcloud.cdb-backup": "c7n_tencentcloud.resources.cdb_backup.CDBBackup"
+    "tencentcloud.mysql": "c7n_tencentcloud.resources.mysql.MySQL",
+    "tencentcloud.mysql-backup": "c7n_tencentcloud.resources.mysql_backup.MySQLBackUp"
 }

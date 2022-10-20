@@ -4,14 +4,14 @@ import pytest
 from tc_common import BaseTest
 
 
-class TestCdb(BaseTest):
+class TestMySQL(BaseTest):
 
     @pytest.mark.vcr
-    def test_cdb_engine_value(self):
+    def test_mysql_engine_value(self):
         policy = self.load_policy(
             {
-                "name": "test_cdb_engine_value",
-                "resource": "tencentcloud.cdb",
+                "name": "test_mysql_engine_value",
+                "resource": "tencentcloud.mysql",
                 "filters": [
                     {
                         "type": "value",
@@ -37,11 +37,11 @@ class TestCdb(BaseTest):
         assert len(resources) == 2 and len(engine_set) == 2
 
     @pytest.mark.vcr
-    def test_cdb_encryption_not_enabled_filter(self):
+    def test_mysql_encryption_not_enabled_filter(self):
         policy = self.load_policy(
             {
-                "name": "test_cdb_encryption_not_enabled_filter",
-                "resource": "tencentcloud.cdb",
+                "name": "test_mysql_encryption_not_enabled_filter",
+                "resource": "tencentcloud.mysql",
                 "query": [{"InstanceIds": ["cdb-lbxusyi7"]}],
                 "filters": [
                     {
@@ -54,11 +54,11 @@ class TestCdb(BaseTest):
         assert len(resources) == 1
 
     @pytest.mark.vcr
-    def test_cdb_create_time(self):
+    def test_mysql_create_time(self):
         policy = self.load_policy(
             {
-                "name": "test_cdb_create_time",
-                "resource": "tencentcloud.cdb",
+                "name": "test_mysql_create_time",
+                "resource": "tencentcloud.mysql",
                 "query": [{"InstanceIds": ["cdb-lbxusyi7"]}],
                 "filters": [
                     {
