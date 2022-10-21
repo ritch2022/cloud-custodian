@@ -66,6 +66,8 @@ class COS(QueryResourceManager):
         service = 'cos'
         resource_prefix = "prefix"
         enum_spec = ('list_buckets', 'Buckets.Bucket[]', None)
+        metrics_instance_id_name = "appid"
+        taggable = True
 
     source_mapping = {'describe': DescribeCos}
 
