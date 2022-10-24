@@ -55,7 +55,13 @@ class User(QueryResourceManager):
 
     def __init__(self, ctx, data):
         super().__init__(ctx, data)
-        self.client = self.get_client()
+        self._query_client = None
+
+    @property
+    def client(self):
+        if self._query_client is None:
+            self._query_client = self.get_client()
+        return self._query_client
 
     def augment(self, resources):
         for item in resources:
