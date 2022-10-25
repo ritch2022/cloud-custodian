@@ -1,6 +1,7 @@
 # Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
 from concurrent.futures import as_completed
+import copy
 import json
 import pytz
 from c7n.exceptions import PolicyValidationError
@@ -59,78 +60,17 @@ class User(QueryResourceManager):
 
     @property
     def client(self):
+        """client"""
         if self._query_client is None:
             self._query_client = self.get_client()
         return self._query_client
 
     def augment(self, resources):
+        """augment"""
         for item in resources:
-            item["password_enabled"] = not item["ConsoleLogin"] == 0
             fm = self.resource_type.datetime_fields_format["CreateTime"]
-            item["CreateDate"] = isoformat_datetime_str(item["CreateTime"], fm[0], fm[1])
+            item["CreateTime"] = isoformat_datetime_str(item["CreateTime"], fm[0], fm[1])
         return resources
-
-    def set_user_login_mfa_active(self, resource):
-        """set_user_login_mfa_active"""
-        params = {"SubUin": resource[self.resource_type.id]}
-        resp = self.client.execute_query("DescribeSafeAuthFlagColl", params)
-        mfa_flag = resp["Response"]["LoginFlag"]
-
-        # https://www.tencentcloud.com/document/api/598/32230#LoginActionFlag
-        # several kinds of mfa, mfa is active if any of them is set
-        resource["mfa_active"] = any([v for _, v in mfa_flag.items()])
-
-    def set_user_access_keys(self, resource):
-        """set_user_access_keys"""
-        params = {"TargetUin": resource[self.resource_type.id]}
-        resp = self.client.execute_query("ListAccessKeys", params)
-        access_keys = resp["Response"]["AccessKeys"]
-        if access_keys:
-            # get keys' latest used time
-            for batch in chunks(access_keys, 10):
-                params = {
-                    "SecretIdList": [it["AccessKeyId"] for it in batch]
-                }
-                data = self.client.execute_query("GetSecurityLastUsed", params)
-                for idx, v in enumerate(data["Response"]["SecretIdLastUsedRows"]):
-                    if v["LastUsedDate"]:
-                        fm = self.resource_type.datetime_fields_format["access_keys.LastUsedDate"]
-                        batch[idx]["last_used_date"] = convert_date_str(v["LastUsedDate"],
-                                                                        fm[0], fm[1])
-                    # pre-process for filter
-                    batch[idx]["active"] = True if batch[idx]["Status"] == "Active" else False
-                    fm = self.resource_type.datetime_fields_format["access_keys.CreateTime"]
-                    batch[idx]["last_rotated"] = isoformat_datetime_str(batch[idx]["CreateTime"],
-                                                                        fm[0], fm[1])
-        resource["access_keys"] = access_keys
-
-    def set_user_last_login_time(self, resources):
-        """set_user_last_login_time"""
-        result = []
-        for batch in chunks(resources, 50):
-            uins = [r[self.resource_type.id] for r in batch]
-            params = {
-                "FilterSubAccountUin": uins
-            }
-            resp = self.client.execute_query("DescribeSubAccounts", params)
-            uin_map = {r["Uin"]: r for r in resp["Response"]["SubAccounts"]}
-            for resource in batch:
-                uin = resource[self.resource_type.id]
-                if uin in uin_map:
-                    fm = self.resource_type.datetime_fields_format["LastLoginTime"]
-                    resource["password_last_used"] = \
-                        isoformat_datetime_str(uin_map[uin]["LastLoginTime"], fm[0], fm[1])
-        return result
-
-    def set_user_groups(self, resource, group_field_name):
-        """set_user_groups"""
-        params = {
-            # TODO here will be an issue if a sub-account belongs to more than 100 groups
-            "Rp": 100,  # big enough no pagination
-            "SubUin": resource[self.resource_type.id]
-        }
-        resp = self.client.execute_query("ListGroupsForUser", params)
-        resource[group_field_name] = resp["Response"]["GroupInfo"]
 
 
 @User.filter_registry.register('group')
@@ -141,10 +81,18 @@ class GroupMembership(ValueFilter):
     group_field_name = "c7n:Groups"
 
     def get_user_groups(self, user_set):
+        """get_user_groups"""
         for user in user_set:
-            self.manager.set_user_groups(user, self.group_field_name)
+            params = {
+                # TODO here will be an issue if a sub-account belongs to more than 100 groups
+                "Rp": 100,  # big enough no pagination
+                "SubUin": user[self.manager.resource_type.id]
+            }
+            resp = self.manager.client.execute_query("ListGroupsForUser", params)
+            user[self.group_field_name] = resp["Response"]["GroupInfo"]
 
     def process(self, resources, event=None):
+        """process"""
         # get users' group
         with self.executor_factory(max_workers=2) as w:
             futures = []
@@ -178,13 +126,13 @@ class CredentialFilter(Filter):
         value_type={'$ref': '#/definitions/filters_common/value_types'},
         key={'type': 'string',
              'enum': [
-                 'password_enabled',
-                 'password_last_used',
-                 'mfa_active',
+                 'ConsoleLogin',
+                 'LastLoginTime',
+                 'login_mfa_active',
                  'access_keys',
-                 'access_keys.active',
-                 'access_keys.last_used_date',
-                 'access_keys.last_rotated',
+                 'access_keys.Status',
+                 'access_keys.LastUsedDate',
+                 'access_keys.CreateTime',
              ]},
         value={'$ref': '#/definitions/filters_common/value'},
         op={'$ref': '#/definitions/filters_common/comparison_operators'})
@@ -198,28 +146,80 @@ class CredentialFilter(Filter):
     filter_in_progress_flag = "c7n:tencentcloud-credential"
     filter_matched_flag = "c7n:tencentcloud-matched"
 
+    def set_user_login_mfa_active(self, resource):
+        """set_user_login_mfa_active"""
+        params = {"SubUin": resource[self.manager.resource_type.id]}
+        resp = self.manager.client.execute_query("DescribeSafeAuthFlagColl", params)
+        mfa_flag = resp["Response"]["LoginFlag"]
+
+        # https://www.tencentcloud.com/document/api/598/32230#LoginActionFlag
+        # several kinds of mfa, mfa is active if any of them is set
+        resource["c7n:login_mfa_active"] = any([v for _, v in mfa_flag.items()])
+
+    def set_user_access_keys(self, resource):
+        """set_user_access_keys"""
+        params = {"TargetUin": resource[self.manager.resource_type.id]}
+        resp = self.manager.client.execute_query("ListAccessKeys", params)
+        access_keys = resp["Response"]["AccessKeys"]
+        if access_keys:
+            # get keys' last used time
+            for batch in chunks(access_keys, 10):
+                params = {
+                    "SecretIdList": [it["AccessKeyId"] for it in batch]
+                }
+                data = self.manager.client.execute_query("GetSecurityLastUsed", params)
+                for idx, v in enumerate(data["Response"]["SecretIdLastUsedRows"]):
+                    if v["LastUsedDate"]:
+                        fm = self.manager.resource_type.\
+                            datetime_fields_format["access_keys.LastUsedDate"]
+                        batch[idx]["LastUsedDate"] = convert_date_str(v["LastUsedDate"],
+                                                                      fm[0], fm[1])
+                    # pre-process for filter
+                    fm = self.manager.resource_type.datetime_fields_format["access_keys.CreateTime"]
+                    batch[idx]["CreateTime"] = isoformat_datetime_str(batch[idx]["CreateTime"],
+                                                                      fm[0], fm[1])
+        resource["c7n:access_keys"] = access_keys
+
+    def set_user_last_login_time(self, resources):
+        """set_user_last_login_time"""
+        result = []
+        for batch in chunks(resources, 50):
+            uins = [r[self.manager.resource_type.id] for r in batch]
+            params = {
+                "FilterSubAccountUin": uins
+            }
+            resp = self.manager.client.execute_query("DescribeSubAccounts", params)
+            uin_map = {r["Uin"]: r for r in resp["Response"]["SubAccounts"]}
+            for resource in batch:
+                uin = resource[self.manager.resource_type.id]
+                if uin in uin_map:
+                    fm = self.manager.resource_type.datetime_fields_format["LastLoginTime"]
+                    resource["LastLoginTime"] = \
+                        isoformat_datetime_str(uin_map[uin]["LastLoginTime"], fm[0], fm[1])
+        return result
+
     def pre_process(self, resources):
         """pre_process"""
         key = self.data["key"]
-        if key == "mfa_active":
+        if key == "login_mfa_active":
             for resource in resources:
-                self.manager.set_user_login_mfa_active(resource)
-        if key == "password_last_used":
+                self.set_user_login_mfa_active(resource)
+        if key == "LastLoginTime":
             # using last login time
-            self.manager.set_user_last_login_time(resources)
+            self.set_user_last_login_time(resources)
         if "." in key:
             for resource in resources:
-                if "access_keys" in resource:
-                    return
-                self.manager.set_user_access_keys(resource)
+                if "c7n:access_keys" not in resource:
+                    self.set_user_access_keys(resource)
 
     def process_access_key_filter(self, resource):
         """process_access_key_filter"""
         # access_keys filter
-        matcher_config = dict(self.data)
+        matcher_config = copy.deepcopy(self.data)
 
-        # here key_coll = "access_keys"
+        # here key_coll = "c7n:access_keys"
         key_coll, matcher_config["key"] = self.data["key"].split(".", 1)
+        key_coll = f"c7n:{key_coll}"
         v_filter = ValueFilter(matcher_config)
         v_filter.annotate = False
 
@@ -266,8 +266,14 @@ class CredentialFilter(Filter):
         key = self.data["key"]
         results = []
         for resource in resources:
-            if key in ["password_enabled", "mfa_active", "password_last_used"]:
+            if key in ["ConsoleLogin", "LastLoginTime"]:
                 v_filter = ValueFilter(self.data)
+                if v_filter.match(resource):
+                    results.append(resource)
+            elif key in ["login_mfa_active"]:
+                f_data = copy.deepcopy(self.data)
+                f_data["key"] = f"c7n:{key}"
+                v_filter = ValueFilter(f_data)
                 if v_filter.match(resource):
                     results.append(resource)
             elif '.' in key:
@@ -291,6 +297,7 @@ class UserRemoveAccessKey(TencentCloudBaseAction):
     permissions = ()
 
     def validate(self):
+        """validate"""
         raise NotImplementedError("")
 
     def process(self, resources):
@@ -408,6 +415,7 @@ class CheckPermissions(Filter):
     eval_annotation = 'c7n:perm-matches'
 
     def validate(self):
+        """validate"""
         for action in self.data['actions']:
             if ':' not in action[1:-1]:
                 raise PolicyValidationError(
@@ -416,9 +424,11 @@ class CheckPermissions(Filter):
         return self
 
     def get_permissions(self):
+        """get_permissions"""
         return ()
 
     def get_eval_matcher(self):
+        """get_eval_matcher"""
         if isinstance(self.data['match'], str):
             if self.data['match'] == 'denied':
                 value = 'deny'
@@ -432,6 +442,7 @@ class CheckPermissions(Filter):
         return vf
 
     def process(self, resources, event=None):
+        """process"""
         actions = set(self.data["actions"])
         matcher = self.get_eval_matcher()
         op = self.data.get("match-operator", "and") == "and" and all or any

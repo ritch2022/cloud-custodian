@@ -16,12 +16,12 @@ class TestCAM(BaseTest):
                 "filters": [
                     {
                         "type": "credential",
-                        "key": "password_enabled",
-                        "value": True
+                        "key": "ConsoleLogin",
+                        "value": 1
                     },
                     {
                         "type": "credential",
-                        "key": "mfa_active",
+                        "key": "login_mfa_active",
                         "value": False
                     }
                 ]
@@ -46,12 +46,12 @@ class TestCAM(BaseTest):
                                 "and": [
                                     {
                                         "type": "credential",
-                                        "key": "access_keys.active",
-                                        "value": True
+                                        "key": "access_keys.Status",
+                                        "value": "Active"
                                     },
                                     {
                                         "type": "credential",
-                                        "key": "access_keys.last_used_date",
+                                        "key": "access_keys.LastUsedDate",
                                         "value_type": "age",
                                         "value": 1,
                                         "op": "gt"
@@ -62,12 +62,12 @@ class TestCAM(BaseTest):
                                 "and": [
                                     {
                                         "type": "credential",
-                                        "key": "password_enabled",
-                                        "value": True
+                                        "key": "ConsoleLogin",
+                                        "value": 1
                                     },
                                     {
                                         "type": "credential",
-                                        "key": "password_last_used",
+                                        "key": "LastLoginTime",
                                         "value_type": "age",
                                         "value": 1,
                                         "op": "gt"
@@ -93,8 +93,8 @@ class TestCAM(BaseTest):
                 "filters": [
                     {
                         "type": "credential",
-                        "key": "access_keys.active",
-                        "value": True
+                        "key": "access_keys.Status",
+                        "value": "Active"
                     },
                     {
                         "type": "value",
@@ -119,15 +119,15 @@ class TestCAM(BaseTest):
                 "filters": [
                     {
                         "type": "credential",
-                        "key": "access_keys.last_rotated",
+                        "key": "access_keys.CreateTime",
                         "value_type": "age",
                         "value": 3,
                         "op": "greater-than"
                     },
                     {
                         "type": "credential",
-                        "key": "access_keys.active",
-                        "value": True
+                        "key": "access_keys.Status",
+                        "value": "Active"
                     }
                 ],
                 "actions": [
@@ -176,17 +176,17 @@ class TestCAM(BaseTest):
                 "filters": [
                     {
                         "type": "credential",
-                        "key": "access_keys.active",
-                        "value": True
+                        "key": "access_keys.Status",
+                        "value": "Active"
                     },
                     {
                         "type": "credential",
-                        "key": "password_enabled",
-                        "value": True
+                        "key": "ConsoleLogin",
+                        "value": 1
                     },
                     {
                         "type": "value",
-                        "key": "CreateDate",
+                        "key": "CreateTime",
                         "value_type": "age",
                         "value": 7000,
                         "op": "less-than"
@@ -209,17 +209,17 @@ class TestCAM(BaseTest):
                 "filters": [
                     {
                         "type": "credential",
-                        "key": "access_keys.active",
-                        "value": True
+                        "key": "access_keys.Status",
+                        "value": "Active"
                     },
                     {
                         "type": "credential",
-                        "key": "password_enabled",
-                        "value": True
+                        "key": "ConsoleLogin",
+                        "value": 1
                     },
                     {
                         "type": "credential",
-                        "key": "access_keys.last_used_date",
+                        "key": "access_keys.LastUsedDate",
                         "value": "absent"
                     }
                 ]
@@ -240,12 +240,12 @@ class TestCAM(BaseTest):
                 "filters": [
                     {
                         "type": "credential",
-                        "key": "access_keys.active",
-                        "value": True
+                        "key": "access_keys.Status",
+                        "value": "Active"
                     },
                     {
                         "type": "credential",
-                        "key": "access_keys.last_used_date",
+                        "key": "access_keys.LastUsedDate",
                         "value": "absent"
                     },
                     {
@@ -282,12 +282,12 @@ class TestCAM(BaseTest):
                 "filters": [
                     {
                         "type": "credential",
-                        "key": "access_keys.active",
-                        "value": True
+                        "key": "access_keys.Status",
+                        "value": "Active"
                     },
                     {
                         "type": "credential",
-                        "key": "access_keys.last_used_date",
+                        "key": "access_keys.LastUsedDate",
                         "value_type": "age",
                         "op": "gte",
                         "value": 1
