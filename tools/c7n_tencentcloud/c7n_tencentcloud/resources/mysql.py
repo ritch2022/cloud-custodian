@@ -3,6 +3,7 @@
 from c7n_tencentcloud.provider import resources
 from c7n_tencentcloud.query import ResourceTypeInfo, QueryResourceManager
 from c7n_tencentcloud.utils import PageMethod, isoformat_datetime_str
+from c7n.filters.core import Filter
 import pytz
 
 
@@ -31,14 +32,21 @@ class MySQL(QueryResourceManager):
 
     def augment(self, resources):
         for resource in resources:
-            cli = self.get_client()
-            resp = cli.execute_query("DescribeDBInstanceInfo",
-                                     {"InstanceId": resource["InstanceId"]})
-            encryption = resp["Response"]["Encryption"]
-            resource["Encryption"] = encryption
-
             field_format = self.resource_type.datetime_fields_format["CreateTime"]
             resource["CreateTime"] = isoformat_datetime_str(resource["CreateTime"],
                                                             field_format[0],
                                                             field_format[1])
         return resources
+
+
+@MySQL.filter_registry.register('encryption')
+class EncryptionFilter(Filter):
+    def process(self, resources, event=None):
+        value = self.data.get('value', "YES")
+        return [r for r in resources if self.encryption_check(r["InstanceId"], value)]
+
+    def encryption_check(self, instance_id, value):
+        cli = self.manager.get_client()
+        resp = cli.execute_query("DescribeDBInstanceInfo", {"InstanceId": instance_id})
+        encryption = resp["Response"]["Encryption"]
+        return encryption == value
