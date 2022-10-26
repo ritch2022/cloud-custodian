@@ -45,8 +45,7 @@ class TestMySQL(BaseTest):
                 "query": [{"InstanceIds": ["cdb-lbxusyi7"]}],
                 "filters": [
                     {
-                        "type": "value",
-                        "key": "Encryption",
+                        "type": "encryption",
                         "value": "NO",
                     }]
             })
