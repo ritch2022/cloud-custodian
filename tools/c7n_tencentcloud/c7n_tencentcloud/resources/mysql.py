@@ -5,6 +5,7 @@ from c7n_tencentcloud.query import ResourceTypeInfo, QueryResourceManager
 from c7n_tencentcloud.utils import PageMethod, isoformat_datetime_str
 from c7n.filters.core import Filter
 import pytz
+from c7n.utils import type_schema
 
 
 @resources.register("mysql")
@@ -41,6 +42,8 @@ class MySQL(QueryResourceManager):
 
 @MySQL.filter_registry.register('encryption')
 class EncryptionFilter(Filter):
+    schema = type_schema('encryption')
+
     def process(self, resources, event=None):
         value = self.data.get('value', "YES")
         return [r for r in resources if self.encryption_check(r["InstanceId"], value)]
