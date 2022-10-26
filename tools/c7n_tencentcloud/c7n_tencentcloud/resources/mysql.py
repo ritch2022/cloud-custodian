@@ -42,7 +42,7 @@ class MySQL(QueryResourceManager):
 
 @MySQL.filter_registry.register('encryption')
 class EncryptionFilter(Filter):
-    schema = type_schema('encryption')
+    schema = type_schema('encryption', value={'type': 'string'})
 
     def process(self, resources, event=None):
         value = self.data.get('value', "YES")
