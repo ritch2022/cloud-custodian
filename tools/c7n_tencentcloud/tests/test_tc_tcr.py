@@ -12,8 +12,13 @@ class TestTCR(BaseTest):
             {
                 "name": "tcr-lifecycle-rule",
                 "resource": "tencentcloud.tcr",
-                "filters": [{"type": "lifecycle-rule", "state": False}]
+                "query": [{"Registryids": ["tcr-cguc6m2c"]}],
+                "filters": [{"type": "lifecycle-rule",
+                             "state": True,
+                             'match': [{'NamespaceName': 'custodian-test-namespace-2'},
+                                       {'RetentionRuleList[0].Value': 4}]}]
             }
         )
         resources = policy.run()
-        assert len(resources) > 0
+        ok = [r for r in resources if r["RegistryId"] == "tcr-cguc6m2c"]
+        assert len(ok) > 0

@@ -15,12 +15,14 @@ class TestElasticsearch(BaseTest):
                 "filters": [
                     {
                         "type": "value",
-                        "key": "NodeInfoList.NodeType",
+                        "key": "NodeInfoList[0].NodeType",
                         "op": "in",
-                        "value": ["ES.S1.MEDIUM4", "ES.SA2.MEDIUM4"]
+                        "value": ['ES.S1.MEDIUM4']
                     }
                 ]
             }
         )
         resources = policy.run()
-        assert not resources
+
+        ok = [r for r in resources if r["InstanceId"] == "es-2j1xw4ab"]
+        assert len(ok) > 0

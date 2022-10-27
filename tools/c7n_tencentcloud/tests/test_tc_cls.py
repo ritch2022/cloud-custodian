@@ -16,4 +16,5 @@ class TestLogGroup(BaseTest):
             }
         )
         resources = policy.run()
-        assert len(resources) > 0
+        ok = [r for r in resources if r['TopicName'] == 'custodian-test']
+        assert len(ok) > 0
