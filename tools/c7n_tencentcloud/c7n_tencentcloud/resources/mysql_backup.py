@@ -26,8 +26,8 @@ class MySQLBackUp(QueryResourceManager):
 
     def augment(self, resources):
         backup_resources = []
+        cli = self.get_client()
         for resource in resources:
-            cli = self.get_client()
             resp = cli.execute_query("DescribeBackups",
                                      {"InstanceId": resource["InstanceId"]})
             items = resp["Response"]["Items"]

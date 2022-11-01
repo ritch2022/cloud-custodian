@@ -42,14 +42,14 @@ class MySQL(QueryResourceManager):
 
 @MySQL.filter_registry.register('encryption')
 class EncryptionFilter(Filter):
-    schema = type_schema('encryption', value={'type': 'string'})
+    schema = type_schema('encryption', value={'type': 'boolean'})
 
     def process(self, resources, event=None):
-        value = self.data.get('value', "YES")
-        return [r for r in resources if self.encryption_check(r["InstanceId"], value)]
+        value = self.data.get('value', True)
+        return [r for r in resources if self.encryption_check(r["InstanceId"]) == value]
 
-    def encryption_check(self, instance_id, value):
+    def encryption_check(self, instance_id):
         cli = self.manager.get_client()
         resp = cli.execute_query("DescribeDBInstanceInfo", {"InstanceId": instance_id})
-        encryption = resp["Response"]["Encryption"]
-        return encryption == value
+        return resp["Response"]["Encryption"] == "YES"
+
