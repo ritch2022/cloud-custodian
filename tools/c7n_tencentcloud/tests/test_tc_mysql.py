@@ -46,7 +46,7 @@ class TestMySQL(BaseTest):
                 "filters": [
                     {
                         "type": "encryption",
-                        "value": "NO",
+                        "value": False
                     }]
             })
         resources = policy.run()
