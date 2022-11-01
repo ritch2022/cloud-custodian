@@ -52,4 +52,3 @@ class EncryptionFilter(Filter):
         cli = self.manager.get_client()
         resp = cli.execute_query("DescribeDBInstanceInfo", {"InstanceId": instance_id})
         return resp["Response"]["Encryption"] == "YES"
-
