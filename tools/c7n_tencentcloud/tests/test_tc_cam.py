@@ -249,12 +249,6 @@ class TestCAM(BaseTest):
                         "value": "absent"
                     },
                     {
-                        "type": "marked-for-op",
-                        "tag": "access-key-unused",
-                        "op": "remove-keys",
-                        "skew": 50
-                    },
-                    {
                         "not": [
                             {
                                 "type": "marked-for-op",
@@ -270,7 +264,7 @@ class TestCAM(BaseTest):
         )
         resources = policy.run()
         assert len(resources) == 1
-        assert resources[0]["Uin"] == 100027724164
+        assert resources[0]["Uin"] == 100027755407
 
     @pytest.mark.vcr
     def test_user_credentials_in_tracking_period(self):
