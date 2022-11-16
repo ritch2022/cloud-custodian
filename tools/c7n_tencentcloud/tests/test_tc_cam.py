@@ -129,14 +129,6 @@ class TestCAM(BaseTest):
                         "key": "access_keys.Status",
                         "value": "Active"
                     }
-                ],
-                "actions": [
-                    {
-                        "type": "mark-for-op",
-                        "tag": "access-key-unused",
-                        "op": "remove-keys",
-                        "days": 39
-                    }
                 ]
             },
             account_id=100002098531
@@ -268,24 +260,13 @@ class TestCAM(BaseTest):
                         "type": "credential",
                         "key": "access_keys.LastUsedDate",
                         "value": "absent"
-                    },
-                    {
-                        "not": [
-                            {
-                                "type": "marked-for-op",
-                                "tag": "access-key-unused",
-                                "op": "remove-keys",
-                                "skew": 20
-                            }
-                        ]
                     }
                 ]
             },
             account_id=100002098531
         )
         resources = policy.run()
-        assert len(resources) == 1
-        assert resources[0]["Uin"] == 100027755407
+        assert len(resources) == 2
 
     @pytest.mark.vcr
     def test_user_credentials_in_tracking_period(self):
