@@ -167,6 +167,27 @@ class TestCAM(BaseTest):
         assert resources[0]["Uin"] == 100027724164
 
     @pytest.mark.vcr
+    def test_group(self):
+        policy = self.load_policy(
+            {
+                "name": "tencentcloud-cam-user-missing-group-permissions-pull",
+                "resource": "tencentcloud.cam-user",
+                "description": "identify CAM Users who are not a member of any CAM group",
+                "filters": [
+                    {
+                        "type": "group",
+                        "key": "GroupName",
+                        "value": "demo"
+                    }
+                ]
+            },
+            account_id=100002098531
+        )
+        resources = policy.run()
+        assert len(resources) == 1
+        assert resources[0]["Uin"] == 100027755407
+
+    @pytest.mark.vcr
     def test_new_user_with_credential(self):
         policy = self.load_policy(
             {

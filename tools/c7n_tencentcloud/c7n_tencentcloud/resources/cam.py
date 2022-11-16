@@ -182,7 +182,6 @@ class CredentialFilter(Filter):
 
     def set_user_last_login_time(self, resources):
         """set_user_last_login_time"""
-        result = []
         for batch in chunks(resources, 50):
             uins = [r[self.manager.resource_type.id] for r in batch]
             params = {
@@ -196,7 +195,6 @@ class CredentialFilter(Filter):
                     fm = self.manager.resource_type.datetime_fields_format["LastLoginTime"]
                     resource["LastLoginTime"] = \
                         isoformat_datetime_str(uin_map[uin]["LastLoginTime"], fm[0], fm[1])
-        return result
 
     def pre_process(self, resources):
         """pre_process"""
@@ -207,7 +205,7 @@ class CredentialFilter(Filter):
         if key == "LastLoginTime":
             # using last login time
             self.set_user_last_login_time(resources)
-        if "." in key:
+        if "access_keys" in key:
             for resource in resources:
                 if "c7n:access_keys" not in resource:
                     self.set_user_access_keys(resource)
@@ -276,7 +274,7 @@ class CredentialFilter(Filter):
                 v_filter = ValueFilter(f_data)
                 if v_filter.match(resource):
                     results.append(resource)
-            elif '.' in key:
+            elif 'access_keys' in key:
                 if self.process_access_key_filter(resource):
                     results.append(resource)
 
@@ -329,7 +327,7 @@ class Policy(QueryResourceManager):
         service = "cam"
         version = "2019-01-16"
         enum_spec = ("ListPolicies", "Response.List[]", {})
-        taggable = True
+        taggable = False
         resource_prefix = "policyid"
         paging_def = {"method": PageMethod.Page, "limit": {"key": "Rp", "value": 200}}
 
