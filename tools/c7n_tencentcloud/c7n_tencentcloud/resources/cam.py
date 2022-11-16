@@ -281,27 +281,6 @@ class CredentialFilter(Filter):
         return results
 
 
-@User.action_registry.register('remove-keys')
-class UserRemoveAccessKey(TencentCloudBaseAction):
-    """
-    UserRemoveAccessKey
-    not implemented, because tencentcloud API not support delete access keys
-    """
-    schema = type_schema(
-        'remove-keys',
-        matched={'type': 'boolean'},
-        age={'type': 'number'},
-        disable={'type': 'boolean'})
-    permissions = ()
-
-    def validate(self):
-        """validate"""
-        raise NotImplementedError("")
-
-    def process(self, resources):
-        pass
-
-
 class DescribePolicy(DescribeCAM):
     """DescribePolicy"""
     def augment(self, resources):
