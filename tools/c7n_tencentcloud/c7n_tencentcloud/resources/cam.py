@@ -10,7 +10,6 @@ from c7n_tencentcloud.provider import resources
 from c7n_tencentcloud.query import ResourceTypeInfo, QueryResourceManager, DescribeSource
 from c7n_tencentcloud.utils import isoformat_datetime_str, PageMethod, convert_date_str
 from c7n.filters import ValueFilter, Filter
-from c7n_tencentcloud.actions.core import TencentCloudBaseAction
 
 
 class DescribeCAM(DescribeSource):
