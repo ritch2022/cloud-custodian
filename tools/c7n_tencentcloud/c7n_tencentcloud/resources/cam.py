@@ -83,8 +83,8 @@ class GroupMembership(ValueFilter):
         """get_user_groups"""
         for user in user_set:
             params = {
-                # TODO here will be an issue if a sub-account belongs to more than 100 groups
-                "Rp": 100,  # big enough no pagination
+                # we can only create no more than 300 groups
+                "Rp": 300,
                 "SubUin": user[self.manager.resource_type.id]
             }
             resp = self.manager.client.execute_query("ListGroupsForUser", params)
