@@ -74,6 +74,11 @@ class User(QueryResourceManager):
 
 @User.filter_registry.register('group')
 class GroupMembership(ValueFilter):
+    """
+    Filter based on users' group.
+    Official doc: https://www.tencentcloud.com/document/product/598/33380
+    Use limit: https://www.tencentcloud.com/document/product/598/10609
+    """
     schema = type_schema('group', rinherit=ValueFilter.schema)
     schema_alias = False
     permissions = ()
@@ -84,6 +89,7 @@ class GroupMembership(ValueFilter):
         for user in user_set:
             params = {
                 # we can only create no more than 300 groups
+                # and one sub-account can only belong to 10 user groups at most
                 "Rp": 300,
                 "SubUin": user[self.manager.resource_type.id]
             }
