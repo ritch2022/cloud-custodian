@@ -19,7 +19,8 @@ class TestCos(BaseTest):
             }
         )
         resources = policy.run()
-        assert len(resources) > 0
+        resources = [r for r in resources if r["Name"] == "custodian-test-1253831162"]
+        assert len(resources) == 1
 
     @pytest.mark.vcr
     def test_bucket_logging(self):
@@ -38,7 +39,8 @@ class TestCos(BaseTest):
             }
         )
         resources = policy.run()
-        assert len(resources) > 0
+        resources = [r for r in resources if r["Name"] == "custodian-test-1253831162"]
+        assert len(resources) == 1
 
     @pytest.mark.vcr
     def test_bucket_has_statement(self):
@@ -61,7 +63,8 @@ class TestCos(BaseTest):
             }
         )
         resources = policy.run()
-        assert len(resources) > 0
+        resources = [r for r in resources if r["Name"] == "custodian-test-1253831162"]
+        assert len(resources) == 1
 
     @pytest.mark.vcr
     def test_bucket_lifecycle(self):
@@ -82,7 +85,8 @@ class TestCos(BaseTest):
             }
         )
         resources = policy.run()
-        assert len(resources) > 0
+        resources = [r for r in resources if r["Name"] == "custodian-test-1253831162"]
+        assert len(resources) == 1
 
     @pytest.mark.vcr
     def test_bucket_tag(self):
@@ -98,4 +102,5 @@ class TestCos(BaseTest):
             }
         )
         resources = policy.run()
-        assert len(resources) > 0
+        resources = [r for r in resources if r["Name"] == "custodian-test-1253831162"]
+        assert len(resources) == 1
