@@ -33,6 +33,20 @@ class User(QueryResourceManager):
     """
     User - user management in Cloud Access Management (CAM)
     https://www.tencentcloud.com/document/product/1021/37656
+
+    :example:
+
+    .. code-block:: yaml
+
+        policies:
+        - name: cam-too-old-users
+          resource: tencentcloud.cam-user
+          filters:
+          - type: value
+            key: CreateTime
+            value_type: age
+            value: 7000
+            op: less-than
     """
     source_mapping = {"describe": DescribeCAM}
 
@@ -78,6 +92,18 @@ class GroupMembership(ValueFilter):
     Filter based on users' group.
     Official doc: https://www.tencentcloud.com/document/product/598/33380
     Use limit: https://www.tencentcloud.com/document/product/598/10609
+
+    :example:
+
+    .. code-block:: yaml
+
+        policies:
+        - name: cam-user-missing-group
+          resource: tencentcloud.cam-user
+          filters:
+          - type: group
+            key: GroupName
+            value:
     """
     schema = type_schema('group', rinherit=ValueFilter.schema)
     schema_alias = False
@@ -125,7 +151,33 @@ class GroupMembership(ValueFilter):
 
 @User.filter_registry.register('credential')
 class CredentialFilter(Filter):
-    """CredentialFilter"""
+    """CredentialFilter
+    :example:
+
+    .. code-block:: yaml
+
+        policies:
+        - name: cam-user-access-key-rotation
+          resource: tencentcloud.cam-user
+          filters:
+          - type: credential
+            key: access_keys.CreateTime
+            value_type: age
+            value: 3
+            op: greater-than
+          - type: credential
+            key: access_keys.Status
+            value: Active
+        - name: cam-user-mfa-missing
+          resource: tencentcloud.cam-user
+          filters:
+          - type: credential
+            key: ConsoleLogin
+            value: 1
+          - type: credential
+            key: login_mfa_active
+            value: false
+    """
     schema = type_schema(
         'credential',
         value_type={'$ref': '#/definitions/filters_common/value_types'},
@@ -301,6 +353,21 @@ class Policy(QueryResourceManager):
     """
     Policy - Policy management in Cloud Access Management (CAM)
     https://www.tencentcloud.com/document/product/1021/37656
+
+    :example:
+
+    .. code-block:: yaml
+
+        policies:
+        - name: cam-policy-overly-permissive
+          resource: tencentcloud.cam-policy
+          filters:
+          - or:
+            - type: has-allow-all
+            - type: check-permissions
+              match: allowed
+              actions:
+              - "*:*"
     """
     source_mapping = {"describe": DescribePolicy}
 
@@ -355,7 +422,18 @@ class Policy(QueryResourceManager):
 
 @Policy.filter_registry.register('has-allow-all')
 class AllowAllIamPolicies(Filter):
-    """AllowAllIamPolicies"""
+    """AllowAllIamPolicies
+
+    :example:
+
+    .. code-block:: yaml
+
+        policies:
+        - name: cam-policy-overly-permissive
+          resource: tencentcloud.cam-policy
+          filters:
+          - type: has-allow-all
+    """
     schema = type_schema('has-allow-all')
     permissions = ()
 
@@ -383,7 +461,22 @@ class AllowAllIamPolicies(Filter):
 
 @Policy.filter_registry.register('check-permissions')
 class CheckPermissions(Filter):
-    """CheckPermissions"""
+    """CheckPermissions
+
+    :example:
+
+    .. code-block:: yaml
+
+        policies:
+        - name: cam-policy-check-permissions
+          resource: tencentcloud.cam-policy
+          filters:
+          - type: check-permissions
+            match: allowed
+            actions:
+            - cos:GetBucket
+            match-operator: or
+    """
     schema = type_schema(
         'check-permissions', **{
             'match': {'oneOf': [
@@ -452,7 +545,18 @@ class CheckPermissions(Filter):
 
 @Policy.filter_registry.register('used')
 class UsedIamPolicies(Filter):
-    """UsedIamPolicies"""
+    """UsedIamPolicies
+
+    :example:
+
+    .. code-block:: yaml
+
+        policies:
+        - name: cam-policy-used
+          resource: tencentcloud.cam-policy
+          filters:
+          - type: used
+    """
     schema = type_schema('used')
     permissions = ()
 
