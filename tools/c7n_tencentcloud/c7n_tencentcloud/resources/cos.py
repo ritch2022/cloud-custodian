@@ -84,17 +84,20 @@ class BucketFilterBase(Filter):
 
 @COS.filter_registry.register('has-statement')
 class HasStatementFilter(BucketFilterBase):
-    """cis-v140-tencentcloud-bucket-deny-http-requests-reporting-pull
-    :example
+    """Filter bucket statement
 
-    policies:
-    - name: cos
-      resource: tencentcloud.cos
-      filters:
-        - type: has-statement
-          statements:
-            - Effect: Deny
-            - Action: name/cos:GetObject
+    :example:
+
+    .. code-block:: yaml
+        policies:
+            - name: bucket statement
+              resource: tencentcloud.cos
+              filters:
+                - type: has-statement
+                  statements:
+                    - Effect: Deny
+                    - Action: name/cos:GetObject
+
     """
     schema = type_schema(
         'has-statement',
@@ -165,14 +168,17 @@ class HasStatementFilter(BucketFilterBase):
 @COS.filter_registry.register('bucket-encryption')
 class BucketEncryption(Filter):
     """Filters for cos buckets that have bucket-encryption
-    :example
 
-    policies:
-    - name: cos-enable-default-bucket-encryption-reporting-pull
-      resource: tencentcloud.cos
-      filters:
-        - type: bucket-encryption
-          state: False
+    :example:
+
+    .. code-block:: yaml
+        policies:
+            - name: cos-enable-default-bucket-encryption-reporting-pull
+              resource: tencentcloud.cos
+              filters:
+                - type: bucket-encryption
+                  state: False
+
     """
     schema = type_schema('bucket-encryption',
                          state={'type': 'boolean'},
@@ -217,12 +223,17 @@ class BucketEncryption(Filter):
 class BucketLoggingFilter(BucketFilterBase):
     """
     Filter based on bucket logging configuration
-    policies:
-    - name: cis-v140-tencentcloud-bucket-logging-is-not-enabled-reporting-pull
-      resource: tencentcloud.cos
-      filters:
-        - type: bucket-logging
-          op: enabled
+
+    :example:
+
+    .. code-block:: yaml
+        policies:
+        - name: bucket-logging
+          resource: tencentcloud.cos
+          filters:
+            - type: bucket-logging
+              op: enabled
+
     """
     schema = type_schema(
         'bucket-logging',
@@ -285,15 +296,20 @@ class BucketLoggingFilter(BucketFilterBase):
 class BucketLifecycle(Filter):
     """
     Filter based on bucket lifecycle configuration
-    policies:
-    - name: cost-stale-tencentcloud-no-mpu-cleanup-rule
-      resource: tencentcloud.cos
-      filters:
-        - type: bucket-lifecycle
-          key:Lifecycle.Rules[?Status==`Enabled`].AbortIncompleteMultipartUpload.DaysAfterInitiation
-          value: 30,
-          value_type: swap,
-          op: equal
+
+    :example:
+
+    .. code-block:: yaml
+        policies:
+            - name: no-mpu-cleanup-rule
+              resource: tencentcloud.cos
+              filters:
+                - type: bucket-lifecycle
+                  key:Lifecycle.Rules[?Status==`Enabled`].AbortIncompleteMultipartUpload.DaysAfterInitiation
+                  value: 30,
+                  value_type: swap,
+                  op: equal
+
     """
     schema = type_schema('bucket-lifecycle',
                          key={'type': 'string'},
