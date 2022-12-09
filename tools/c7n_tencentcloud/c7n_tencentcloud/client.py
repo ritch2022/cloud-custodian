@@ -150,6 +150,14 @@ class Session:
 
         self._cred = cred_provider.get_credentials()
 
+    @property
+    def secret_id(self):
+        return self._cred.secret_id
+
+    @property
+    def secret_key(self):
+        return self._cred.secret_key
+
     def client(self,
                endpoint: str,
                service: str,

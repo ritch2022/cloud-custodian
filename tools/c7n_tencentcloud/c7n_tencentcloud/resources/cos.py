@@ -11,18 +11,16 @@ from c7n.filters import Filter, ValueFilter
 from c7n_tencentcloud.provider import resources
 from c7n_tencentcloud.query import QueryResourceManager, ResourceTypeInfo, DescribeSource
 from c7n.utils import type_schema, format_string_values
-from tencentcloud.common import credential
 
 log = logging.getLogger('custodian.cos')
 
 
 class DescribeCos(DescribeSource):
 
-    @staticmethod
-    def get_cos_client(region):
-        cred = credential.DefaultCredentialProvider().get_credentials()
-        config = CosConfig(Region=region, SecretId=cred.secret_id,
-                           SecretKey=cred.secret_key)
+    def get_cos_client(self, region):
+        config = CosConfig(Region=region,
+                           SecretId=self.query_helper.session_factory.secret_id,
+                           SecretKey=self.query_helper.session_factory.secret_key)
         return CosS3Client(config)
 
     def resources(self, params=None):
@@ -61,6 +59,7 @@ class COS(QueryResourceManager):
         that features low costs and high scalability
     https://www.tencentcloud.com/document/product/436/6222?lang=en&pg=
     """
+
     class resource_type(ResourceTypeInfo):
         id = "Name"
         service = 'cos'
@@ -277,9 +276,9 @@ class BucketLoggingFilter(BucketFilterBase):
             'target_bucket_name': self.data.get('target_bucket'),
             'target_prefix': self.data.get('target_prefix'),
         })
-        data = format_string_values(self.data, **variables)
-        target_bucket = data.get('target_bucket')
-        target_prefix = data.get('target_prefix', b['Name'] + '/')
+        target_data = format_string_values(self.data, **variables)
+        target_bucket = target_data.get('target_bucket')
+        target_prefix = target_data.get('target_prefix', b['Name'] + '/')
 
         target_config = {
             "TargetBucket": target_bucket,

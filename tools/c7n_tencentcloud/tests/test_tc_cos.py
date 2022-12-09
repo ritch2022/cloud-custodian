@@ -15,12 +15,12 @@ class TestCos(BaseTest):
                 "resource": "tencentcloud.cos",
                 "filters": [
                     {"type": "bucket-encryption", "state": True, "crypto": "AES256"},
+                    {"Name": "custodian-test-1253831162"}
                 ]
             }
         )
         resources = policy.run()
-        resources = [r for r in resources if r["Name"] == "custodian-test-1253831162"]
-        assert len(resources) == 1
+        assert resources[0]["Name"] == "custodian-test-1253831162"
 
     @pytest.mark.vcr
     def test_bucket_logging(self):
@@ -34,13 +34,13 @@ class TestCos(BaseTest):
                         "op": "not-equal",
                         "target_prefix": "{account_id}/{source_bucket_name}/",
                         "target_bucket": "42342-1253831162"
-                    }
+                    },
+                    {"Name": "custodian-test-1253831162"}
                 ]
             }
         )
         resources = policy.run()
-        resources = [r for r in resources if r["Name"] == "custodian-test-1253831162"]
-        assert len(resources) == 1
+        assert resources[0]["Name"] == "custodian-test-1253831162"
 
     @pytest.mark.vcr
     def test_bucket_has_statement(self):
@@ -58,13 +58,13 @@ class TestCos(BaseTest):
                                 "Principal": "qcs::cam::anyone:anyone"
                             }
                         ]
-                    }
+                    },
+                    {"Name": "custodian-test-1253831162"}
                 ],
             }
         )
         resources = policy.run()
-        resources = [r for r in resources if r["Name"] == "custodian-test-1253831162"]
-        assert len(resources) == 1
+        assert resources[0]["Name"] == "custodian-test-1253831162"
 
     @pytest.mark.vcr
     def test_bucket_lifecycle(self):
@@ -80,13 +80,13 @@ class TestCos(BaseTest):
                         "value": "30",
                         "value_type": "swap",
                         "op": "equal"
-                    }
+                    },
+                    {"Name": "custodian-test-1253831162"}
                 ]
             }
         )
         resources = policy.run()
-        resources = [r for r in resources if r["Name"] == "custodian-test-1253831162"]
-        assert len(resources) == 1
+        assert resources[0]["Name"] == "custodian-test-1253831162"
 
     @pytest.mark.vcr
     def test_bucket_tag(self):
@@ -97,10 +97,10 @@ class TestCos(BaseTest):
                 "filters": [
                     {
                         "tag:test_pro_00001": "this is test"
-                    }
+                    },
+                    {"Name": "custodian-test-1253831162"}
                 ]
             }
         )
         resources = policy.run()
-        resources = [r for r in resources if r["Name"] == "custodian-test-1253831162"]
-        assert len(resources) == 1
+        assert resources[0]["Name"] == "custodian-test-1253831162"
