@@ -158,6 +158,10 @@ class Session:
     def secret_key(self):
         return self._cred.secret_key
 
+    @property
+    def token(self):
+        return self._cred.token
+
     def client(self,
                endpoint: str,
                service: str,

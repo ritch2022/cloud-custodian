@@ -1,6 +1,6 @@
 # Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
-
+import copy
 import json
 import logging
 
@@ -20,13 +20,16 @@ class DescribeCos(DescribeSource):
     def get_cos_client(self, region):
         config = CosConfig(Region=region,
                            SecretId=self.query_helper.session_factory.secret_id,
-                           SecretKey=self.query_helper.session_factory.secret_key)
+                           SecretKey=self.query_helper.session_factory.secret_key,
+                           Token=self.query_helper.session_factory.token)
         return CosS3Client(config)
 
     def resources(self, params=None):
         resp = self.get_cos_client(self.resource_manager.config.region).list_buckets()
         action, jsonpath, extra_params = self.resource_type.enum_spec
         resources = jmespath.search(jsonpath, resp)
+        if not resources:
+            return []
         resources = [r for r in resources if r["Location"] == self.resource_manager.config.region]
 
         self.augment(resources)
@@ -139,9 +142,11 @@ class HasStatementFilter(BucketFilterBase):
             return None
 
         statements = json.loads(p["Policy"]).get('Statement', [])
-
-        required_statements = format_string_values(list(self.data.get('statements', [])),
-                                                   **self.get_std_format_args(resource))
+        copied = copy.deepcopy(self.data.get('statements', []))
+        required_statements = format_string_values(
+            list(copied),
+            **self.get_std_format_args(resource)
+        )
         for required_statement in required_statements:
             for statement in statements:
                 found = 0
