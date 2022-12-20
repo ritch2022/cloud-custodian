@@ -1,6 +1,6 @@
 certifi==2022.12.7 ; python_version >= "3.7" and python_version < "4.0"
 charset-normalizer==2.0.12 ; python_version >= "3.7" and python_version < "4.0"
-cos-python-sdk-v5==1.9.21 ; python_version >= "3.7" and python_version < "4.0"
+cos-python-sdk-v5==1.9.22 ; python_version >= "3.7" and python_version < "4.0"
 crcmod==1.7 ; python_version >= "3.7" and python_version < "4.0"
 idna==3.4 ; python_version >= "3.7" and python_version < "4.0"
 pycryptodome==3.16.0 ; python_version >= "3.7" and python_version < "4.0"
