@@ -1,5 +1,6 @@
 # Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
+from c7n.utils import type_schema, chunks
 from c7n_tencentcloud.provider import resources
 from c7n_tencentcloud.query import ResourceTypeInfo, QueryResourceManager
 from c7n_tencentcloud.utils import PageMethod
@@ -200,3 +201,45 @@ class IPPermissionEgress(SGPermission):
             'CidrV6': {}
         },
         'required': ['type']}
+
+
+@SecurityGroup.filter_registry.register('used')
+class StatisticsFilter(Filter):
+    """statistics
+
+    :example:
+
+    .. code-block:: yaml
+
+        policies:
+        - name: used
+          resource: tencentcloud.security-group
+          description: security group used statistical
+          filters:
+            - type: used
+            - type: value
+              key: c7n:CVM
+              op: greater-than
+              value: 0
+    """
+
+    schema = type_schema('used')
+
+    def process(self, resources, event=None):
+        cli = self.manager.get_client()
+        # DescribeSecurityGroupAssociationStatistics Maximum support 100
+        for batch in chunks(resources, 50):
+            ids = []
+            for r in batch:
+                ids.append(r['SecurityGroupId'])
+
+            resp = cli.execute_query("DescribeSecurityGroupAssociationStatistics",
+                                     {"SecurityGroupIds": ids})
+            statistics = resp["Response"]["SecurityGroupAssociationStatisticsSet"]
+            for r in batch:
+                for stat in statistics:
+                    if stat["SecurityGroupId"] == r["SecurityGroupId"]:
+                        r["c7n:CVM"] = stat["CVM"]
+                        r["c7n:CDB"] = stat["CDB"]
+                        r["c7n:CLB"] = stat["CLB"]
+        return resources
