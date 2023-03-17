@@ -296,4 +296,4 @@ class TestSecurityGroup(BaseTest):
         )
         resources = policy.run()
         ok = [r for r in resources if r["SecurityGroupId"] == "sg-jep2pqxk"]
-        assert len(ok) > 0
+        assert len(ok) == 1
