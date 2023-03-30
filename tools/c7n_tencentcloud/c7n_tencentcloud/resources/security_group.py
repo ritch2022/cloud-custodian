@@ -204,7 +204,7 @@ class IPPermissionEgress(SGPermission):
 
 
 @SecurityGroup.filter_registry.register('used')
-class StatisticsFilter(Filter):
+class StatisticsFilter(ValueFilter):
     """statistics
 
     :example:
@@ -217,29 +217,39 @@ class StatisticsFilter(Filter):
           description: security group used statistical
           filters:
             - type: used
-            - type: value
-              key: c7n:CVM
+              key: CVM
               op: greater-than
               value: 0
     """
 
-    schema = type_schema('used')
+    schema = type_schema('used', rinherit=ValueFilter.schema)
+    annotation_key = "c7n:usage_stats"
+
+    def match(self, i):
+        return super().match(i[self.annotation_key])
 
     def process(self, resources, event=None):
-        cli = self.manager.get_client()
+        self.augment([r for r in resources if not self.annotation_key in r])
+        return super().process(resources)
+
+    def augment(self, resources):
+        client = self.manager.get_client()
+
         # DescribeSecurityGroupAssociationStatistics Maximum support 100
         for batch in chunks(resources, 50):
-            ids = []
-            for r in batch:
-                ids.append(r['SecurityGroupId'])
-
-            resp = cli.execute_query("DescribeSecurityGroupAssociationStatistics",
-                                     {"SecurityGroupIds": ids})
+            id_resource_map = {r['SecurityGroupId']: r for r in batch}
+            resp = client.execute_query(
+                "DescribeSecurityGroupAssociationStatistics",
+                {"SecurityGroupIds": list(id_resource_map)}
+            )
             statistics = resp["Response"]["SecurityGroupAssociationStatisticsSet"]
-            for r in batch:
-                for stat in statistics:
-                    if stat["SecurityGroupId"] == r["SecurityGroupId"]:
-                        r["c7n:CVM"] = stat["CVM"]
-                        r["c7n:CDB"] = stat["CDB"]
-                        r["c7n:CLB"] = stat["CLB"]
+            for stat in statistics:
+                group = id_resource_map[stat['SecurityGroupId']]
+                group[self.annotation_key] = {
+                    istat['InstanceType']: istat['InstanceCount'] for istat
+                    in stat['InstanceStatistics']
+                }
+                group[self.annotation_key].update(
+                    {'TotalCount': stat['TotalCount'], 'SG': stat['SG']}
+                )
         return resources

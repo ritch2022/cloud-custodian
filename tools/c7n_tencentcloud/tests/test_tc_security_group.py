@@ -286,13 +286,13 @@ class TestSecurityGroup(BaseTest):
                 "name": "test_security_group_used",
                 "resource": "tencentcloud.security-group",
                 "query": [{"SecurityGroupIds": ["sg-jep2pqxk"]}],
-                "filters": [{"type": "used"},
-                            {"type": "value",
-                             "key": "c7n:CVM",
-                             "value": 0,
-                             "op": "greater-than"
-                             }
-                            ]}
+                "filters": [{
+                    "type": "used",
+                    "key": "CVM",
+                    "value": 0,
+                    "op": "greater-than"
+                }]
+            }
         )
         resources = policy.run()
         ok = [r for r in resources if r["SecurityGroupId"] == "sg-jep2pqxk"]
