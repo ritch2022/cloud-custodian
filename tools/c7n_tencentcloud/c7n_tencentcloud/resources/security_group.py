@@ -229,7 +229,7 @@ class StatisticsFilter(ValueFilter):
         return super().match(i[self.annotation_key])
 
     def process(self, resources, event=None):
-        self.augment([r for r in resources if not self.annotation_key in r])
+        self.augment([r for r in resources if self.annotation_key not in r])
         return super().process(resources)
 
     def augment(self, resources):
